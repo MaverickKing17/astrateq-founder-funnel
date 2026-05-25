@@ -36,22 +36,22 @@ export default function CheckoutModal({ language, selectedTier, isOpen, onClose 
     switch (selectedTier) {
       case 'earlybird':
         return {
-          name: p.tiers.earlybird.name,
+          name: "Observer",
           price: 25,
-          summary: p.tiers.earlybird.summary
+          summary: "Essential diagnostics & real-time OBD connection telemetry"
         };
-      case 'guardian':
+      case 'founding':
         return {
-          name: p.tiers.founding.name,
-          price: 85,
-          summary: p.tiers.founding.summary
+          name: "Guardian",
+          price: 79,
+          summary: "Complete dual-lens computer vision & telemetry active bundle"
         };
       case 'guardian':
       default:
         return {
-          name: p.tiers.guardian.name,
-          price: 150,
-          summary: p.tiers.guardian.summary
+          name: "Guardian Pro",
+          price: 149,
+          summary: "Ultimate 4K military optics connected driver system kit"
         };
     }
   };

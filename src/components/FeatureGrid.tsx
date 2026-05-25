@@ -6,7 +6,7 @@
 import { useState } from 'react';
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ShieldCheck, Cpu, Smartphone, Snowflake, Eye, Settings, HelpCircle, X, ChevronRight } from 'lucide-react';
+import { ShieldCheck, Cpu, Smartphone, Snowflake, Eye, Settings, HelpCircle, X, ChevronRight, Activity, Zap, Compass, AlertTriangle } from 'lucide-react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
 
@@ -14,292 +14,235 @@ interface FeatureGridProps {
   language: Language;
 }
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: 'spring',
-      stiffness: 80,
-      damping: 15,
-    },
-  },
-};
-
 export default function FeatureGrid({ language }: FeatureGridProps) {
   const [activeDeepDiveId, setActiveDeepDiveId] = useState<string | null>(null);
   const [swipedCardId, setSwipedCardId] = useState<string | null>(null);
   const t = translations[language].features;
 
-  const icons: Record<string, React.ReactNode> = {
-    "failure-detection": <Cpu className="w-5 h-5" />,
-    "driver-coaching": <Eye className="w-5 h-5" />,
-    "family-dashboard": <Smartphone className="w-5 h-5" />,
-    "winter-optimized": <Snowflake className="w-5 h-5" />,
-    "canadian-data": <ShieldCheck className="w-5 h-5" />,
-    "ten-minute-setup": <Settings className="w-5 h-5" />
-  };
+  // Aligning exactly with the mockup's 5 cards
+  const mockupCards = [
+    {
+      id: "failure-detection",
+      title: language === 'en' ? "Predictive Diagnostics" : "Diagnostics Prédictifs",
+      desc: language === 'en' 
+        ? "AI analyzes 100+ vehicle sensors to predict issues days or weeks before failure."
+        : "L'IA analyse plus de 100 capteurs pour prédire les pannes des jours avant l'incident.",
+      icon: <Cpu className="w-5 h-5 text-blue-400" />,
+      tag: "OBD-II TELEMETRY",
+      details: t.items.find(item => item.id === "failure-detection")?.textBlock || ""
+    },
+    {
+      id: "collision-prevention",
+      title: language === 'en' ? "Collision Prevention" : "Évitement d'Impact",
+      desc: language === 'en'
+        ? "Advanced computer vision detects risks and helps you avoid accidents."
+        : "La vision par ordinateur modélise les trajectoires et prévient les collisions.",
+      icon: <Compass className="w-5 h-5 text-blue-400" />,
+      tag: "NPU VISION",
+      details: t.items.find(item => item.id === "driver-coaching")?.textBlock || ""
+    },
+    {
+      id: "driver-monitoring",
+      title: language === 'en' ? "Driver Monitoring" : "Vigilance Conducteur",
+      desc: language === 'en'
+        ? "AI monitors attention & fatigue to keep you alert and your family safe."
+        : "L'IA analyse le regard et les signaux de somnolence pour préserver la sécurité.",
+      icon: <Eye className="w-5 h-5 text-blue-400" />,
+      tag: "CABIN AI",
+      details: translations[language].features.items[1]?.textBlock || ""
+    },
+    {
+      id: "winter-optimized",
+      title: language === 'en' ? "Winter Optimized" : "Optimisé pour l'Hiver",
+      desc: language === 'en'
+        ? "Built and tested for extreme Canadian winters down to -40°C."
+        : "Équipé de lentilles chauffantes infrarouges, optimisé pour la neige et le sel.",
+      icon: <Snowflake className="w-5 h-5 text-blue-400" />,
+      tag: "SUB-ZERO BUILD",
+      details: t.items.find(item => item.id === "winter-optimized")?.textBlock || ""
+    },
+    {
+      id: "real-time-alerts",
+      title: language === 'en' ? "Real-Time Alerts" : "Alertes Instantanées",
+      desc: language === 'en'
+        ? "Instant notifications for hazards, maintenance, and road conditions."
+        : "Des alertes visuelles et haptiques immédiates en cas de danger critique.",
+      icon: <Smartphone className="w-5 h-5 text-blue-400" />,
+      tag: "SECURE TELEMETRY",
+      details: t.items.find(item => item.id === "family-dashboard")?.textBlock || ""
+    }
+  ];
 
-  const activeItem = t.items.find(item => item.id === activeDeepDiveId);
+  const activeItem = mockupCards.find(item => item.id === activeDeepDiveId);
 
   return (
-    <section id="features" className="py-24 md:py-32 bg-white relative flex flex-col justify-center items-center overflow-hidden border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full text-center space-y-16">
-        
-        {/* Title Headers */}
-        <div className="max-w-3xl mx-auto space-y-4" id="features-headers">
-          <span className="inline-flex items-center space-x-1 border border-blue-200 bg-blue-50 px-3.5 py-1.5 rounded-none text-blue-800 font-mono text-[10px] font-bold uppercase tracking-widest">
-            {language === 'en' ? 'ENGINEERING ECOSYSTEM' : 'CŒUR DE NOTRE INGÉNIERIE'}
-          </span>
-          <h2 className="font-sans text-3xl md:text-5xl font-extrabold tracking-tighter text-slate-900">
-            {t.titleText} <span className="text-blue-600 block sm:inline">{t.titleItalic}</span>
-          </h2>
-          <p className="text-base text-slate-500 font-medium max-w-2xl mx-auto">
-            {t.description}
-          </p>
-        </div>
-
-        {/* 3x2 Grid Structure */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto"
-          id="features-3x2-grid"
-        >
-          {t.items.map((item) => {
-            const isSwiped = swipedCardId === item.id;
-            return (
-              <motion.div
-                key={item.id}
-                variants={itemVariants}
-                className="relative overflow-hidden bg-slate-50 border border-gray-200 hover:border-slate-400 hover:bg-white hover:shadow-md transition-all text-left group h-[340px] w-full"
-                id={`feature-card-${item.id}`}
+    <section id="features" className="py-24 md:py-32 bg-[#05070F] relative overflow-hidden flex flex-col justify-center items-center border-b border-white/5">
+      {/* Soft blue glowing backdrop in feature background */}
+      <div className="absolute top-1/2 left-3/4 -translate-y-1/2 w-[60rem] h-[30rem] bg-blue-900/10 rounded-full blur-3xl pointer-events-none z-0" />
+      
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Left Sticky/Standard Frame - Matching Mockup layout */}
+          <div className="lg:col-span-4 flex flex-col space-y-6 text-left" id="features-left-column">
+            <span className="text-blue-400 font-mono text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] w-fit">
+              COMPLETE AI SAFETY ECOSYSTEM
+            </span>
+            <h2 className="font-sans text-4xl sm:text-5xl font-extrabold tracking-tighter text-white leading-tight">
+              Proactive Protection.<br />Powered by AI.
+            </h2>
+            <p className="text-sm text-slate-350 font-medium leading-relaxed max-w-sm">
+              Astrateq combines advanced AI diagnostics with computer vision to prevent problems before they happen.
+            </p>
+            <div className="pt-2">
+              <button 
+                onClick={() => {
+                  const targetElement = document.getElementById('what-was-included');
+                  if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+                className="inline-flex items-center space-x-1.5 text-xs font-bold uppercase tracking-widest text-[#00D4FF] hover:text-white transition-colors cursor-pointer group"
               >
-                {/* FRONT FACE (COVER) */}
-                <motion.div
-                  drag="x"
-                  dragDirectionLock
-                  dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.15}
-                  onDragEnd={(_event, info) => {
-                    // Swipe left to read technical review
-                    if (info.offset.x < -45) {
-                      setSwipedCardId(item.id);
-                    }
-                  }}
-                  animate={{ x: isSwiped ? '-100%' : '0%' }}
-                  transition={{ type: 'spring', damping: 22, stiffness: 180 }}
-                  className="absolute inset-0 bg-white p-6 flex flex-col justify-between select-none touch-pan-y"
-                  style={{ zIndex: isSwiped ? 10 : 20 }}
-                >
-                  <div className="space-y-4">
-                    {/* Icon Circle */}
-                    <div className="w-10 h-10 rounded-none bg-slate-50 border border-gray-200 flex items-center justify-center text-slate-950 group-hover:text-white group-hover:bg-blue-600 shadow-xs transition-all">
-                      {icons[item.id] || <Cpu className="w-5 h-5" />}
+                <span>Explore All Features</span>
+                <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </div>
+
+          {/* Right Horizontal Sliding Container - Beautiful Glassmorphic cards */}
+          <div className="lg:col-span-8 w-full" id="features-right-column">
+            <div className="flex space-x-5 overflow-x-auto pb-8 pt-1 scrollbar-thin scrollbar-thumb-white/15 scrollbar-track-transparent snap-x snap-mandatory">
+              
+              {mockupCards.map((card) => {
+                const isSwiped = swipedCardId === card.id;
+                return (
+                  <div 
+                    key={card.id} 
+                    className="snap-start shrink-0 w-[280px] sm:w-[310px] h-[360px] relative overflow-hidden rounded-none border border-white/10 bg-[#0E111C]/85 backdrop-blur-md hover:border-blue-500/50 hover:bg-[#121626]/90 transition-all duration-300 shadow-xl flex flex-col justify-between p-6 cursor-pointer group"
+                    onClick={() => setActiveDeepDiveId(card.id)}
+                  >
+                    {/* Glowing effect inside */}
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/15 transition-all" />
+
+                    {/* Top Content */}
+                    <div className="space-y-4">
+                      {/* Icon */}
+                      <div className="w-10 h-10 rounded-none bg-white/[0.04] border border-white/10 flex items-center justify-center text-white group-hover:bg-blue-600 group-hover:text-white transition-all shadow-xs">
+                        {card.icon}
+                      </div>
+
+                      <div className="space-y-2">
+                        <span className="text-[8px] font-mono font-bold tracking-widest uppercase text-slate-400 block">
+                          // {card.tag}
+                        </span>
+                        <h3 className="text-base font-extrabold text-white leading-snug uppercase tracking-tight">
+                          {card.title}
+                        </h3>
+                        <p className="text-xs text-slate-350 leading-relaxed font-sans line-clamp-4">
+                          {card.desc}
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="space-y-1.5">
-                      <h3 className="text-sm font-extrabold text-[#1A1A2E] leading-snug uppercase tracking-tight">
-                        {item.title}
-                      </h3>
-                      <p className="text-xs text-slate-500 font-medium leading-relaxed font-sans line-clamp-4">
-                        {item.shortDescription}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Interactive Cues Footer */}
-                  <div className="pt-4 border-t border-gray-100 flex flex-col space-y-2 mt-auto">
-                    <div 
-                      className="flex items-center justify-between text-[10px] font-mono font-bold uppercase tracking-widest text-[#1A1A2E]/60 group-hover:text-blue-600 cursor-pointer"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        // Allow click/tap to also trigger slide animation on desktop or non-drag screens
-                        setSwipedCardId(item.id);
-                      }}
-                    >
-                      <span>{language === 'en' ? "Swipe / Tap to Review" : "Glisser pour l'analyse"}</span>
+                    {/* Footer cue */}
+                    <div className="pt-4 border-t border-white/5 flex items-center justify-between text-[10px] font-mono font-bold uppercase tracking-widest text-slate-400 group-hover:text-[#00D4FF] transition-colors">
+                      <span>Full Specifications</span>
                       <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                     </div>
-
-                    {/* Touch-Friendly Swipe Indicator */}
-                    <div className="flex items-center space-x-1.5 text-[9px] font-bold font-mono text-blue-500 animate-pulse">
-                      <span>←</span>
-                      <span>{language === 'en' ? "Swipe Left to Unlock Deep Specs" : "Glisser vers la gauche"}</span>
-                    </div>
                   </div>
-                </motion.div>
+                );
+              })}
 
-                {/* BACK FACE (TECHNICAL SPEC DETAILS) */}
-                <motion.div
-                  drag="x"
-                  dragDirectionLock
-                  dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.15}
-                  onDragEnd={(_event, info) => {
-                    // Swipe right to return to original front cover
-                    if (info.offset.x > 45) {
-                      setSwipedCardId(null);
-                    }
-                  }}
-                  animate={{ x: isSwiped ? '0%' : '100%' }}
-                  transition={{ type: 'spring', damping: 22, stiffness: 180 }}
-                  className="absolute inset-0 bg-[#0B0E1B] text-white p-5 flex flex-col justify-between select-none touch-pan-y"
-                  style={{ zIndex: isSwiped ? 20 : 10 }}
-                >
-                  <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-                    <div className="flex items-center space-x-1.5">
-                      <span className="text-[9px] font-bold font-mono tracking-widest uppercase text-[#00D4FF] bg-blue-950/80 px-2 py-0.5 border border-blue-900 leading-none">
-                        ⚙️ {language === 'en' ? 'EDGE DATA' : 'DONNÉES EMBARQUÉES'}
-                      </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Dynamic Deepdive Specifications Sidebar Drawer */}
+      <AnimatePresence>
+        {activeDeepDiveId && activeItem && (
+          <div className="fixed inset-0 z-50 flex items-center justify-end" id="features-overlay-backdrop">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.5 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setActiveDeepDiveId(null)}
+              className="absolute inset-0 bg-black/80 backdrop-blur-xs"
+            />
+
+            {/* Content Card Side Drawer */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: '0%' }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="absolute top-0 bottom-0 right-0 w-full max-w-xl bg-[#090C16] text-white shadow-2xl flex flex-col justify-between p-8 z-10 border-l border-white/10 rounded-none font-sans"
+              id="features-deepdive-drawer"
+            >
+              <div className="space-y-6 overflow-y-auto pr-2 max-h-[80vh] scrollbar-thin scrollbar-thumb-white/10">
+                {/* Header Row */}
+                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                  <div className="flex items-center space-x-2.5">
+                    <div className="w-8 h-8 bg-blue-950/80 text-blue-400 flex items-center justify-center border border-blue-900 leading-none shadow-sm">
+                      {activeItem.icon}
                     </div>
-                    {/* Standard close fallback */}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSwipedCardId(null);
-                      }}
-                      className="text-slate-400 hover:text-white hover:bg-slate-800 p-1 rounded-none transition cursor-pointer"
-                      title={language === 'en' ? 'Close Specifications' : 'Fermer la fiche'}
-                    >
-                      <X className="w-4 h-4" />
-                    </button>
+                    <span className="text-[10px] font-extrabold font-mono tracking-widest uppercase text-blue-400">
+                      TECHNOLOGY SPECIFICATION
+                    </span>
                   </div>
-
-                  {/* Scrollable specs statement block */}
-                  <div className="flex-1 overflow-y-auto max-h-[175px] my-2 pr-1 text-left scrollbar-thin scrollbar-thumb-slate-800 select-text cursor-text">
-                    <p className="text-[10px] font-black text-slate-400 font-mono uppercase tracking-wide mb-1">
-                      {item.title}
-                    </p>
-                    <div className="text-[11px] text-slate-300 font-medium leading-relaxed space-y-2 font-sans">
-                      {item.textBlock.split('\n\n').map((para, idx) => (
-                        <p key={idx} className="leading-relaxed">{para}</p>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Verification badges and restore cues */}
-                  <div className="pt-2.5 border-t border-slate-800 flex flex-col mt-auto space-y-1 w-full text-left">
-                    <div className="flex items-center justify-between text-[9px] font-bold font-mono tracking-wider text-slate-400">
-                      <span>🛡️ PIPEDA SAFE / ISO 26262</span>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          // Open side drawer for full detailed spec
-                          setActiveDeepDiveId(item.id);
-                        }}
-                        className="text-[#00D4FF] hover:underline font-extrabold cursor-pointer text-[10px]"
-                      >
-                        {language === 'en' ? "Full Specs ↗" : "Specs complètes ↗"}
-                      </button>
-                    </div>
-
-                    <div 
-                      className="flex items-center space-x-1 text-[9px] font-bold font-mono text-emerald-400 animate-pulse cursor-pointer"
-                      onClick={() => setSwipedCardId(null)}
-                    >
-                      <span>{language === 'en' ? "Swipe Right or Tap Close to return" : "Glisser à droite ou Fermer pour revenir"}</span>
-                      <span>→</span>
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-
-        {/* Dynamic Expandable Side Panel Overlay (Slide Tray) */}
-        <AnimatePresence>
-          {activeDeepDiveId && activeItem && (
-            <div className="fixed inset-0 z-50 flex items-center justify-end" id="features-overlay-backdrop">
-              {/* Backdrop */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.5 }}
-                exit={{ opacity: 0 }}
-                onClick={() => setActiveDeepDiveId(null)}
-                className="absolute inset-0 bg-black"
-              />
-
-              {/* Content Card Side Drawer */}
-              <motion.div
-                initial={{ x: '100%' }}
-                animate={{ x: '0%' }}
-                exit={{ x: '100%' }}
-                transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                className="absolute top-0 bottom-0 right-0 w-full max-w-xl bg-white shadow-2xl flex flex-col justify-between p-8 z-10 border-l border-gray-200 rounded-none"
-                id="features-deepdive-drawer"
-              >
-                <div className="space-y-6 overflow-y-auto pr-2 max-h-[80vh]">
-                  {/* Header Row */}
-                  <div className="flex items-center justify-between border-b border-gray-150 border-gray-200 pb-4">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-8 h-8 rounded-none bg-black text-blue-400 flex items-center justify-center">
-                        {icons[activeItem.id] || <Cpu className="w-4 h-4" />}
-                      </div>
-                      <span className="text-[10px] font-bold font-mono tracking-widest uppercase text-slate-400">
-                        {language === 'en' ? 'TECHNOLOGY RECON' : 'SPÉCIFICATIONS TECHNIQUES'}
-                      </span>
-                    </div>
-                    {/* Close button */}
-                    <button
-                      onClick={() => setActiveDeepDiveId(null)}
-                      className="p-1.5 hover:bg-slate-100 rounded-none text-slate-400 hover:text-[#1A1A2E] transition-colors cursor-pointer"
-                      aria-label="Close drawer"
-                    >
-                      <X className="w-5 h-5" />
-                    </button>
-                  </div>
-
-                  <div className="space-y-4 text-left">
-                    <h3 className="font-sans text-2xl md:text-3xl font-black uppercase text-slate-950 leading-tight">
-                      {activeItem.title}
-                    </h3>
-                    <p className="text-[11px] font-bold text-blue-800 bg-blue-50 border border-blue-150 border-blue-105 rounded-none px-4 py-3">
-                      💡 {activeItem.shortDescription}
-                    </p>
-                    
-                    {/* 300 words technical statement block */}
-                    <div className="text-xs text-slate-600 leading-relaxed space-y-4 font-medium mt-4 border-t border-gray-100 pt-4" id="crawler-extraction-block">
-                      {activeItem.textBlock.split('\n\n').map((para, i) => (
-                        <p key={i}>{para}</p>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Footer and certification signals */}
-                <div className="border-t border-gray-200 pt-6 mt-6 text-left space-y-4">
-                  <div className="flex items-center space-x-2 text-[10px] text-slate-400 font-bold uppercase tracking-widest">
-                    <span>🛡️</span>
-                    <span>Verified under PIPEDA and ISO 26262 requirements. Secure Edge Inference.</span>
-                  </div>
+                  {/* Close button */}
                   <button
                     onClick={() => setActiveDeepDiveId(null)}
-                    className="w-full py-4.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-widest rounded-none transition-all cursor-pointer shadow-lg shadow-blue-600/10"
+                    className="p-1.5 hover:bg-white/5 rounded-none text-slate-400 hover:text-white transition-colors cursor-pointer"
+                    aria-label="Close drawer"
                   >
-                    {language === 'en' ? 'Close Review' : 'Fermer la fiche'}
+                    <X className="w-5 h-5" />
                   </button>
                 </div>
-              </motion.div>
-            </div>
-          )}
-        </AnimatePresence>
 
-      </div>
+                <div className="space-y-4 text-left">
+                  <h3 className="font-sans text-2xl md:text-3xl font-black uppercase text-white leading-tight tracking-tight">
+                    {activeItem.title}
+                  </h3>
+                  <p className="text-[11px] font-extrabold text-blue-400 bg-blue-950/65 border border-blue-900 rounded-none px-4 py-3 leading-relaxed">
+                    💡 {activeItem.desc}
+                  </p>
+                  
+                  {/* Detailed Specs Block */}
+                  <div className="text-xs text-slate-350 leading-relaxed space-y-4 font-normal mt-4 border-t border-white/5 pt-4">
+                    {activeItem.details ? (
+                      activeItem.details.split('\n\n').map((para, i) => (
+                        <p key={i}>{para}</p>
+                      ))
+                    ) : (
+                      <p>Full active mechanical interfaces utilize real-time neural mapping patterns for sub-zero collision preventions and telemetry analysis.</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Footer and certification signals */}
+              <div className="border-t border-white/5 pt-6 mt-6 text-left space-y-4">
+                <div className="flex items-center space-x-2 text-[10px] text-slate-400 font-bold uppercase tracking-widest font-mono">
+                  <span>🛡️ SECURITY PROTOCOL</span>
+                  <span>•</span>
+                  <span>100% PIPEDA SAFE / ISO 26262 COMPLIANT</span>
+                </div>
+                <button
+                  onClick={() => setActiveDeepDiveId(null)}
+                  className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-widest rounded-none transition-all cursor-pointer shadow-lg shadow-blue-600/10"
+                >
+                  Close Specification
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
     </section>
   );
 }

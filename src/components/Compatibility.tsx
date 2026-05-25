@@ -19,6 +19,8 @@ import {
 import { Language } from '../types';
 import { translations } from '../data/translations';
 import { YEARS, VEHICLE_MAKES } from '../data/compatibility_db';
+// @ts-ignore
+import carImage from '../assets/images/modern_car_profile_1779735350578.png';
 
 interface CompatibilityProps {
   language: Language;
@@ -198,18 +200,29 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
               {t.subtitle}
             </p>
 
-            {/* HIGH-TECH INTERACTIVE VECTOR VEHICLE HUD */}
-            <div className="border border-slate-200 rounded-none p-5 relative overflow-hidden shadow-inner bg-slate-50">
-              <div className="absolute top-2 right-2 flex items-center space-x-1.5 text-[8px] font-extrabold font-mono text-slate-400 uppercase tracking-widest bg-white border border-slate-200 px-2.5 py-1 z-10">
-                <span className={`w-1.5 h-1.5 rounded-full ${isScanning ? 'bg-amber-500 animate-ping' : 'bg-blue-600 animate-pulse'}`} />
+            {/* HIGH-TECH INTERACTIVE VEHICLE HUD WITH PHOTOREALISTIC VEHICLE DETAIL */}
+            <div className="border border-[#1E2538] rounded-none p-5 relative overflow-hidden bg-[#0A0D16] shadow-2xl shadow-neutral-950">
+              <div className="absolute top-2 right-2 flex items-center space-x-1.5 text-[8px] font-extrabold font-mono text-slate-400 uppercase tracking-widest bg-[#131926] border border-neutral-800 px-2.5 py-1 z-20">
+                <span className={`w-1.5 h-1.5 rounded-full ${isScanning ? 'bg-amber-500 ' : 'bg-blue-500 '}animate-pulse`} />
                 <span>{isScanning ? 'READING DATA' : 'SYS STABLE'}</span>
               </div>
 
-              {/* Vector Car Canvas */}
-              <div className="relative py-4">
-                <svg viewBox="0 0 420 160" className="w-full h-auto text-slate-400" id="vector-car-outline">
+              {/* Realistic Car Canvas wrapper */}
+              <div className="relative py-4 aspect-[420/160] w-full rounded-none overflow-hidden my-1 bg-[#06080F]">
+                {/* Photorealistic car image layer */}
+                <img 
+                  src={carImage} 
+                  alt="Astrateq OBD-II Diagnostic Vehicle" 
+                  className="absolute inset-0 w-full h-full object-cover opacity-85"
+                  referrerPolicy="no-referrer"
+                />
+                
+                {/* Techy high-contrast overlay to dim background slightly for HUD legibility */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#06080F]/80 via-transparent to-[#06080F]/45 pointer-events-none" />
+
+                <svg viewBox="0 0 420 160" className="absolute inset-0 w-full h-full z-15" id="vector-car-outline">
                   {/* Grid background markers for precision engineering feeling */}
-                  <g className="stroke-slate-250 stroke-slate-200 stroke-[0.5]" strokeDasharray="4,4">
+                  <g className="stroke-white/10 stroke-[0.5]" strokeDasharray="3,3">
                     <line x1="0" y1="40" x2="420" y2="40" />
                     <line x1="0" y1="80" x2="420" y2="80" />
                     <line x1="0" y1="120" x2="420" y2="120" />
@@ -218,34 +231,12 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
                     <line x1="300" y1="0" x2="300" y2="160" />
                   </g>
 
-                  {/* Wheels */}
-                  <circle cx="100" cy="115" r="22" className="stroke-slate-400 fill-white stroke-[3.5]" />
-                  <circle cx="100" cy="115" r="8" className="fill-blue-600/70" />
-                  <circle cx="320" cy="115" r="22" className="stroke-slate-400 fill-white stroke-[3.5]" />
-                  <circle cx="320" cy="115" r="8" className="fill-blue-600/70" />
-                  
-                  {/* Car Structure Path */}
-                  <path 
-                    d="M 40 115 L 60 115 A 24 24 0 0 1 120 115 L 301 115 A 24 24 0 0 1 341 115 L 380 115 C 395 115 400 105 400 95 C 400 85 390 73 358 68 L 316 63 L 246 33 L 138 33 C 128 33 110 42 90 58 L 50 83 C 40 88 40 103 40 115 Z" 
-                    fill="none" 
-                    className={`stroke-[2.5] transition-all duration-700 ${
-                      showSuccess ? 'stroke-emerald-500' : isScanning ? 'stroke-blue-600 shadow-lg' : 'stroke-slate-400'
-                    }`}
-                  />
-                  
-                  {/* Window panels */}
-                  <path 
-                    d="M 145 42 L 243 42 L 300 66 L 145 66 Z" 
-                    fill="none" 
-                    className="stroke-slate-350 stroke-[1.5]" 
-                  />
-                  <path d="M 205 42 L 205 66" className="stroke-slate-350 stroke-[1.5]" />
-
-                  {/* Dynamic laser scanning line during isScanning */}
+                  {/* Dynamic laser scanning line during isScanning with neon effect */}
                   {isScanning && (
                     <motion.line 
-                      x1="45" y1="0" x2="45" y2="135"
-                      className="stroke-blue-600 stroke-[2] shadow-md shadow-blue-500"
+                      x1="45" y1="0" x2="45" y2="160"
+                      className="stroke-blue-400 stroke-[2.5]"
+                      style={{ filter: 'drop-shadow(0 0 8px rgba(59, 130, 246, 0.85))' }}
                       animate={{ x: [45, 375, 45] }}
                       transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
                     />
@@ -254,15 +245,16 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
                   {/* Interactive Hotspots points on SVG */}
                   {hotspots.map((hs) => {
                     const isActive = activeHotspot === hs.id;
+                    const isSuccessState = showSuccess && !isScanning;
                     return (
                       <g key={hs.id} className="cursor-pointer group" onClick={() => setActiveHotspot(isActive ? null : hs.id)}>
                         {/* Dynamic pulsing glow circles */}
                         <circle 
                           cx={hs.coords.x} 
                           cy={hs.coords.y} 
-                          r={isActive ? 14 : 9} 
-                          className={`fill-none stroke-[1.5] transition-all duration-300 ${
-                            showSuccess ? 'stroke-emerald-400' : 'stroke-blue-500'
+                          r={isActive ? 15 : 10} 
+                          className={`fill-none stroke-[2] transition-all duration-300 ${
+                            isSuccessState ? 'stroke-emerald-400' : 'stroke-blue-400'
                           } ${isActive ? 'animate-ping' : 'animate-pulse'}`}
                         />
                         <circle 
@@ -270,8 +262,9 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
                           cy={hs.coords.y} 
                           r={isActive ? 6 : 4} 
                           className={`transition-all duration-300 ${
-                            showSuccess ? 'fill-emerald-500' : 'fill-blue-600 hover:fill-blue-500'
+                            isSuccessState ? 'fill-emerald-400' : 'fill-blue-500 hover:fill-blue-400'
                           }`}
+                          style={{ filter: isSuccessState ? 'drop-shadow(0 0 4px #10b981)' : 'drop-shadow(0 0 4px #3b82f6)' }}
                         />
                       </g>
                     );
@@ -279,29 +272,29 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
                 </svg>
               </div>
 
-              {/* Dynamic explanations box for vector hotspots */}
-              <div className="bg-white border border-slate-200 px-4 py-3 min-h-[75px] text-xs leading-relaxed relative flex flex-col justify-center">
+              {/* Dynamic explanations box for vector hotspots styled for dark theme */}
+              <div className="bg-[#131926] border border-neutral-800 px-4 py-3 min-h-[75px] text-xs leading-relaxed relative flex flex-col justify-center rounded-none mt-2.5">
                 {activeHotspot ? (
                   <div>
-                    <div className="flex items-center space-x-1 mb-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                      <span className="font-extrabold text-[#1A1A2E] tracking-tight uppercase text-[10px]">
+                    <div className="flex items-center space-x-1.5 mb-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                      <span className="font-extrabold text-white tracking-tight uppercase text-[10px] font-mono">
                         {hotspots.find(h => h.id === activeHotspot)?.title}
                       </span>
                     </div>
-                    <p className="text-slate-500 font-semibold leading-relaxed">
+                    <p className="text-slate-300 font-medium leading-relaxed">
                       {hotspots.find(h => h.id === activeHotspot)?.desc}
                     </p>
                   </div>
                 ) : (
                   <div className="text-center text-slate-400 py-2">
-                    <p className="font-bold text-[9px] uppercase tracking-widest font-mono text-blue-600 animate-pulse mb-1">
-                      💡 {language === 'en' ? "INTERACTIVE HUD CONSOLE" : "CONSOLE HUD INTERACTIVE"}
+                    <p className="font-bold text-[9px] uppercase tracking-widest font-mono text-blue-400 animate-pulse mb-1">
+                      💡 {language === 'en' ? "INTERACTIVE REALISTIC HUD" : "HUD RÉALISTE ET INTERACTIF"}
                     </p>
-                    <p className="text-[10px] font-semibold">
+                    <p className="text-[10px] text-slate-350 font-semibold">
                       {language === 'en' 
-                        ? 'Tap any glowing node on the vehicle wireframe to inspect physical sensor mounting positions.'
-                        : 'Touchez n’importe quel point lumineux du véhicule pour inspecter l’emplacement d’installation des capteurs.'
+                        ? 'Tap any glowing feedback node over the premium vehicle body to inspect hardware calibration points.'
+                        : 'Touchez n’importe quel point de contrôle lumineux sur la silhouette du véhicule pour inspecter la calibration.'
                       }
                     </p>
                   </div>
