@@ -9,6 +9,13 @@ import { CheckCircle2, Cpu, Hammer, ArrowRight, Smartphone, Activity, ShieldChec
 import { Language } from '../types';
 import { translations } from '../data/translations';
 
+// @ts-ignore
+import collectDataImage from '../assets/images/collect_data_visual_1779736249997.png';
+// @ts-ignore
+import aiAnalysisImage from '../assets/images/ai_analysis_visual_1779736269274.png';
+// @ts-ignore
+import predictProtectImage from '../assets/images/predict_protect_visual_1779736289054.png';
+
 interface HowItWorksProps {
   language: Language;
 }
@@ -59,22 +66,19 @@ export default function HowItWorks({ language }: HowItWorksProps) {
           
           {/* Step 1: Collect Data */}
           <div className="flex flex-col space-y-5" id="how-works-step-1">
-            {/* Vector Illustration block for Collect Data */}
-            <div className="aspect-[16/9] w-full bg-[#0A0D16] border border-white/5 flex items-center justify-center p-4 relative overflow-hidden group">
-              <div className="absolute inset-0 bg-radial from-blue-500/10 via-transparent to-transparent opacity-50 pointer-events-none" />
-              {/* Connected cars canvas representation */}
-              <svg viewBox="0 0 160 90" className="w-[120px] h-auto text-blue-500/80">
-                <rect x="10" y="25" width="40" height="24" rx="3" className="fill-none stroke-blue-500/30 stroke-1" />
-                <rect x="70" y="45" width="40" height="24" rx="3" className="fill-none stroke-blue-400/90 stroke-1.5" />
-                <circle cx="90" cy="45" r="4" className="fill-emerald-400 animate-ping" />
-                <circle cx="90" cy="45" r="2" className="fill-emerald-400" />
-                {/* Connection links */}
-                <path d="M45 35 Q60 30 70 47" className="fill-none stroke-blue-400 stroke-[0.75] stroke-dasharray-[3,3]" strokeDasharray="2,2" />
-                <path d="M90 20 L90 35" className="stroke-blue-500/40 stroke-0.5" />
-                <circle cx="90" cy="18" r="6" className="fill-none stroke-blue-400/20" />
-                <circle cx="90" cy="18" r="1.5" className="fill-[#00D4FF]" />
-              </svg>
-              <span className="absolute bottom-2 right-3 text-[7.5px] font-mono tracking-widest text-slate-500 uppercase font-black">
+            {/* Premium Enterprise image block for Collect Data */}
+            <div className="aspect-[16/9] w-full bg-[#0A0D16] border border-white/10 relative overflow-hidden group rounded-sm shadow-2xl">
+              <img 
+                src={collectDataImage} 
+                alt="Astrateq real-time sensory data stream telemetry acquisition" 
+                className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-all duration-700 ease-out"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#05070F] via-transparent to-transparent opacity-60" />
+              <div className="absolute top-2.5 left-2.5 bg-[#090C16]/95 border border-[#1E2538] px-2.5 py-1 text-[8px] font-mono tracking-widest text-[#00D4FF] uppercase font-black">
+                SENSOR ENGAGEMENT
+              </div>
+              <span className="absolute bottom-2.5 right-3 text-[7.5px] font-mono tracking-widest text-slate-400 uppercase font-black">
                 DEVICE TELEMETRY STREAM
               </span>
             </div>
@@ -94,19 +98,19 @@ export default function HowItWorks({ language }: HowItWorksProps) {
 
           {/* Step 2: AI Analysis */}
           <div className="flex flex-col space-y-5" id="how-works-step-2">
-            {/* Vector Illustration block for AI Analysis */}
-            <div className="aspect-[16/9] w-full bg-[#0A0D16] border border-white/5 flex items-center justify-center p-4 relative overflow-hidden group">
-              <div className="absolute inset-0 bg-radial from-[#00D4FF]/10 via-transparent to-transparent opacity-50 pointer-events-none" />
-              {/* Holographic CPU central unit representation */}
-              <div className="relative flex items-center justify-center">
-                <Cpu className="w-12 h-12 text-[#00D4FF]/30 stroke-[1]" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-[10px] font-mono font-black text-white bg-blue-600/90 px-2 py-1 tracking-widest border border-blue-400">
-                    AI
-                  </span>
-                </div>
+            {/* Premium Enterprise image block for AI Analysis */}
+            <div className="aspect-[16/9] w-full bg-[#0A0D16] border border-white/10 relative overflow-hidden group rounded-sm shadow-2xl">
+              <img 
+                src={aiAnalysisImage} 
+                alt="Neural processor chip edge active machine learning model" 
+                className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-all duration-700 ease-out"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#05070F] via-transparent to-transparent opacity-60" />
+              <div className="absolute top-2.5 left-2.5 bg-[#090C16]/95 border border-[#1E2538] px-2.5 py-1 text-[8px] font-mono tracking-widest text-[#00D4FF] uppercase font-black">
+                LOCAL ANALYTICS
               </div>
-              <span className="absolute bottom-2 right-3 text-[7.5px] font-mono tracking-widest text-slate-500 uppercase font-black">
+              <span className="absolute bottom-2.5 right-3 text-[7.5px] font-mono tracking-widest text-slate-400 uppercase font-black">
                 NPU LOCAL COMPUTING
               </span>
             </div>
@@ -126,18 +130,19 @@ export default function HowItWorks({ language }: HowItWorksProps) {
 
           {/* Step 3: Predict & Protect */}
           <div className="flex flex-col space-y-5" id="how-works-step-3">
-            {/* Vector Illustration block for Predict & Protect */}
-            <div className="aspect-[16/9] w-full bg-[#0A0D16] border border-white/5 flex items-center justify-center p-4 relative overflow-hidden group">
-              <div className="absolute inset-0 bg-radial from-emerald-500/10 via-transparent to-transparent opacity-50 pointer-events-none" />
-              {/* Smartphone mockup outline */}
-              <div className="relative flex flex-col items-center bg-[#07090F] border border-white/10 w-16 h-28 rounded-md p-1.5 shadow-xl">
-                <div className="w-8 h-1 bg-white/20 rounded-full mb-1" />
-                <div className="w-full bg-blue-950/70 border border-blue-900/40 rounded-sm p-1 flex flex-col justify-center space-y-0.5">
-                  <span className="text-[5.5px] font-mono font-extrabold text-blue-400 uppercase leading-none">ALERT!</span>
-                  <div className="w-full h-1.5 bg-blue-500/20 rounded-[1px]" />
-                </div>
+            {/* Premium Enterprise image block for Predict & Protect */}
+            <div className="aspect-[16/9] w-full bg-[#0A0D16] border border-white/10 relative overflow-hidden group rounded-sm shadow-2xl">
+              <img 
+                src={predictProtectImage} 
+                alt="Predictive vehicle diagnostics alerts head-up visualization interface" 
+                className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-all duration-700 ease-out"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#05070F] via-transparent to-transparent opacity-60" />
+              <div className="absolute top-2.5 left-2.5 bg-[#090C16]/95 border border-[#1E2538] px-2.5 py-1 text-[8px] font-mono tracking-widest text-[#00D4FF] uppercase font-black">
+                ESC PROTOCOL ACTIVE
               </div>
-              <span className="absolute bottom-2 right-3 text-[7.5px] font-mono tracking-widest text-slate-500 uppercase font-black">
+              <span className="absolute bottom-2.5 right-3 text-[7.5px] font-mono tracking-widest text-slate-400 uppercase font-black">
                 SECURE ESCALATION LAYER
               </span>
             </div>
