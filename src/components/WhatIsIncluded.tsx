@@ -6,6 +6,8 @@
 import { Check, Cpu, Hammer, Package, Shield, Settings, HelpCircle } from 'lucide-react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
+// @ts-ignore
+import astraProductsImg from '../assets/images/astra_suite_products_1779732275719.png';
 
 interface WhatIsIncludedProps {
   language: Language;
@@ -37,48 +39,24 @@ export default function WhatIsIncluded({ language }: WhatIsIncludedProps) {
               <div className="flex justify-between items-center text-[10px] font-mono tracking-widest text-blue-400 border-b border-neutral-800 pb-3 font-semibold">
                 <span className="flex items-center space-x-1.5">
                   <Package className="w-4 h-4 fill-current shrink-0" />
-                  <span>{language === 'en' ? "ASTRA SUITE SCHEMATIC" : "PLAN DE CONCEPTION TECHNIQUE"}</span>
+                  <span>{language === 'en' ? "ASTRA SUITE HARDWARE" : "ÉQUIPEMENT PHYSIQUE ASTRA"}</span>
                 </span>
                 <span>VERIFIED v1.3</span>
               </div>
 
-              {/* Graphic assembly line */}
-              <div className="relative min-h-[220px] flex items-center justify-center w-full">
-                {/* Visual components representation */}
-                <div className="relative flex space-x-6 items-center">
-                  
-                  {/* Dashcam element blueprint circle */}
-                  <div className="border border-blue-500/25 bg-neutral-900 p-4 rounded-none flex flex-col items-center relative group shadow-lg shadow-blue-500/5">
-                    <div className="w-20 h-20 rounded-full border border-dashed border-blue-500/40 flex items-center justify-center relative animate-spin-slow">
-                      <div className="w-14 h-14 rounded-full border border-blue-500/60 flex items-center justify-center">
-                        <div className="w-8 h-8 rounded-full bg-blue-950 flex items-center justify-center">
-                          <div className="w-3 h-3 bg-blue-450 bg-blue-400 rounded-full" />
-                        </div>
-                      </div>
-                    </div>
-                    {/* Dimension lines */}
-                    <div className="absolute -bottom-6 text-[8px] font-mono text-blue-450 text-blue-400 font-bold uppercase tracking-wider">
-                      78mm Ø LENS UNIT
-                    </div>
-                  </div>
-
-                  {/* Dongle element representation */}
-                  <div className="border border-blue-500/25 bg-neutral-905 bg-neutral-900 p-4 rounded-none flex flex-col items-center relative shadow-lg">
-                    <div className="w-12 h-16 border-2 border-blue-500/35 rounded-none flex flex-col justify-between p-2">
-                      <span className="text-[6px] font-mono text-blue-400 font-black">OBD2</span>
-                      <div className="h-5 w-full bg-blue-950 border border-blue-500/25 rounded-none flex items-center justify-center">
-                        <Cpu className="w-3.5 h-3.5 text-blue-400" />
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="w-1 h-1 bg-emerald-400 rounded-full" />
-                        <span className="w-1 h-1 bg-blue-400 rounded-full" />
-                      </div>
-                    </div>
-                    <div className="absolute -bottom-6 text-[8px] font-mono text-blue-400 font-bold uppercase tracking-wider">
-                      45mm × 32mm PLUG
-                    </div>
-                  </div>
-
+              {/* Real Photography */}
+              <div className="relative overflow-hidden w-full h-[280px] border border-neutral-800 bg-neutral-900 flex items-center justify-center group mb-4">
+                <img 
+                  src={astraProductsImg} 
+                  alt="Astra dual-lens dash camera and companion OBD-II diagnostic plug" 
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover object-center transform hover:scale-102 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-3 left-4 text-left">
+                  <span className="text-[8px] font-mono font-bold uppercase tracking-widest text-blue-400 bg-neutral-950/90 px-2 py-0.5 border border-blue-500/20">
+                    REAL PRODUCT PHOTOGRAPHY
+                  </span>
                 </div>
               </div>
 
