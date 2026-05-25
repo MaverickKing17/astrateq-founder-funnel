@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "DM Serif Display", Georgia, serif;
+  --font-sans: "DM Sans", "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-brand-charcoal: #1A1A2E;
+  --color-brand-slate: #4B5563;
+  --color-brand-cyan: #00D4FF;
+  --color-brand-light: #F8F9FA;
+  --color-brand-blue-deep: #0B0E1B;
+  
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    color: var(--color-brand-charcoal);
+    background-color: #FFFFFF;
+  }
+}
+
+/* Custom class for frosted glass navigation */
+.nav-blur {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Smooth fade-in overlay utility */
+.premium-gradient {
+  background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+.premium-gradient-dark {
+  background: radial-gradient(circle at 50% 30%, rgba(0, 212, 255, 0.12) 0%, #000000 80%);
+}
