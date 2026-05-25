@@ -49,16 +49,16 @@ export default function Navigation({ language, setLanguage, onScrollToSection }:
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between w-full">
         {/* Left Area - Brand */}
         <div 
-          className="flex items-center space-x-2.5 cursor-pointer" 
+          className="flex items-center cursor-pointer" 
           onClick={() => handleLinkClick('hero')}
           id="nav-brand"
         >
-          <div className="w-8 h-8 bg-black rounded-sm flex items-center justify-center text-white">
-            <Shield className="w-4.5 h-4.5 fill-current" />
-          </div>
-          <span className="font-sans text-xl font-extrabold tracking-tight text-slate-900 uppercase">
-            {t.navigation.logo}
-          </span>
+          <img 
+            src="https://i.ibb.co/k2YQcpYM/Gemini-Generated-Image-pta8i9pta8i9pta8.png" 
+            alt="Astrateq Logo" 
+            className="h-10 md:h-12 w-auto object-contain shrink-0 hover:opacity-90 transition-opacity"
+            referrerPolicy="no-referrer"
+          />
         </div>
 
         {/* Center Links (Desktop Only) */}

@@ -56,8 +56,8 @@ const LEGAL_TEXTS = {
       paragraphs: [
         "Astrateq Gadgets Inc. rigorously protects its hardware forms, proprietary circuit systems, and deep learning diagnostic architectures:",
         "1. Industrial and Soft Patents: Astrateq holds exclusive intellectual rights over the dual-lens camera structure, integrated thermal defrosting circuit conductors, NPU-hosted temporal neural structures, and OBD-II predictive CAN-bus querying logic. Any unauthorized replicas or copycat builds will be prosecuted under Canadian Patent and Trademark laws.",
-        "2. Canadian Copyright Alignment (Notice and Notice Regime): Uniquely operating in Canada, we comply fully with the Copyright Act (R.S.C., 1985, c. C-42) Notice and Notice regime. Safe harbor compliance is sustained. If you believe your copyrighted material is placed in conflict within our site, submit a validated dispute notice to our IP Agent at ip@astrateq.ca.",
-        "3. US Copyright Alignment (DMCA): For international users, Astrateq complies with Title 17, United States Code, Section 512(c)(2). Infringing submissions must include exact URLs, physical signatures, and description criteria. Contact billing and registration authorities at ip@astrateq.ca."
+        "2. Canadian Copyright Alignment (Notice and Notice Regime): Uniquely operating in Canada, we comply fully with the Copyright Act (R.S.C., 1985, c. C-42) Notice and Notice regime. Safe harbor compliance is sustained. If you believe your copyrighted material is placed in conflict within our site, submit a validated dispute notice to our IP Agent at astrateqgadgets@yahoo.com.",
+        "3. US Copyright Alignment (DMCA): For international users, Astrateq complies with Title 17, United States Code, Section 512(c)(2). Infringing submissions must include exact URLs, physical signatures, and description criteria. Contact billing and registration authorities at astrateqgadgets@yahoo.com."
       ]
     },
     compliance: {
@@ -114,8 +114,8 @@ const LEGAL_TEXTS = {
       paragraphs: [
         "Gadgets Astrateq Inc. défend activement l'originalité de ses logiciels de diagnostic, ses designs physiques et ses algorithmes de traitement vidéo :",
         "1. Protection des brevets : Astrateq est le propriétaire exclusif de la structure de caméra à double focale, des schémas de dégivrage automatique du pare-brise par résistance et du modèle neuronal d'évaluation de l'usure de l'allumage.",
-        "2. Cadre canadien d'Avis et avis (Loi sur le droit d'auteur) : Nous respectons scrupuleusement le régime « d’Avis et avis » du Canada. Si vous constatez la présence d'un contenu portant atteinte aux droits de propriété de tiers sur nos réseaux, veuillez contacter l'agent à l'adresse ip@astrateq.ca.",
-        "3. Normes DMCA internationales : Astrateq répond également aux revendications d'infraction formulées selon le titre 17 du Code américain Section 512(c)(2). Écrivez à ip@astrateq.ca."
+        "2. Cadre canadien d'Avis et avis (Loi sur le droit d'auteur) : Nous respectons scrupuleusement le régime « d’Avis et avis » du Canada. Si vous constatez la présence d'un contenu portant atteinte aux droits de propriété de tiers sur nos réseaux, veuillez contacter l'agent à l'adresse astrateqgadgets@yahoo.com.",
+        "3. Normes DMCA internationales : Astrateq répond également aux revendications d'infraction formulées selon le titre 17 du Code américain Section 512(c)(2). Écrivez à astrateqgadgets@yahoo.com."
       ]
     },
     compliance: {
@@ -159,13 +159,13 @@ export default function Footer({ language }: FooterProps) {
           
           {/* Logo brand columns */}
           <div className="md:col-span-4 space-y-4 text-left">
-            <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-blue-600 flex items-center justify-center text-white">
-                <Shield className="w-3.5 h-3.5 fill-current" />
-              </div>
-              <span className="font-sans text-lg font-black tracking-tighter text-white uppercase">
-                {translations[language].navigation.logo}
-              </span>
+            <div className="flex items-center">
+              <img 
+                src="https://i.ibb.co/k2YQcpYM/Gemini-Generated-Image-pta8i9pta8i9pta8.png" 
+                alt="Astrateq Logo" 
+                className="h-8 w-auto object-contain shrink-0"
+                referrerPolicy="no-referrer"
+              />
             </div>
             <p className="text-sm text-slate-250 text-slate-350 leading-relaxed max-w-sm font-semibold">
               {language === 'en'
@@ -271,11 +271,11 @@ export default function Footer({ language }: FooterProps) {
               </h4>
               <div className="space-y-1.5 text-sm pt-1">
                 <a 
-                  href="mailto:support@astrateq.ca" 
+                  href="mailto:astrateqgadgets@yahoo.com" 
                   className="flex items-center space-x-1.5 hover:text-[#00D4FF] font-bold transition-all text-white"
                 >
                   <Mail className="w-3.5 h-3.5 text-[#00D4FF] shrink-0" />
-                  <span>support@astrateq.ca</span>
+                  <span>astrateqgadgets@yahoo.com</span>
                 </a>
                 <div className="flex items-start space-x-1.5 text-white/90 font-medium">
                   <MapPin className="w-3.5 h-3.5 text-rose-500 shrink-0 mt-0.5" />
@@ -347,7 +347,7 @@ export default function Footer({ language }: FooterProps) {
                     <li>Astrateq guarantees never to lease, license, sell, or trade diagnostic records, telemetry patterns, or traveler details to auto insurance brokers, marketers, or data consolidators.</li>
                     <li>End-to-end security is guaranteed utilizing AES-256 military-grade encryption keys assigned dynamically per device under user authentication.</li>
                   </ul>
-                  <p>For detail inquiries on data removal, contact privacy@astrateq.ca.</p>
+                  <p>For detail inquiries on data removal, contact astrateqgadgets@yahoo.com.</p>
                 </div>
               </div>
             )}
@@ -462,7 +462,7 @@ export default function Footer({ language }: FooterProps) {
                   </p>
                   <ol className="list-decimal pl-4 space-y-2">
                     <li>Any backer reservation deposit (Observer at $25, Guardian at $85, Guardian Pro at $150) can be canceled instantly at any point prior to physical packaging and vehicle shipment.</li>
-                    <li>To initiate a refund, write support@astrateq.ca with your order token ID. Refund processing has zero fees and takes 3-5 business days to clear back to your payment card.</li>
+                    <li>To initiate a refund, write astrateqgadgets@yahoo.com with your order token ID. Refund processing has zero fees and takes 3-5 business days to clear back to your payment card.</li>
                     <li>If you choose to cancel, your position in our shipping rollout queue is safely reallocated to other campaign backers in chronological sequence order.</li>
                   </ol>
                   <p>No continuous, surprise subscription charges occur until hardware is fully mounted and confirmed in active use.</p>

@@ -39,6 +39,7 @@ const itemVariants = {
 
 export default function FeatureGrid({ language }: FeatureGridProps) {
   const [activeDeepDiveId, setActiveDeepDiveId] = useState<string | null>(null);
+  const [swipedCardId, setSwipedCardId] = useState<string | null>(null);
   const t = translations[language].features;
 
   const icons: Record<string, React.ReactNode> = {
@@ -78,38 +79,146 @@ export default function FeatureGrid({ language }: FeatureGridProps) {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto"
           id="features-3x2-grid"
         >
-          {t.items.map((item) => (
-            <motion.div
-              key={item.id}
-              variants={itemVariants}
-              className="flex flex-col justify-between bg-slate-50 p-6 rounded-none border border-gray-200 hover:border-slate-400 hover:bg-white hover:shadow-md transition-all text-left group"
-              id={`feature-card-${item.id}`}
-            >
-              <div className="space-y-4">
-                {/* Icon Circle */}
-                <div className="w-10 h-10 rounded-none bg-white border border-gray-200 flex items-center justify-center text-slate-950 group-hover:text-white group-hover:bg-blue-600 shadow-xs transition-all">
-                  {icons[item.id] || <Cpu className="w-5 h-5" />}
-                </div>
-
-                <div className="space-y-1.5">
-                  <h3 className="text-sm font-extrabold text-[#1A1A2E] leading-snug uppercase tracking-tight">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed font-sans line-clamp-3">
-                    {item.shortDescription}
-                  </p>
-                </div>
-              </div>
-
-              {/* Read More button triggers modal layout overlay for citations check */}
-              <div className="pt-6 mt-6 border-t border-gray-200 flex items-center justify-between text-[10px] font-mono font-bold uppercase tracking-widest text-[#1A1A2E]/50 group-hover:text-blue-600 cursor-pointer"
-                onClick={() => setActiveDeepDiveId(item.id)}
+          {t.items.map((item) => {
+            const isSwiped = swipedCardId === item.id;
+            return (
+              <motion.div
+                key={item.id}
+                variants={itemVariants}
+                className="relative overflow-hidden bg-slate-50 border border-gray-200 hover:border-slate-400 hover:bg-white hover:shadow-md transition-all text-left group h-[340px] w-full"
+                id={`feature-card-${item.id}`}
               >
-                <span>{language === 'en' ? "Open Technical Review" : "Lire l'analyse technique"}</span>
-                <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-              </div>
-            </motion.div>
-          ))}
+                {/* FRONT FACE (COVER) */}
+                <motion.div
+                  drag="x"
+                  dragDirectionLock
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.15}
+                  onDragEnd={(_event, info) => {
+                    // Swipe left to read technical review
+                    if (info.offset.x < -45) {
+                      setSwipedCardId(item.id);
+                    }
+                  }}
+                  animate={{ x: isSwiped ? '-100%' : '0%' }}
+                  transition={{ type: 'spring', damping: 22, stiffness: 180 }}
+                  className="absolute inset-0 bg-white p-6 flex flex-col justify-between select-none touch-pan-y"
+                  style={{ zIndex: isSwiped ? 10 : 20 }}
+                >
+                  <div className="space-y-4">
+                    {/* Icon Circle */}
+                    <div className="w-10 h-10 rounded-none bg-slate-50 border border-gray-200 flex items-center justify-center text-slate-950 group-hover:text-white group-hover:bg-blue-600 shadow-xs transition-all">
+                      {icons[item.id] || <Cpu className="w-5 h-5" />}
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <h3 className="text-sm font-extrabold text-[#1A1A2E] leading-snug uppercase tracking-tight">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs text-slate-500 font-medium leading-relaxed font-sans line-clamp-4">
+                        {item.shortDescription}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Interactive Cues Footer */}
+                  <div className="pt-4 border-t border-gray-100 flex flex-col space-y-2 mt-auto">
+                    <div 
+                      className="flex items-center justify-between text-[10px] font-mono font-bold uppercase tracking-widest text-[#1A1A2E]/60 group-hover:text-blue-600 cursor-pointer"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        // Allow click/tap to also trigger slide animation on desktop or non-drag screens
+                        setSwipedCardId(item.id);
+                      }}
+                    >
+                      <span>{language === 'en' ? "Swipe / Tap to Review" : "Glisser pour l'analyse"}</span>
+                      <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                    </div>
+
+                    {/* Touch-Friendly Swipe Indicator */}
+                    <div className="flex items-center space-x-1.5 text-[9px] font-bold font-mono text-blue-500 animate-pulse">
+                      <span>←</span>
+                      <span>{language === 'en' ? "Swipe Left to Unlock Deep Specs" : "Glisser vers la gauche"}</span>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* BACK FACE (TECHNICAL SPEC DETAILS) */}
+                <motion.div
+                  drag="x"
+                  dragDirectionLock
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.15}
+                  onDragEnd={(_event, info) => {
+                    // Swipe right to return to original front cover
+                    if (info.offset.x > 45) {
+                      setSwipedCardId(null);
+                    }
+                  }}
+                  animate={{ x: isSwiped ? '0%' : '100%' }}
+                  transition={{ type: 'spring', damping: 22, stiffness: 180 }}
+                  className="absolute inset-0 bg-[#0B0E1B] text-white p-5 flex flex-col justify-between select-none touch-pan-y"
+                  style={{ zIndex: isSwiped ? 20 : 10 }}
+                >
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+                    <div className="flex items-center space-x-1.5">
+                      <span className="text-[9px] font-bold font-mono tracking-widest uppercase text-[#00D4FF] bg-blue-950/80 px-2 py-0.5 border border-blue-900 leading-none">
+                        ⚙️ {language === 'en' ? 'EDGE DATA' : 'DONNÉES EMBARQUÉES'}
+                      </span>
+                    </div>
+                    {/* Standard close fallback */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSwipedCardId(null);
+                      }}
+                      className="text-slate-400 hover:text-white hover:bg-slate-800 p-1 rounded-none transition cursor-pointer"
+                      title={language === 'en' ? 'Close Specifications' : 'Fermer la fiche'}
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  {/* Scrollable specs statement block */}
+                  <div className="flex-1 overflow-y-auto max-h-[175px] my-2 pr-1 text-left scrollbar-thin scrollbar-thumb-slate-800 select-text cursor-text">
+                    <p className="text-[10px] font-black text-slate-400 font-mono uppercase tracking-wide mb-1">
+                      {item.title}
+                    </p>
+                    <div className="text-[11px] text-slate-300 font-medium leading-relaxed space-y-2 font-sans">
+                      {item.textBlock.split('\n\n').map((para, idx) => (
+                        <p key={idx} className="leading-relaxed">{para}</p>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Verification badges and restore cues */}
+                  <div className="pt-2.5 border-t border-slate-800 flex flex-col mt-auto space-y-1 w-full text-left">
+                    <div className="flex items-center justify-between text-[9px] font-bold font-mono tracking-wider text-slate-400">
+                      <span>🛡️ PIPEDA SAFE / ISO 26262</span>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          // Open side drawer for full detailed spec
+                          setActiveDeepDiveId(item.id);
+                        }}
+                        className="text-[#00D4FF] hover:underline font-extrabold cursor-pointer text-[10px]"
+                      >
+                        {language === 'en' ? "Full Specs ↗" : "Specs complètes ↗"}
+                      </button>
+                    </div>
+
+                    <div 
+                      className="flex items-center space-x-1 text-[9px] font-bold font-mono text-emerald-400 animate-pulse cursor-pointer"
+                      onClick={() => setSwipedCardId(null)}
+                    >
+                      <span>{language === 'en' ? "Swipe Right or Tap Close to return" : "Glisser à droite ou Fermer pour revenir"}</span>
+                      <span>→</span>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         {/* Dynamic Expandable Side Panel Overlay (Slide Tray) */}
