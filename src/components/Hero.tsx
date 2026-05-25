@@ -4,9 +4,11 @@
  */
 
 import { motion } from 'motion/react';
-import { ShieldCheck, Star, MapPin, Shield, Snowflake, Sparkles, Check, ArrowRight } from 'lucide-react';
+import { ShieldCheck, Star, MapPin, Shield, Snowflake, Sparkles, Check, ArrowRight, Activity, Wifi, Compass } from 'lucide-react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
+// @ts-ignore
+import astraHeroVisual from '../assets/images/astra_hero_visual_1779732726824.png';
 
 interface HeroProps {
   language: Language;
@@ -141,143 +143,83 @@ export default function Hero({ language, onScrollToSection }: HeroProps) {
 
           </div>
 
-          {/* Right Column - Premium Hardware Interactive Modeling */}
+          {/* Right Column - Premium Hardware Presentation with High-Fidelity HUD overlay */}
           <div className="lg:col-span-5 flex flex-col items-center justify-center relative min-h-[500px]" id="hero-hardware-modeling">
             
-            {/* Background absolute graphic elements */}
-            <div className="absolute inset-0 bg-white border border-gray-200 overflow-hidden shadow-xl flex flex-col justify-between p-6 z-0" />
-
-            <div className="relative z-10 w-full h-full flex flex-col space-y-6 items-center select-none py-4">
+            {/* Core aesthetic container: photography with crisp borders/shadows */}
+            <div className="relative w-full max-w-md h-[480px] bg-neutral-900 border border-neutral-800 shadow-2xl overflow-hidden group">
               
-              {/* Simulated Smart Phone Interface */}
-              <div className="w-[280px] bg-white rounded-[24px] border-[6px] border-slate-900 shadow-2xl overflow-hidden relative transform -rotate-1 hover:rotate-0 transition-all duration-500 hover:scale-[1.02]">
-                {/* Speaker pill top */}
-                <div className="absolute top-0 inset-x-0 h-4 bg-slate-900 flex justify-center items-center rounded-b-xl z-20">
-                  <div className="w-10 h-1 bg-slate-700 rounded-full" />
-                </div>
+              {/* Product Photography */}
+              <img 
+                src={astraHeroVisual} 
+                alt="Astra dynamic smart driver assistant camera mounted on windshield" 
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-104"
+              />
+              
+              {/* Soft dark corner vignetting & blueprint overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/20 to-neutral-950/40 pointer-events-none" />
 
-                <div className="pt-6 pb-4 px-4 space-y-4">
-                  {/* Status header */}
-                  <div className="flex items-center justify-between text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                    <span className="flex items-center space-x-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      <span>ASTRA-AI v1.4</span>
-                    </span>
-                    <span>100% SECURE ({language === 'en' ? 'EN' : 'FR'})</span>
-                  </div>
-
-                  {/* Radial Vehicle Health */}
-                  <div className="bg-slate-50 rounded-none p-3.5 border border-gray-200 flex flex-col items-center space-y-2.5 text-center relative overflow-hidden group">
-                    <p className="text-[10px] font-bold text-slate-500 tracking-widest uppercase">
-                      {language === 'en' ? "Vehicle Health Score" : "Indice d'état de santé"}
-                    </p>
-                    
-                    {/* Ring score chart */}
-                    <div className="relative w-24 h-24 flex items-center justify-center">
-                      <svg className="w-full h-full transform -rotate-90">
-                        <circle cx="48" cy="48" r="40" stroke="#E2E8F0" strokeWidth="6" fill="transparent" />
-                        <circle
-                          cx="48"
-                          cy="48"
-                          r="40"
-                          stroke="#2563EB"
-                          strokeWidth="8"
-                          fill="transparent"
-                          strokeDasharray="251"
-                          strokeDashoffset="5"
-                          strokeLinecap="square"
-                        />
-                      </svg>
-                      <div className="absolute flex flex-col items-center">
-                        <span className="text-xl font-black text-slate-900">98%</span>
-                        <span className="text-[8px] font-bold text-emerald-600 tracking-widest uppercase">
-                          {language === 'en' ? "Excellent" : "Optimal"}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Battery predictive health card */}
-                  <div className="p-3.5 bg-amber-50 rounded-none border border-amber-200/70 relative overflow-hidden flex flex-col text-left">
-                    <div className="flex items-center justify-between text-[9px] font-black text-amber-900 mb-1 tracking-wider uppercase">
-                      <span className="flex items-center space-x-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-ping" />
-                        <span>{language === 'en' ? "PREDICTIVE ANOMALY" : "ANOMALIE PRÉDICTIVE"}</span>
-                      </span>
-                      <span className="text-amber-700 font-mono">14 {language === 'en' ? 'Days' : 'Jours'}</span>
-                    </div>
-                    <p className="text-xs font-bold text-amber-900 leading-tight">
-                      {language === 'en' ? "Cold-Start Battery Wear Detected" : "Usure de batterie au démarrage froid"}
-                    </p>
-                    <p className="text-[9px] text-amber-705 text-amber-805 text-amber-700 font-medium leading-normal mt-1">
-                      {language === 'en' ? "Alternator waveforms show cell stress. Replace battery before freezing depths." : "Tension faible par grand froid détectée. Prevenir la décharge."}
-                    </p>
-                  </div>
-
-                  {/* Road Safety Card */}
-                  <div className="p-3.5 bg-blue-900 text-white rounded-none border border-blue-800 flex items-center justify-between">
-                    <div className="text-left">
-                      <p className="text-[8.5px] text-blue-300 font-bold uppercase tracking-widest">
-                        {language === 'en' ? "Road Intelligence" : "Sécurité de Route"}
-                      </p>
-                      <p className="text-xs font-black leading-none mt-1 uppercase tracking-wide">
-                        {language === 'en' ? "Black Ice Warning" : "Alerte de Verglas"}
-                      </p>
-                    </div>
-                    <span className="px-2 py-0.5 text-[8px] bg-blue-500 text-white rounded-none font-mono font-bold tracking-wider">
-                      {language === 'en' ? "ACTIVE" : "ACTIF"}
-                    </span>
-                  </div>
-
-                </div>
+              {/* Status Header overlay */}
+              <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-[8px] font-mono font-bold tracking-widest text-white/95">
+                <span className="flex items-center space-x-1.5 bg-neutral-950/90 px-2 py-1 border border-neutral-800 backdrop-blur-md">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>ASTRA v1.4 LIVE</span>
+                </span>
+                <span className="bg-neutral-950/90 px-2 py-1 border border-neutral-800 backdrop-blur-md">
+                  SUB-ZERO OPTICAL HEAT: ON
+                </span>
               </div>
 
-              {/* High-End Vector Simulated Camera Hardware Unit */}
-              <div className="absolute bottom-8 right-4 w-[210px] bg-slate-950 text-white rounded-none p-4.5 shadow-2xl border border-slate-800 transform rotate-3 hover:translate-x-3 hover:scale-105 transition-all duration-300">
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center text-[8px] font-mono tracking-widest text-blue-400 font-bold">
-                    <span>ASTRA DUAL-OBSERVER</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
+              {/* Central crosshair representing computer vision calibration overlay */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-40">
+                <div className="w-8 h-8 border border-blue-500/50 rounded-full flex items-center justify-center">
+                  <div className="w-1 bg-blue-500 rounded-full" />
+                </div>
+                <div className="absolute w-20 h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" />
+                <div className="absolute h-20 w-px bg-gradient-to-b from-transparent via-blue-500/40 to-transparent" />
+              </div>
+
+              {/* Real-time telemetry glassmorphism overlay card at the bottom */}
+              <div className="absolute bottom-4 left-4 right-4 p-4 bg-neutral-950/90 border border-white/10 backdrop-blur-lg flex flex-col space-y-3 shadow-lg text-left">
+                
+                {/* Active telemetry markers */}
+                <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
+                  <div className="flex items-center space-x-2">
+                    <Activity className="w-4 h-4 text-blue-400" />
+                    <div>
+                      <p className="text-[9px] font-mono font-black text-white uppercase tracking-wider">
+                        {language === 'en' ? "VEHICLE CANBUS STATUS" : "STATUT LIAISON CANBUS"}
+                      </p>
+                      <p className="text-[8px] font-mono text-emerald-400 font-bold uppercase tracking-widest">
+                        {language === 'en' ? "CALIBRATED & SECURE" : "CONFIGURÉ & SÉCURISÉ"}
+                      </p>
+                    </div>
                   </div>
                   
-                  {/* Outer lens graphic circle */}
-                  <div className="h-16 w-full rounded-none bg-black flex items-center justify-center relative overflow-hidden border border-slate-800">
-                    <div className="w-12 h-12 rounded-full bg-zinc-900 border-4 border-zinc-800 flex items-center justify-center relative">
-                      <div className="w-6 h-6 rounded-full bg-neutral-950 border-2 border-blue-500/80 flex items-center justify-center">
-                        <div className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-                      </div>
-                    </div>
-                    {/* Laser guidance status light */}
-                    <div className="absolute top-2 right-2 w-1.5 h-1.5 bg-blue-400 rounded-full animate-ping" />
-                  </div>
-
-                  {/* Metadata display board */}
-                  <div className="p-2.5 bg-neutral-950 rounded-none border border-slate-850 border-slate-900 space-y-1 text-left">
-                    <div className="flex justify-between text-[8px] font-mono text-gray-500 font-bold">
-                      <span>{language === 'en' ? "LENS TEMP" : "TEMP OPTIQUE"}</span>
-                      <span className="text-blue-400">+12°C ({language === 'en' ? "HEATER ON" : "ACTIF"})</span>
-                    </div>
-                    <div className="flex justify-between text-[8px] font-mono text-gray-500 font-bold">
-                      <span>{language === 'en' ? "COMPUTATION" : "CHARGE NPU"}</span>
-                      <span className="text-emerald-500">22% EDGE</span>
-                    </div>
+                  <div className="flex items-center space-x-1 bg-white/5 border border-white/10 px-2 py-0.5">
+                    <Wifi className="w-3 h-3 text-white" />
+                    <span className="text-[7.5px] font-mono text-white/95">ASTRA-LINK</span>
                   </div>
                 </div>
-              </div>
 
-              {/* Smaller Smart OBD-II Dongle physical representation mock */}
-              <div className="absolute top-12 left-2 w-[110px] bg-slate-950 text-white rounded-none p-3 shadow-xl border border-slate-800 transform -rotate-12 hover:rotate-0 transition-all duration-300">
-                <div className="space-y-1.5 text-center font-mono">
-                  <p className="text-[8px] tracking-widest text-slate-500 font-bold">OBD-II SECURE</p>
-                  <div className="h-1 py-1 flex items-center justify-center space-x-1">
-                    <span className="w-1 h-1 bg-blue-500 rounded-full animate-ping" />
-                    <span className="w-1 h-1 bg-emerald-500 rounded-full" />
-                    <span className="w-1 h-1 bg-amber-500 rounded-full" />
+                {/* Driving conditions intelligence */}
+                <div className="grid grid-cols-2 gap-2 text-[8px] font-mono">
+                  <div className="flex flex-col justify-center space-y-0.5 bg-white/5 px-2.5 py-1.5 border border-white/5">
+                    <span className="text-white/40">{language === 'en' ? "ROAD LENS TEMP" : "TEMPÉRATURE OPTIQUE"}</span>
+                    <span className="font-extrabold text-blue-400">+12.4°C [HEATER ACTIVE]</span>
                   </div>
-                  <div className="pt-1.5 border-t border-slate-900">
-                    <p className="text-[7.5px] text-emerald-400 font-bold">CANBUS SYNCED</p>
+                  <div className="flex flex-col justify-center space-y-0.5 bg-white/5 px-2.5 py-1.5 border border-white/5">
+                    <span className="text-white/40">{language === 'en' ? "NPU RECOGNITION" : "RECONNAISSANCE NPU"}</span>
+                    <span className="font-extrabold text-emerald-400">99.2% ACCURACY</span>
                   </div>
                 </div>
+
+                <p className="text-[9.5px] text-white/70 font-sans tracking-wide leading-relaxed">
+                  {language === 'en' 
+                    ? "Continuous local edge processing protects battery & maps critical road wear in real-time." 
+                    : "L'analyse locale continue préserve la batterie et cartographie l'usure de la route en temps réel."}
+                </p>
               </div>
 
             </div>
