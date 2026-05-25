@@ -98,25 +98,25 @@ export default function FAQ({ language, onScrollToSection }: FAQProps) {
     : allFaqs.filter(faq => faq.category === activeCategory);
 
   return (
-    <section id="faq" className="py-24 md:py-32 bg-white relative overflow-hidden flex flex-col justify-center items-center font-sans border-b border-gray-100">
+    <section id="faq" className="py-24 md:py-32 bg-white relative overflow-hidden flex flex-col justify-center items-center font-sans border-b border-gray-200">
       <div className="max-w-4xl mx-auto px-6 md:px-12 relative z-10 w-full text-center space-y-12">
         
         {/* Title headers */}
         <div className="space-y-4" id="faq-headers">
-          <span className="px-3.5 py-1.5 text-xs font-bold font-mono text-[#00D4FF] bg-cyan-50/50 border border-cyan-100 rounded-full uppercase tracking-wider">
+          <span className="inline-flex items-center space-x-1 border border-blue-200 bg-blue-50 px-3.5 py-1.5 rounded-none text-blue-800 font-mono text-[10px] font-bold uppercase tracking-widest">
             {language === 'en' ? "TECHNICAL ADVISORY" : "CENTRE D'ASSISTANCE"}
           </span>
-          <h2 className="font-serif text-3xl md:text-5xl font-bold tracking-tight text-[#1A1A2E]">
+          <h2 className="font-sans text-3xl md:text-5xl font-extrabold tracking-tighter text-slate-900">
             {t.title}
           </h2>
-          <p className="text-base text-gray-500">
+          <p className="text-base text-slate-500 font-medium">
             {t.subtitle}
           </p>
         </div>
 
         {/* Categorization filter buttons for SEO semantic clustering */}
         <div className="flex flex-wrap items-center justify-center gap-2 max-w-2xl mx-auto" id="faq-filters">
-          <div className="flex items-center space-x-1.5 text-xs text-gray-400 font-bold mr-2 uppercase tracking-tight">
+          <div className="flex items-center space-x-1.5 text-xs text-slate-400 font-bold mr-2 uppercase tracking-wide">
             <Filter className="w-3.5 h-3.5" />
             <span>{language === 'en' ? "Filter:" : "Filtrer:"}</span>
           </div>
@@ -124,10 +124,10 @@ export default function FAQ({ language, onScrollToSection }: FAQProps) {
             <button
               key={cat}
               onClick={() => { setActiveCategory(cat); setOpenId(null); }}
-              className={`px-4 py-1.5 rounded-full text-xs font-bold border transition-all cursor-pointer ${
+              className={`px-4 py-1.5 rounded-none text-xs font-bold border transition-all cursor-pointer ${
                 activeCategory === cat
-                  ? 'bg-[#1A1A2E] text-[#00D4FF] border-[#1A1A2E]'
-                  : 'bg-white hover:bg-gray-50 text-gray-500 border-gray-200'
+                  ? 'bg-black text-white border-black shadow-md'
+                  : 'bg-white hover:bg-slate-50 text-slate-500 border-gray-200 shadow-xs'
               }`}
             >
               {language === 'fr' && cat === "All" ? "Tous" : cat}
@@ -142,10 +142,10 @@ export default function FAQ({ language, onScrollToSection }: FAQProps) {
             return (
               <div
                 key={faq.id}
-                className={`bg-gray-50 p-6 rounded-2xl border transition-all duration-300 relative ${
+                className={`bg-slate-50 p-6 rounded-none border transition-all duration-300 relative ${
                   isOpen
-                    ? 'border-[#00D4FF] bg-white shadow-md'
-                    : 'border-gray-100 hover:border-gray-200'
+                    ? 'border-blue-600 bg-white shadow-md'
+                    : 'border-gray-200 hover:border-slate-400'
                 }`}
                 id={`faq-accordion-item-${faq.id}`}
               >
@@ -156,16 +156,16 @@ export default function FAQ({ language, onScrollToSection }: FAQProps) {
                   aria-expanded={isOpen}
                 >
                   <div className="flex items-center space-x-3 pr-4">
-                    <span className="text-xs font-bold font-mono tracking-widest text-[#00D4FF] bg-cyan-50 px-2 py-0.5 rounded uppercase">
+                    <span className="text-[9px] font-bold font-mono tracking-widest text-slate-500 bg-slate-100 border border-gray-200 px-2 py-0.5 rounded-none uppercase">
                       {faq.category}
                     </span>
-                    <h3 className="text-sm sm:text-base font-bold text-[#1A1A2E] group-hover:text-[#00D4FF] transition-colors leading-snug">
+                    <h3 className="text-sm sm:text-base font-extrabold text-[#1A1A2E] group-hover:text-blue-600 transition-colors leading-snug">
                       {faq.question}
                     </h3>
                   </div>
                   {/* Chevron rotating indicator */}
                   <ChevronRight className={`w-5 h-5 text-gray-400 group-hover:text-[#1A1A2E] shrink-0 transition-transform duration-300 ${
-                    isOpen ? 'rotate-90 text-[#00D4FF]' : ''
+                    isOpen ? 'rotate-90 text-blue-600' : ''
                   }`} />
                 </button>
 
@@ -180,20 +180,20 @@ export default function FAQ({ language, onScrollToSection }: FAQProps) {
                       className="overflow-hidden"
                     >
                       {/* Inner block */}
-                      <div className="pt-5 mt-4 border-t border-gray-100 space-y-4" id="faq-answer-block-aeo">
+                      <div className="pt-5 mt-4 border-t border-gray-200 space-y-4" id="faq-answer-block-aeo">
                         
                         {/* AEO Short Direct Answer Block */}
-                        <div className="p-3.5 bg-cyan-50/40 rounded-xl border border-cyan-100/40 text-xs">
-                          <span className="text-[9px] font-black font-mono tracking-widest text-cyan-600 uppercase block mb-1">
+                        <div className="p-3.5 bg-blue-50/50 rounded-none border border-blue-100 text-xs">
+                          <span className="text-[9px] font-extrabold font-mono tracking-widest text-blue-700 uppercase block mb-1">
                             🎯 {language === 'en' ? "SHORT DIRECT ANSWER" : "RÉPONSE DIRECTE RAPIDE"}
                           </span>
-                          <p className="font-extrabold text-[#1A1A2E] leading-normal font-sans">
+                          <p className="font-extrabold text-slate-900 leading-normal font-sans">
                             {faq.answer}
                           </p>
                         </div>
 
                         {/* Extended detailed copy */}
-                        <p className="text-xs text-[#4B5563] leading-relaxed font-normal font-sans">
+                        <p className="text-xs text-slate-600 leading-relaxed font-semibold font-sans">
                           {faq.detail}
                         </p>
 
@@ -207,16 +207,16 @@ export default function FAQ({ language, onScrollToSection }: FAQProps) {
         </div>
 
         {/* Support disclaimer and link */}
-        <div className="p-4 bg-gray-50 border border-gray-100 rounded-2xl max-w-lg mx-auto flex items-center justify-between" id="faq-footer-action">
-          <div className="text-left flex items-center space-x-2 text-xs">
-            <Mail className="w-4.5 h-4.5 text-[#00D4FF]" />
-            <span className="text-gray-500 font-medium">
+        <div className="p-4 bg-slate-50 border border-gray-200 rounded-none max-w-lg mx-auto flex items-center justify-between" id="faq-footer-action">
+          <div className="text-left flex items-center space-x-2.5 text-xs">
+            <Mail className="w-4.5 h-4.5 text-blue-600" />
+            <span className="text-slate-500 font-medium">
               {language === 'en' ? "Need personalized engineering specs?" : "Besoin de spécifications sur mesure ?"}
             </span>
           </div>
           <button
             onClick={() => onScrollToSection('footer')}
-            className="text-xs font-extrabold text-[#1A1A2E] hover:text-[#00D4FF] hover:underline cursor-pointer"
+            className="text-xs font-extrabold text-slate-950 hover:text-blue-600 hover:underline cursor-pointer"
           >
             {language === 'en' ? "Contact Support →" : "Contacter l'aide →"}
           </button>

@@ -50,18 +50,18 @@ export default function OwnershipTimeline({ language }: OwnershipTimelineProps) 
   ];
 
   return (
-    <section id="ownership-schedule" className="py-24 md:py-32 bg-[#F8F9FA] relative flex flex-col justify-center items-center overflow-hidden">
+    <section id="ownership-schedule" className="py-24 md:py-32 bg-slate-50 relative flex flex-col justify-center items-center overflow-hidden border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full text-center space-y-16">
         
         {/* Title */}
         <div className="max-w-2xl mx-auto space-y-4" id="timeline-headers">
-          <span className="px-3.5 py-1.5 text-xs font-bold font-mono text-[#00D4FF] bg-[#1A1A2E] rounded-full uppercase tracking-wider">
+          <span className="inline-flex items-center space-x-1 border border-blue-200 bg-blue-50 px-3.5 py-1.5 rounded-none text-blue-800 font-mono text-[10px] font-bold uppercase tracking-widest">
             {language === 'en' ? "CAMPAIGN ROADMAP" : "JALONS DE PRODUCTION"}
           </span>
-          <h2 className="font-serif text-3xl md:text-5xl font-bold tracking-tight text-[#1A1A2E]">
+          <h2 className="font-sans text-3xl md:text-5xl font-extrabold tracking-tighter text-slate-900">
             {t.title}
           </h2>
-          <p className="text-base text-gray-500">
+          <p className="text-base text-slate-500 font-medium">
             {t.subtitle}
           </p>
         </div>
@@ -74,45 +74,45 @@ export default function OwnershipTimeline({ language }: OwnershipTimelineProps) 
           {milestoneItems.map((ms, idx) => (
             <div
               key={ms.id}
-              className={`flex flex-col bg-white p-6 rounded-3xl border transition-all text-left relative z-10 h-full ${
+              className={`flex flex-col bg-white p-6 rounded-none border transition-all text-left relative z-10 h-full ${
                 ms.isActive
-                  ? 'border-green-400 shadow-md ring-2 ring-green-100/30'
-                  : 'border-transparent shadow-sm'
+                  ? 'border-emerald-500 border-2 shadow-md'
+                  : 'border-gray-250 border-gray-250 border-gray-200 shadow-sm'
               }`}
             >
               <div className="flex items-center justify-between mb-4">
                 {/* Milestone active circle node */}
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center border ${
+                <div className={`w-10 h-10 rounded-none flex items-center justify-center border ${
                   ms.isActive
-                    ? 'bg-green-150 border-green-500 outline-none text-green-600'
-                    : 'bg-gray-50 border-gray-150 text-gray-400'
+                    ? 'bg-emerald-50 border-emerald-500 text-emerald-600'
+                    : 'bg-slate-50 border-gray-200 text-slate-400'
                 }`}>
                   {ms.icon}
                 </div>
                 {/* Current node marker and slot number */}
-                <span className="font-mono text-xs font-black text-gray-300">
+                <span className="font-mono text-xs font-black text-slate-350 text-slate-300">
                   0{idx + 1}
                 </span>
               </div>
 
               {/* Date Header */}
-              <span className={`text-[10px] font-extrabold font-mono tracking-widest ${
-                ms.isActive ? 'text-green-600' : 'text-gray-400'
+              <span className={`text-[10px] font-extrabold font-mono tracking-widest uppercase ${
+                ms.isActive ? 'text-emerald-600' : 'text-slate-450 text-slate-400'
               }`}>
                 {ms.date}
               </span>
 
               {/* Details and content */}
-              <h3 className="text-base font-bold text-[#1A1A2E] mt-1.5 leading-snug">
+              <h3 className="text-sm font-extrabold text-slate-950 uppercase tracking-tight mt-1.5 leading-snug">
                 {ms.title}
               </h3>
-              <p className="text-xs text-[#4B5563] leading-relaxed mt-2 font-normal">
+              <p className="text-xs text-slate-600 leading-relaxed mt-2 font-medium">
                 {ms.desc}
               </p>
 
               {/* Active current marker ribbon */}
               {ms.isActive && (
-                <div className="absolute -top-3 right-6 bg-green-500 text-white text-[8px] font-mono font-black tracking-widest uppercase px-2 py-0.5 rounded shadow-sm">
+                <div className="absolute -top-3 right-6 bg-emerald-600 text-white text-[8px] font-mono font-black tracking-widest uppercase px-2 py-0.5 rounded-none shadow-sm">
                   {language === 'en' ? 'ACTIVE PHASE' : 'ACTIF'}
                 </div>
               )}

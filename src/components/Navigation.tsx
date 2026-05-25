@@ -40,50 +40,50 @@ export default function Navigation({ language, setLanguage, onScrollToSection }:
   return (
     <nav
       id="main-nav"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-20 flex items-center ${
         isScrolled
-          ? 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100 py-3'
-          : 'bg-transparent py-5'
+          ? 'bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-200'
+          : 'bg-white/80 backdrop-blur-md border-b border-gray-100'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between w-full">
         {/* Left Area - Brand */}
         <div 
-          className="flex items-center space-x-2 cursor-pointer" 
+          className="flex items-center space-x-2.5 cursor-pointer" 
           onClick={() => handleLinkClick('hero')}
           id="nav-brand"
         >
-          <div className="w-8 h-8 rounded-lg bg-[#1A1A2E] flex items-center justify-center text-[#00D4FF]">
-            <Shield className="w-5 h-5 fill-current" />
+          <div className="w-8 h-8 bg-black rounded-sm flex items-center justify-center text-white">
+            <Shield className="w-4.5 h-4.5 fill-current" />
           </div>
-          <span className="font-serif text-xl font-bold tracking-tight text-[#1A1A2E]">
+          <span className="font-sans text-xl font-extrabold tracking-tight text-slate-900 uppercase">
             {t.navigation.logo}
           </span>
         </div>
 
         {/* Center Links (Desktop Only) */}
-        <div className="hidden md:flex items-center space-x-8" id="nav-links-desktop">
+        <div className="hidden md:flex items-center space-x-10" id="nav-links-desktop">
           <button
             onClick={() => handleLinkClick('how-it-works')}
-            className="text-sm font-medium text-gray-600 hover:text-[#00D4FF] hover:underline underline-offset-4 transition-colors cursor-pointer"
+            className="text-xs font-bold text-slate-600 hover:text-blue-600 uppercase tracking-wider transition-colors cursor-pointer"
           >
             {t.navigation.links.howItWorks}
           </button>
           <button
             onClick={() => handleLinkClick('compatibility')}
-            className="text-sm font-medium text-gray-600 hover:text-[#00D4FF] hover:underline underline-offset-4 transition-colors cursor-pointer"
+            className="text-xs font-bold text-slate-600 hover:text-blue-600 uppercase tracking-wider transition-colors cursor-pointer"
           >
             {t.navigation.links.compatibility}
           </button>
           <button
             onClick={() => handleLinkClick('pricing')}
-            className="text-sm font-medium text-gray-600 hover:text-[#00D4FF] hover:underline underline-offset-4 transition-colors cursor-pointer"
+            className="text-xs font-bold text-slate-600 hover:text-blue-600 uppercase tracking-wider transition-colors cursor-pointer"
           >
             {t.navigation.links.pricing}
           </button>
           <button
             onClick={() => handleLinkClick('faq')}
-            className="text-sm font-medium text-gray-600 hover:text-[#00D4FF] hover:underline underline-offset-4 transition-colors cursor-pointer"
+            className="text-xs font-bold text-slate-600 hover:text-blue-600 uppercase tracking-wider transition-colors cursor-pointer"
           >
             {t.navigation.links.faq}
           </button>
@@ -92,23 +92,23 @@ export default function Navigation({ language, setLanguage, onScrollToSection }:
         {/* Right CTA Suite */}
         <div className="flex items-center space-x-4" id="nav-actions">
           {/* Language Switcher */}
-          <div className="flex items-center bg-gray-100 rounded-full p-0.5 border border-gray-200" id="lang-switcher">
+          <div className="flex items-center bg-gray-50 rounded-none p-0.5 border border-gray-200" id="lang-switcher">
             <button
               onClick={() => setLanguage('en')}
-              className={`px-3 py-1 text-xs font-bold rounded-full transition-all cursor-pointer ${
+              className={`px-3 py-1 text-[10px] font-bold rounded-none transition-all cursor-pointer ${
                 language === 'en'
-                  ? 'bg-white text-[#1A1A2E] shadow-sm'
-                  : 'text-gray-500 hover:text-[#1A1A2E]'
+                  ? 'bg-black text-white shadow-sm'
+                  : 'text-slate-600 hover:text-black'
               }`}
             >
               EN
             </button>
             <button
               onClick={() => setLanguage('fr')}
-              className={`px-3 py-1 text-xs font-bold rounded-full transition-all cursor-pointer ${
+              className={`px-3 py-1 text-[10px] font-bold rounded-none transition-all cursor-pointer ${
                 language === 'fr'
-                  ? 'bg-white text-[#1A1A2E] shadow-sm'
-                  : 'text-gray-500 hover:text-[#1A1A2E]'
+                  ? 'bg-black text-white shadow-sm'
+                  : 'text-slate-600 hover:text-black'
               }`}
             >
               FR
@@ -119,7 +119,7 @@ export default function Navigation({ language, setLanguage, onScrollToSection }:
           <button
             id="nav-cta-btn"
             onClick={() => handleLinkClick('pricing')}
-            className="hidden sm:flex items-center space-x-1 px-5 py-2 rounded-full text-xs font-bold text-white bg-[#1A1A2E] hover:bg-[#00D4FF] hover:text-[#1A1A2E] shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer"
+            className="hidden sm:flex items-center space-x-1.5 px-6 py-2.5 bg-black text-white text-xs font-bold uppercase tracking-widest rounded-none hover:bg-slate-800 transition-colors shadow-lg shadow-black/10 cursor-pointer"
           >
             <span>{t.navigation.cta}</span>
           </button>
@@ -128,10 +128,10 @@ export default function Navigation({ language, setLanguage, onScrollToSection }:
           <button
             id="mobile-menu-toggle"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg text-[#1A1A2E] hover:bg-gray-100 transition-colors"
+            className="md:hidden p-2 rounded-none text-slate-900 hover:bg-gray-100 transition-colors border border-transparent"
             aria-label="Toggle navigation menu"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
@@ -145,36 +145,36 @@ export default function Navigation({ language, setLanguage, onScrollToSection }:
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-white border-b border-gray-200"
+            className="md:hidden bg-white border-b border-gray-200 absolute top-20 left-0 right-0 z-40"
           >
             <div className="px-6 py-6 flex flex-col space-y-4">
               <button
                 onClick={() => handleLinkClick('how-it-works')}
-                className="w-full text-left py-2 text-base font-semibold text-gray-700 hover:text-[#00D4FF] border-b border-gray-50 pb-2 cursor-pointer"
+                className="w-full text-left py-2.5 text-xs font-extrabold uppercase tracking-wider text-slate-600 hover:text-blue-600 border-b border-gray-50 pb-2 cursor-pointer"
               >
                 {t.navigation.links.howItWorks}
               </button>
               <button
                 onClick={() => handleLinkClick('compatibility')}
-                className="w-full text-left py-2 text-base font-semibold text-gray-700 hover:text-[#00D4FF] border-b border-gray-50 pb-2 cursor-pointer"
+                className="w-full text-left py-2.5 text-xs font-extrabold uppercase tracking-wider text-slate-600 hover:text-blue-600 border-b border-gray-50 pb-2 cursor-pointer"
               >
                 {t.navigation.links.compatibility}
               </button>
               <button
                 onClick={() => handleLinkClick('pricing')}
-                className="w-full text-left py-2 text-base font-semibold text-gray-700 hover:text-[#00D4FF] border-b border-gray-50 pb-2 cursor-pointer"
+                className="w-full text-left py-2.5 text-xs font-extrabold uppercase tracking-wider text-slate-600 hover:text-blue-600 border-b border-gray-50 pb-2 cursor-pointer"
               >
                 {t.navigation.links.pricing}
               </button>
               <button
                 onClick={() => handleLinkClick('faq')}
-                className="w-full text-left py-2 text-base font-semibold text-gray-700 hover:text-[#00D4FF] border-b border-gray-50 pb-2 cursor-pointer"
+                className="w-full text-left py-2.5 text-xs font-extrabold uppercase tracking-wider text-slate-600 hover:text-blue-600 border-b border-gray-50 pb-2 cursor-pointer"
               >
                 {t.navigation.links.faq}
               </button>
               <button
                 onClick={() => handleLinkClick('pricing')}
-                className="w-full flex items-center justify-center space-x-1 py-3 px-4 rounded-full text-sm font-bold text-white bg-[#1A1A2E] hover:bg-[#00D4FF] hover:text-[#1A1A2E] transition-all cursor-pointer"
+                className="w-full flex items-center justify-center space-x-1 py-3 px-4 rounded-none text-xs font-bold uppercase tracking-widest text-white bg-black hover:bg-slate-800 transition-all cursor-pointer shadow-lg shadow-black/10"
               >
                 <span>{t.navigation.cta}</span>
               </button>

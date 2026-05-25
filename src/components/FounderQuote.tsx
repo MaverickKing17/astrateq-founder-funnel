@@ -15,15 +15,15 @@ export default function FounderQuote({ language }: FounderQuoteProps) {
   const t = translations[language].founderQuote;
 
   return (
-    <section id="founder-quote" className="relative py-20 md:py-24 bg-[#1A1A2E] overflow-hidden text-center flex flex-col items-center">
+    <section id="founder-quote" className="relative py-20 md:py-24 bg-slate-900 overflow-hidden text-center flex flex-col items-center border-y border-slate-850">
       {/* Background glowing particles or vector lines */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#00D4FF]/40 to-transparent" />
-      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#00D4FF]/20 to-transparent" />
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" />
+      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
       
       <div className="max-w-4xl mx-auto px-6 relative z-10 flex flex-col items-center space-y-6">
         
         {/* Quote icon accent */}
-        <Quote className="w-10 h-10 text-[#00D4FF] rotate-180 opacity-60" />
+        <Quote className="w-10 h-10 text-blue-500 rotate-180 opacity-70" />
         
         {/* Core Quote with Serif Italic Styling */}
         <blockquote className="font-serif text-2xl md:text-3xl lg:text-4xl italic text-white leading-relaxed tracking-tight max-w-3xl">
@@ -31,14 +31,14 @@ export default function FounderQuote({ language }: FounderQuoteProps) {
         </blockquote>
         
         {/* Divider accent */}
-        <div className="h-0.5 w-12 bg-gradient-to-r from-[#00D4FF] to-blue-600 rounded-full" />
+        <div className="h-[2px] w-12 bg-blue-500" />
         
         {/* Author details */}
         <div className="text-center">
-          <cite className="not-italic block text-base font-bold text-white tracking-wide uppercase">
+          <cite className="not-italic block text-sm font-black text-white tracking-widest uppercase">
             — {t.author}
           </cite>
-          <span className="text-xs font-medium text-gray-400 tracking-wider">
+          <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1.5 block">
             {t.role}
           </span>
         </div>

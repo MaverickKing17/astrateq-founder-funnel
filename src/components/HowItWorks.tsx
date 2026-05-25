@@ -45,18 +45,18 @@ export default function HowItWorks({ language }: HowItWorksProps) {
   ];
 
   return (
-    <section id="how-it-works" className="py-24 md:py-32 bg-[#F8F9FA] relative flex flex-col justify-center items-center overflow-hidden">
+    <section id="how-it-works" className="py-24 md:py-32 bg-slate-50 relative flex flex-col justify-center items-center overflow-hidden border-b border-gray-250 border-gray-200">
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full text-center space-y-16">
         
         {/* Title */}
-        <div className="max-w-3xl mx-auto space-y-4" id="how-it-works-headers">
-          <span className="text-xs font-extrabold font-mono text-[#00D4FF] bg-[#1A1A2E] px-3.5 py-1.5 rounded-full uppercase tracking-widest">
+        <div className="max-w-3xl mx-auto space-y-45 space-y-4" id="how-it-works-headers">
+          <span className="inline-flex items-center space-x-1 border border-blue-200 bg-blue-50 px-3.5 py-1.5 rounded-none text-blue-805 text-blue-800 font-mono text-[10px] font-bold uppercase tracking-widest">
             {language === 'en' ? 'SIMPLE TIMELINE' : 'PROCESSUS SANS FAILLE'}
           </span>
-          <h2 className="font-serif text-3xl md:text-5xl font-bold tracking-tight text-[#1A1A2E]">
+          <h2 className="font-sans text-3xl md:text-5xl font-extrabold tracking-tighter text-slate-900">
             {t.title}
           </h2>
-          <p className="text-gray-500 max-w-xl mx-auto text-sm">
+          <p className="text-slate-500 max-w-xl mx-auto text-sm font-medium">
             {language === 'en' 
               ? "We believe in extreme transparency. Here is exactly what happens from the split-second you lock your slot to securing your driving safety."
               : "Nous croyons en une transparence absolue. Voici les étapes de votre réservation jusqu'au calibrage de votre boîtier."}
@@ -74,17 +74,17 @@ export default function HowItWorks({ language }: HowItWorksProps) {
               <div
                 key={st.id}
                 onClick={() => setActiveStep(st.id)}
-                className={`flex flex-col bg-white rounded-3xl p-6 border-2 transition-all relative z-10 cursor-pointer text-left h-full ${
+                className={`flex flex-col bg-white rounded-none p-6 border-2 transition-all relative z-10 cursor-pointer text-left h-full shadow-xs ${
                   isSelected
-                    ? 'border-[#00D4FF] shadow-lg scale-102'
-                    : 'border-transparent shadow-sm hover:border-gray-200'
+                    ? 'border-blue-600 shadow-md scale-102'
+                    : 'border-gray-250 border-transparent hover:border-gray-300'
                 }`}
                 id={`how-works-step-${st.id}`}
               >
                 {/* Step indicator node */}
                 <div className="flex items-center justify-between mb-4">
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-white bg-[#1A1A2E] transform transition-transform ${
-                    isSelected ? 'scale-110 shadow-lg' : 'opacity-80'
+                  <div className={`w-12 h-12 rounded-none flex items-center justify-center text-white bg-black transform transition-transform ${
+                    isSelected ? 'scale-110 shadow-md text-blue-400' : 'opacity-90'
                   }`}>
                     {st.icon}
                   </div>
@@ -93,23 +93,23 @@ export default function HowItWorks({ language }: HowItWorksProps) {
                   </span>
                 </div>
 
-                <h3 className="text-lg font-bold text-[#1A1A2E] leading-snug">
+                <h3 className="text-sm font-extrabold text-slate-950 uppercase tracking-tight leading-snug">
                   {st.label}
                 </h3>
-                <p className="text-xs font-bold text-gray-400 mt-1 uppercase tracking-wider">
+                <p className="text-[10px] font-bold text-slate-400 mt-1 uppercase tracking-widest">
                   {st.desc}
                 </p>
 
                 {/* Collapsible detail panel that expands when active */}
                 <div className="mt-4 pt-4 border-t border-gray-100 flex-grow">
-                  <p className="text-xs text-[#4B5563] leading-relaxed font-sans">
+                  <p className="text-xs text-slate-600 leading-relaxed font-sans font-medium">
                     {st.detail}
                   </p>
                 </div>
 
                 {/* Selection state marker */}
                 {isSelected && (
-                  <div className="absolute -bottom-2 right-6 bg-[#00D4FF] text-[#1A1A2E] px-2.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider shadow-sm">
+                  <div className="absolute -bottom-2.5 right-6 bg-blue-600 text-white px-2.5 py-1 rounded-none text-[9px] font-mono font-bold uppercase tracking-widest shadow-md">
                     {language === 'en' ? 'Active Focus' : 'Focus Actuel'}
                   </div>
                 )}
@@ -119,9 +119,9 @@ export default function HowItWorks({ language }: HowItWorksProps) {
         </div>
 
         {/* Dynamic Guarantee Badge beneath steps */}
-        <div className="inline-flex items-center space-x-2 bg-green-50 p-3.5 rounded-full border border-green-200/50 text-left max-w-lg shadow-sm" id="process-trust-badge">
-          <ShieldCheck className="w-5 h-5 text-green-600 shrink-0" />
-          <p className="text-xs font-bold text-green-900 leading-tight">
+        <div className="inline-flex items-center space-x-2.5 bg-emerald-50 px-4 py-3 rounded-none border border-emerald-200 text-left max-w-xl shadow-xs" id="process-trust-badge">
+          <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
+          <p className="text-xs font-bold text-emerald-800 leading-tight">
             {language === 'en' 
               ? "All reservation payments remain in escrow. No cash release occurs until manufacturing completion."
               : "Tous vos fonds restent sécurisés. Aucun retrait n'a lieu avant le début de fabrication."}

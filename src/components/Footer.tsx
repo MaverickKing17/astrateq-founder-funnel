@@ -27,14 +27,14 @@ export default function Footer({ language }: FooterProps) {
           {/* Logo brand columns */}
           <div className="md:col-span-5 space-y-4 text-left">
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 rounded-md bg-[#00D4FF] flex items-center justify-center text-[#1A1A2E]">
+              <div className="w-6 h-6 rounded-none bg-blue-600 flex items-center justify-center text-white">
                 <Shield className="w-3.5 h-3.5 fill-current" />
               </div>
-              <span className="font-serif text-lg font-bold tracking-tight text-white uppercase">
+              <span className="font-sans text-lg font-black tracking-tighter text-white uppercase">
                 {translations[language].navigation.logo}
               </span>
             </div>
-            <p className="text-xs text-gray-500 leading-relaxed max-w-sm">
+            <p className="text-xs text-slate-500 leading-relaxed max-w-sm font-medium">
               {language === 'en'
                 ? "Engineering elite AI-powered diagnostic hardware for demanding sub-zero environments. Protecting families with predictive, non-surveillance edge technologies across North America."
                 : "Conception de boîtiers de sécurité IA pour environnements sous-zéro. Protection intégrale des familles canadiennes par technologies prédictives sans intrusion."}
@@ -79,9 +79,9 @@ export default function Footer({ language }: FooterProps) {
               <h4 className="text-white text-xs font-bold tracking-wider uppercase font-mono">
                 {language === 'en' ? "Support Channels" : "Canaux de Support"}
               </h4>
-              <ul className="space-y-2 text-xs text-gray-500">
+              <ul className="space-y-2 text-xs text-slate-500">
                 <li className="flex items-center space-x-1.5 hover:text-white transition-all cursor-pointer">
-                  <Mail className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                  <Mail className="w-3.5 h-3.5 text-blue-500 shrink-0" />
                   <span>support@astrateq.ca</span>
                 </li>
                 <li className="flex items-center space-x-1.5 hover:text-white transition-all cursor-pointer">
@@ -97,11 +97,11 @@ export default function Footer({ language }: FooterProps) {
             <h4 className="text-white text-xs font-bold tracking-wider uppercase font-mono">
               Language / Bilinguisme
             </h4>
-            <div className="p-3 bg-slate-900 border border-slate-800 rounded-2xl flex items-center space-x-2">
+            <div className="p-3 bg-slate-900 border border-slate-800 rounded-none flex items-center space-x-2">
               <span className="text-base">🇨🇦</span>
               <div>
                 <p className="text-[10px] text-white font-bold leading-none">en-CA / fr-CA</p>
-                <p className="text-[9px] text-gray-500 mt-0.5">{t.bilingualNote}</p>
+                <p className="text-[9px] text-slate-500 mt-0.5">{t.bilingualNote}</p>
               </div>
             </div>
           </div>
@@ -109,14 +109,14 @@ export default function Footer({ language }: FooterProps) {
         </div>
 
         {/* Lower credit block */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-2 text-[10px] text-gray-500 font-mono" id="footer-bottom-board">
-          <p className="text-left leading-normal max-w-xl">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-2 text-[10px] text-slate-500 font-mono" id="footer-bottom-board">
+          <p className="text-left leading-normal max-w-xl font-medium">
             {t.allRightsReserved}<br />
-            <span className="text-gray-600 block mt-1.5">{t.subLegalText}</span>
+            <span className="text-slate-600 block mt-1.5">{t.subLegalText}</span>
           </p>
           <div className="flex items-center space-x-3 shrink-0">
-            <span className="px-2 py-0.5 border border-slate-800 rounded text-gray-600">PIPEDA ACTIVE</span>
-            <span className="px-2 py-0.5 border border-slate-800 rounded text-gray-600">ISED CERTIFIED</span>
+            <span className="px-2 py-0.5 border border-slate-805 border-slate-800 rounded-none text-slate-500">PIPEDA ACTIVE</span>
+            <span className="px-2 py-0.5 border border-slate-805 border-slate-800 rounded-none text-slate-500">ISED CERTIFIED</span>
           </div>
         </div>
 
@@ -129,11 +129,11 @@ export default function Footer({ language }: FooterProps) {
           <div className="absolute inset-0 bg-[#0B0E1B]/80 backdrop-blur-sm" onClick={() => setActiveModal(null)} />
           
           {/* Modal box */}
-          <div className="relative bg-white w-full max-w-xl rounded-3xl overflow-hidden shadow-2xl p-6 md:p-8 text-[#1A1A2E] z-10 text-left max-h-[85vh] overflow-y-auto">
+          <div className="relative bg-white w-full max-w-xl rounded-none border border-gray-200 overflow-hidden shadow-2xl p-6 md:p-8 text-slate-900 z-10 text-left max-h-[85vh] overflow-y-auto">
             {/* Close */}
             <button
               onClick={() => setActiveModal(null)}
-              className="absolute top-4 right-4 p-1.5 hover:bg-gray-100 rounded-xl text-gray-400 hover:text-black transition-colors cursor-pointer"
+              className="absolute top-4 right-4 p-1.5 hover:bg-slate-100 rounded-none text-slate-400 hover:text-black transition-colors cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -141,13 +141,13 @@ export default function Footer({ language }: FooterProps) {
             {/* Privacy details */}
             {activeModal === 'privacy' && (
               <div className="space-y-4" id="policy-privacy-panel">
-                <span className="text-[10px] font-mono font-black text-cyan-600 bg-cyan-50 px-2 py-0.5 rounded uppercase">
+                <span className="text-[9px] font-bold font-mono tracking-widest text-[#2563EB] bg-blue-50 border border-blue-105 rounded-none px-2 py-0.5 uppercase">
                   {language === 'en' ? 'Sovereignty Pledge' : 'Souveraineté des données'}
                 </span>
-                <h3 className="font-serif text-2xl font-bold">{t.privacy}</h3>
+                <h3 className="font-sans text-xl md:text-2xl font-black uppercase tracking-tight text-slate-950">{t.privacy}</h3>
                 
-                <div className="text-xs text-gray-600 space-y-3 leading-relaxed">
-                  <p className="font-bold">Last Updated: May 2026</p>
+                <div className="text-xs text-slate-600 space-y-3 leading-relaxed font-semibold">
+                  <p className="font-bold text-slate-900">Last Updated: May 2026</p>
                   <p>
                     Astrateq Gadgets Inc. operates in absolute validation of the Canadian Personal Information Protection and Electronic Documents Act (PIPEDA). Under this strict sovereign directive:
                   </p>
@@ -165,13 +165,13 @@ export default function Footer({ language }: FooterProps) {
             {/* Refund details */}
             {activeModal === 'refund' && (
               <div className="space-y-4" id="policy-refund-panel">
-                <span className="text-[10px] font-mono font-black text-green-700 bg-green-50 px-2 py-0.5 rounded uppercase">
+                <span className="text-[9px] font-bold font-mono tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-none px-2 py-0.5 uppercase">
                   {language === 'en' ? 'Pledge Escrow' : 'Engagement de remboursement'}
                 </span>
-                <h3 className="font-serif text-2xl font-bold">{t.refund}</h3>
+                <h3 className="font-sans text-xl md:text-2xl font-black uppercase tracking-tight text-slate-950">{t.refund}</h3>
                 
-                <div className="text-xs text-gray-600 space-y-3 leading-relaxed">
-                  <p className="font-bold">Holding Ledger Parameters</p>
+                <div className="text-xs text-slate-600 space-y-3 leading-relaxed font-semibold">
+                  <p className="font-bold text-slate-955 text-slate-900">Holding Ledger Parameters</p>
                   <p>
                     We appreciate your trust inside our pre-launch validation phase. All campaign pre-order elements are structured under a risk-free 100% refund policy:
                   </p>
@@ -188,13 +188,13 @@ export default function Footer({ language }: FooterProps) {
             {/* CASL Compliance details */}
             {activeModal === 'casl' && (
               <div className="space-y-4" id="policy-casl-panel">
-                <span className="text-[10px] font-mono font-black text-[#1A1A2E] bg-gray-100 px-2 py-0.5 rounded uppercase">
+                <span className="text-[9px] font-bold font-mono tracking-widest text-slate-700 bg-slate-100 border border-gray-200 rounded-none px-2 py-0.5 uppercase">
                   {language === 'en' ? 'anti-spam mandate' : 'Anti-Pourriel LCAP'}
                 </span>
-                <h3 className="font-serif text-2xl font-bold">{t.casl}</h3>
+                <h3 className="font-sans text-xl md:text-2xl font-black uppercase tracking-tight text-slate-950">{t.casl}</h3>
                 
-                <div className="text-xs text-gray-600 space-y-3 leading-relaxed">
-                  <p className="font-bold">Anti-Spam Consent Guarantee</p>
+                <div className="text-xs text-slate-600 space-y-3 leading-relaxed font-semibold">
+                  <p className="font-bold text-slate-900">Anti-Spam Consent Guarantee</p>
                   <p>
                     Astrateq Gadgets operates in complete compliance with the Canadian Anti-Spam Legislation (CASL). When enrolling inside our reservation metrics:
                   </p>
@@ -210,7 +210,7 @@ export default function Footer({ language }: FooterProps) {
 
             <button
               onClick={() => setActiveModal(null)}
-              className="w-full mt-6 py-4 bg-[#1A1A2E] text-white font-bold text-xs rounded-full hover:bg-[#00D4FF] hover:text-[#1A1A2E] transition-all cursor-pointer"
+              className="w-full mt-6 py-4 bg-black text-white font-bold text-xs uppercase tracking-widest rounded-none hover:bg-slate-800 transition-all cursor-pointer"
             >
               {language === 'en' ? "Close Policy" : "Fermer l'accord"}
             </button>

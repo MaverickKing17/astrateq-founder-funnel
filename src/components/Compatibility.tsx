@@ -54,52 +54,52 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
   };
 
   return (
-    <section id="compatibility" className="py-24 md:py-32 bg-white relative overflow-hidden flex flex-col justify-center items-center">
+    <section id="compatibility" className="py-24 md:py-32 bg-white relative overflow-hidden flex flex-col justify-center items-center border-b border-gray-200">
       {/* Dynamic graphic radial nodes */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-cyan-100/30 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-150/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-blue-50/40 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-100/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Left Column content */}
           <div className="lg:col-span-6 space-y-6 text-left" id="compatibility-left">
-            <span className="px-3 py-1.5 text-xs font-bold font-mono text-[#00D4FF] bg-gray-50 border border-gray-100 rounded-full uppercase tracking-wider">
+            <span className="inline-flex items-center space-x-1 border border-blue-200 bg-blue-50 px-3.5 py-1.5 rounded-none text-blue-800 font-mono text-[10px] font-bold uppercase tracking-widest">
               {language === 'en' ? "VEHICLE AUDIT" : "VÉRIFICATION OBD-II"}
             </span>
-            <h2 className="font-serif text-3xl md:text-5xl font-bold tracking-tight text-[#1A1A2E] leading-tight">
+            <h2 className="font-sans text-3xl md:text-5xl font-extrabold tracking-tighter text-slate-900 leading-tight">
               {t.title}
             </h2>
-            <p className="text-base text-[#4B5563] leading-relaxed">
+            <p className="text-base text-slate-600 font-medium leading-relaxed">
               {t.subtitle}
             </p>
 
             {/* Structured highlight box */}
-            <div className="p-4 bg-[#F8F9FA] rounded-2xl border border-gray-100 flex items-center space-x-3 text-sm">
-              <div className="w-10 h-10 bg-cyan-50 border border-cyan-200 rounded-xl flex items-center justify-center text-[#00D4FF]">
-                <ShieldCheck className="w-5 h-5" />
+            <div className="p-4.5 bg-slate-50 rounded-none border border-gray-200 flex items-center space-x-3.5 text-sm">
+              <div className="w-10 h-10 bg-blue-50 border border-blue-200 rounded-none flex items-center justify-center text-blue-600 shrink-0">
+                <ShieldCheck className="w-5 h-5 shrink-0" />
               </div>
-              <p className="text-[#4B5563] font-medium leading-tight">
+              <p className="text-slate-650 text-slate-600 font-bold text-xs uppercase tracking-wide leading-relaxed">
                 {language === 'en'
                   ? "Meets full Canadian security standards. No diagnostic check compromises vehicle warranty parameters under consumer defense acts."
                   : "Respecte l'ensemble des normes. Notre interfaçage OBD-II passif ne compromet en rien la garantie constructeur."}
               </p>
             </div>
 
-            <div className="flex items-center space-x-2 text-xs font-medium text-gray-400 pl-1">
+            <div className="flex items-center space-x-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-1">
               <span>🛡️</span>
               <span>ISO 26262 ASIL-B Certified Diagnostic System</span>
             </div>
           </div>
 
           {/* Right Column - Selector Form UI */}
-          <div className="lg:col-span-6 bg-gray-50 p-8 rounded-3xl border border-gray-100 shadow-xl w-full" id="compatibility-form">
+          <div className="lg:col-span-6 bg-slate-50 p-8 rounded-none border border-gray-200 shadow-md w-full" id="compatibility-form">
             <div className="space-y-6 text-left">
               
               {/* Form title */}
-              <div className="flex items-center space-x-2">
-                <Car className="w-5 h-5 text-[#00D4FF]" />
-                <h3 className="font-serif text-xl font-bold text-[#1A1A2E]">
+              <div className="flex items-center space-x-2.5">
+                <Car className="w-5 h-5 text-blue-600" />
+                <h3 className="font-sans text-xs font-black uppercase tracking-widest text-slate-900 mt-0.5">
                   {language === 'en' ? "Active Live Compatibility Check" : "Analyseur de Compatibilité en Direct"}
                 </h3>
               </div>
@@ -109,14 +109,14 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
                 
                 {/* Years Select */}
                 <div className="flex flex-col space-y-1.5">
-                  <label htmlFor="comp-year" className="text-xs font-bold text-[#1A1A2E] tracking-wide uppercase">
+                  <label htmlFor="comp-year" className="text-[10px] font-black text-slate-900 tracking-widest uppercase">
                     {language === 'en' ? "Model Year" : "Année du modèle"}
                   </label>
                   <select
                     id="comp-year"
                     value={selectedYear}
                     onChange={handleYearChange}
-                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium focus:border-[#00D4FF] focus:ring-1 focus:ring-[#00D4FF] transition-all outline-none"
+                    className="w-full bg-white border border-gray-200 rounded-none px-4 py-3 text-xs font-bold uppercase tracking-wider focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all outline-none"
                   >
                     <option value="">-- {t.placeholderYear} --</option>
                     {YEARS.map(y => <option key={y} value={y}>{y}</option>)}
@@ -125,7 +125,7 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
 
                 {/* Makes Select */}
                 <div className="flex flex-col space-y-1.5">
-                  <label htmlFor="comp-make" className="text-xs font-bold text-[#1A1A2E] tracking-wide uppercase">
+                  <label htmlFor="comp-make" className="text-[10px] font-black text-slate-900 tracking-widest uppercase">
                     {language === 'en' ? "Vehicle Manufacturer" : "Constructeur / Marque"}
                   </label>
                   <select
@@ -133,7 +133,7 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
                     value={selectedMake}
                     onChange={handleMakeChange}
                     disabled={!selectedYear}
-                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium focus:border-[#00D4FF] focus:ring-1 focus:ring-[#00D4FF] transition-all outline-none disabled:opacity-55 disabled:bg-gray-100"
+                    className="w-full bg-white border border-gray-200 rounded-none px-4 py-3 text-xs font-bold uppercase tracking-wider focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all outline-none disabled:opacity-55 disabled:bg-gray-100 placeholder:text-slate-300"
                   >
                     <option value="">-- {t.placeholderMake} --</option>
                     {VEHICLE_MAKES.map(m => <option key={m.name} value={m.name}>{m.name}</option>)}
@@ -142,7 +142,7 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
 
                 {/* Models Select */}
                 <div className="flex flex-col space-y-1.5">
-                  <label htmlFor="comp-model" className="text-xs font-bold text-[#1A1A2E] tracking-wide uppercase">
+                  <label htmlFor="comp-model" className="text-[10px] font-black text-slate-900 tracking-widest uppercase">
                     {language === 'en' ? "Vehicle Model" : "Modèle exact"}
                   </label>
                   <select
@@ -150,7 +150,7 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
                     value={selectedModel}
                     onChange={handleModelChange}
                     disabled={!selectedMake}
-                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium focus:border-[#00D4FF] focus:ring-1 focus:ring-[#00D4FF] transition-all outline-none disabled:opacity-55 disabled:bg-gray-100"
+                    className="w-full bg-white border border-gray-200 rounded-none px-4 py-3 text-xs font-bold uppercase tracking-wider focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all outline-none disabled:opacity-55 disabled:bg-gray-100 representation-box"
                   >
                     <option value="">-- {t.placeholderModel} --</option>
                     {currentModels.map(mod => <option key={mod} value={mod}>{mod}</option>)}
@@ -163,7 +163,7 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
               <button
                 onClick={handleCheck}
                 disabled={!selectedYear || !selectedMake || !selectedModel}
-                className="w-full py-4 rounded-full font-bold text-sm text-white bg-[#1A1A2E] hover:bg-[#00D4FF] hover:text-[#1A1A2E] transition-all focus:outline-none flex items-center justify-center space-x-1 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                className="w-full py-4 bg-black text-white text-xs font-bold uppercase tracking-widest rounded-none hover:bg-slate-800 transition-all focus:outline-none flex items-center justify-center space-x-1 cursor-pointer shadow-lg shadow-black/10 disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <span>{t.btnCheck}</span>
               </button>
@@ -176,16 +176,16 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
                     animate={{ opacity: 1, height: 'auto', scale: 1 }}
                     exit={{ opacity: 0, height: 0, scale: 0.95 }}
                     transition={{ duration: 0.3 }}
-                    className="p-4 bg-green-50 border border-green-200 rounded-2xl flex flex-col space-y-4"
+                    className="p-4 bg-emerald-50 border border-emerald-200 rounded-none flex flex-col space-y-4"
                     id="compatibility-success-panel"
                   >
-                    <div className="flex items-start space-x-2 text-left">
-                      <CheckCircle2 className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
+                    <div className="flex items-start space-x-2.5 text-left">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
                       <div>
-                        <p className="text-sm font-extrabold text-green-900 leading-tight">
+                        <p className="text-xs font-black text-emerald-800 uppercase tracking-wider">
                           {t.successMessage}
                         </p>
-                        <p className="text-[11px] text-green-700 leading-snug mt-1">
+                        <p className="text-xs font-medium text-emerald-800 leading-snug mt-1.5 opacity-90">
                           {selectedYear} {selectedMake} {selectedModel} {language === 'en'
                             ? "supports full ASTRA-AI integration metrics, including multi-sensor thermodynamic monitoring and full CAN-bus error indexing."
                             : "valide l'ensemble des protocoles ASTRA-AI, y compris la surveillance thermique et l'analyse de signaux multiples."}
@@ -195,7 +195,7 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
 
                     <button
                       onClick={() => onScrollToSection('pricing')}
-                      className="w-full py-3 bg-[#1A1A2E] text-white rounded-xl text-xs font-bold hover:bg-[#00D4FF] hover:text-[#1A1A2E] hover:shadow-md transition-all flex items-center justify-center space-x-1 cursor-pointer"
+                      className="w-full py-3 bg-black text-white text-xs font-bold uppercase tracking-widest rounded-none hover:bg-slate-850 transition-all flex items-center justify-center space-x-1 cursor-pointer shadow-md"
                     >
                       <span>{t.secondaryCta}</span>
                       <ArrowRight className="w-3.5 h-3.5" />

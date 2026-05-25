@@ -3,12 +3,12 @@
 
 @theme {
   --font-serif: "DM Serif Display", Georgia, serif;
-  --font-sans: "DM Sans", "Inter", system-ui, sans-serif;
+  --font-sans: "Inter", "DM Sans", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
   
-  --color-brand-charcoal: #1A1A2E;
-  --color-brand-slate: #4B5563;
-  --color-brand-cyan: #00D4FF;
+  --color-brand-charcoal: #0F172A;
+  --color-brand-slate: #475569;
+  --color-brand-cyan: #2563EB;
   --color-brand-light: #F8F9FA;
   --color-brand-blue-deep: #0B0E1B;
   
@@ -20,7 +20,7 @@
     scroll-behavior: smooth;
     font-family: var(--font-sans);
     color: var(--color-brand-charcoal);
-    background-color: #FFFFFF;
+    background-color: #F8F9FA;
   }
 }
 
@@ -32,9 +32,10 @@
 
 /* Smooth fade-in overlay utility */
 .premium-gradient {
-  background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+  background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
 }
 
 .premium-gradient-dark {
-  background: radial-gradient(circle at 50% 30%, rgba(0, 212, 255, 0.12) 0%, #000000 80%);
+  background: radial-gradient(circle at 50% 30%, rgba(37, 99, 235, 0.12) 0%, #0F172A 80%);
 }
+
