@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   HelpCircle, 
@@ -35,6 +35,7 @@ export default function FAQ({ language, onScrollToSection }: FAQProps) {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [helpfulVotes, setHelpfulVotes] = useState<Record<string, 'yes' | 'no'>>({});
+  const [animatedCount, setAnimatedCount] = useState<number>(0);
 
   const t = translations[language].faqs;
 
@@ -158,6 +159,38 @@ export default function FAQ({ language, onScrollToSection }: FAQProps) {
     return allFaqs.filter(f => f.category === cat).length;
   };
 
+  // Animates the count visually from 0 to target size whenever search results or categories change
+  useEffect(() => {
+    let startTime: number | null = null;
+    const startVal = animatedCount;
+    const endVal = filteredFaqs.length;
+    const duration = 250; // ms transition speed
+    let animationFrameId: number;
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = timestamp - startTime;
+      const percentage = Math.min(progress / duration, 1);
+      
+      // easeOutCubic
+      const ease = 1 - Math.pow(1 - percentage, 3);
+      const current = Math.round(startVal + ease * (endVal - startVal));
+      setAnimatedCount(current);
+
+      if (percentage < 1) {
+        animationFrameId = requestAnimationFrame(animate);
+      } else {
+        setAnimatedCount(endVal);
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [filteredFaqs.length]);
+
   return (
     <section id="faq" className="py-24 md:py-32 bg-gradient-to-b from-white via-slate-50 to-slate-100 relative overflow-hidden flex flex-col justify-center items-center font-sans border-b border-gray-200">
       {/* Radiant dynamic circles for polished backdrops */}
@@ -233,7 +266,7 @@ export default function FAQ({ language, onScrollToSection }: FAQProps) {
                 onClick={() => { setActiveCategory(cat); setOpenId(null); }}
                 className={`px-3.5 py-1.5 rounded-none text-xs font-bold border transition-all cursor-pointer flex items-center space-x-1.5 tracking-tight ${
                   isSelected
-                    ? 'bg-black text-white border-black shadow-md'
+                    ? 'bg-blue-600 text-white border-blue-600 shadow-md'
                     : 'bg-white hover:bg-slate-50 text-slate-500 border-gray-200 shadow-xs'
                 }`}
               >
@@ -250,6 +283,33 @@ export default function FAQ({ language, onScrollToSection }: FAQProps) {
 
         {/* Accordions List element with elegant cards layout */}
         <div className="space-y-4 max-w-3xl mx-auto text-left" id="faq-accordion-list">
+          
+          {/* Animated Search feedback loop count label */}
+          {searchQuery.trim() !== "" && (
+            <motion.div 
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex items-center justify-between border border-blue-100 bg-blue-50/50 px-4 py-3 rounded-none mb-2"
+              id="faq-search-count-label"
+            >
+              <div className="flex items-center space-x-2 text-xs font-semibold text-slate-700">
+                <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+                <span>
+                  {language === 'en' 
+                    ? `Found ${animatedCount} matching result${animatedCount === 1 ? '' : 's'}`
+                    : `${animatedCount} résultat${animatedCount > 1 ? 's' : ''} trouvé${animatedCount > 1 ? 's' : ''}`
+                  }
+                </span>
+                <span className="text-slate-400 font-normal italic">
+                  for "{searchQuery}"
+                </span>
+              </div>
+              
+              <div className="text-[9px] font-mono font-bold uppercase tracking-widest text-blue-600 bg-blue-50 px-2.5 py-1 border border-blue-105 border-blue-100 shadow-xs">
+                {language === 'en' ? 'LIVE SYNC' : 'REFLEXION'}
+              </div>
+            </motion.div>
+          )}
           
           {filteredFaqs.map((faq) => {
              const isOpen = openId === faq.id;
@@ -375,7 +435,7 @@ export default function FAQ({ language, onScrollToSection }: FAQProps) {
               <div className="flex justify-center gap-2">
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="px-4 py-1.5 bg-black text-white text-xs font-bold hover:bg-slate-800 transition-colors cursor-pointer rounded-none border border-black"
+                  className="px-4 py-1.5 bg-blue-600 text-white text-xs font-bold hover:bg-blue-500 transition-colors cursor-pointer rounded-none border border-blue-600"
                 >
                   {language === 'en' ? "Reset Filters" : "Réinitialiser"}
                 </button>

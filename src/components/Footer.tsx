@@ -495,7 +495,7 @@ export default function Footer({ language }: FooterProps) {
 
             <button
               onClick={() => setActiveModal(null)}
-              className="w-full mt-6 py-4 bg-black text-white font-bold text-xs uppercase tracking-widest rounded-none hover:bg-slate-800 transition-all cursor-pointer"
+              className="w-full mt-6 py-4 bg-blue-600 text-white font-bold text-xs uppercase tracking-widest rounded-none hover:bg-blue-500 transition-all cursor-pointer shadow-lg shadow-blue-600/10"
             >
               {language === 'en' ? "Close Policy" : "Fermer l'accord"}
             </button>

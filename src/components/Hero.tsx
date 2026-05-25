@@ -115,7 +115,7 @@ export default function Hero({ language, onScrollToSection }: HeroProps) {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-1" id="hero-actions">
               <button
                 onClick={() => onScrollToSection('pricing')}
-                className="px-8 py-4 bg-black text-white text-xs font-bold uppercase tracking-widest rounded-none hover:bg-slate-800 transition-all flex items-center justify-center space-x-2 cursor-pointer shadow-lg shadow-black/10"
+                className="px-8 py-4 bg-blue-600 text-white text-xs font-bold uppercase tracking-widest rounded-none hover:bg-blue-500 transition-all flex items-center justify-center space-x-2 cursor-pointer shadow-lg shadow-blue-600/10"
               >
                 <span>{t.hero.ctaPrimary}</span>
               </button>

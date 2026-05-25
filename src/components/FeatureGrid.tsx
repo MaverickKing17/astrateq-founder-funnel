@@ -289,7 +289,7 @@ export default function FeatureGrid({ language }: FeatureGridProps) {
                   </div>
                   <button
                     onClick={() => setActiveDeepDiveId(null)}
-                    className="w-full py-4.5 bg-black hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-widest rounded-none transition-all cursor-pointer shadow-lg shadow-black/10"
+                    className="w-full py-4.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-widest rounded-none transition-all cursor-pointer shadow-lg shadow-blue-600/10"
                   >
                     {language === 'en' ? 'Close Review' : 'Fermer la fiche'}
                   </button>

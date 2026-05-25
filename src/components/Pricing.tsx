@@ -124,7 +124,7 @@ export default function Pricing({ language, onSetSelectedTier, onOpenCheckout }:
             <div className="pt-8">
               <button
                 onClick={() => handleCardClick('earlybird')}
-                className="w-full py-4 bg-white border border-slate-300 hover:bg-slate-950 hover:text-white hover:border-slate-950 text-slate-900 text-xs font-black uppercase tracking-widest rounded-none transition-all duration-300 text-center flex items-center justify-center space-x-2 cursor-pointer shadow-xs"
+                className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white text-xs font-black uppercase tracking-widest rounded-none transition-all duration-300 text-center flex items-center justify-center space-x-2 cursor-pointer shadow-lg shadow-blue-600/10"
               >
                 <CreditCard className="w-3.5 h-3.5" />
                 <span>{p.ctaFormat.replace('{tier}', p.tiers.earlybird.name)}</span>
@@ -258,7 +258,7 @@ export default function Pricing({ language, onSetSelectedTier, onOpenCheckout }:
             <div className="pt-8">
               <button
                 onClick={() => handleCardClick('guardian')}
-                className="w-full py-4 bg-white border border-slate-300 hover:bg-slate-950 hover:text-white hover:border-slate-950 text-slate-900 text-xs font-black uppercase tracking-widest rounded-none transition-all duration-300 text-center flex items-center justify-center space-x-2 cursor-pointer shadow-xs"
+                className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white text-xs font-black uppercase tracking-widest rounded-none transition-all duration-300 text-center flex items-center justify-center space-x-2 cursor-pointer shadow-lg shadow-blue-600/10"
               >
                 <Award className="w-3.5 h-3.5" />
                 <span>{p.ctaFormat.replace('{tier}', p.tiers.guardian.name)}</span>

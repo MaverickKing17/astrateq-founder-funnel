@@ -374,7 +374,7 @@ export default function CheckoutModal({ language, selectedTier, isOpen, onClose 
             <div className="space-y-4 pt-2">
               <button
                 onClick={() => window.print()}
-                className="w-full py-4 bg-[#1A1A2E] hover:bg-[#00D4FF] text-white hover:text-[#1A1A2E] font-bold text-xs rounded-full transition-all flex items-center justify-center space-x-1.5 cursor-pointer"
+                className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-full transition-all flex items-center justify-center space-x-1.5 cursor-pointer shadow-lg shadow-blue-600/10"
               >
                 <FileText className="w-4 h-4" />
                 <span>{language === 'en' ? "Print Holding Invoice (PDF)" : "Télécharger mon reçu (PDF)"}</span>

@@ -69,7 +69,7 @@ export default function TechnicalIntelligence({ language }: TechnicalIntelligenc
               onClick={() => setActiveTab(tab.id)}
               className={`px-5 py-3 rounded-none text-[10px] font-mono font-bold uppercase tracking-widest border transition-all flex items-center space-x-2 cursor-pointer ${
                 activeTab === tab.id
-                  ? 'bg-black text-white border-black shadow-md'
+                  ? 'bg-blue-600 text-white border-blue-600 shadow-md'
                   : 'bg-white hover:bg-slate-50 border-gray-200 text-slate-500'
               }`}
             >

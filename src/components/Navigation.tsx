@@ -119,7 +119,7 @@ export default function Navigation({ language, setLanguage, onScrollToSection }:
           <button
             id="nav-cta-btn"
             onClick={() => handleLinkClick('pricing')}
-            className="hidden sm:flex items-center space-x-1.5 px-6 py-2.5 bg-black text-white text-xs font-bold uppercase tracking-widest rounded-none hover:bg-slate-800 transition-colors shadow-lg shadow-black/10 cursor-pointer"
+            className="hidden sm:flex items-center space-x-1.5 px-6 py-2.5 bg-blue-600 text-white text-xs font-bold uppercase tracking-widest rounded-none hover:bg-blue-500 transition-colors shadow-lg shadow-blue-650/10 cursor-pointer"
           >
             <span>{t.navigation.cta}</span>
           </button>
@@ -174,7 +174,7 @@ export default function Navigation({ language, setLanguage, onScrollToSection }:
               </button>
               <button
                 onClick={() => handleLinkClick('pricing')}
-                className="w-full flex items-center justify-center space-x-1 py-3 px-4 rounded-none text-xs font-bold uppercase tracking-widest text-white bg-black hover:bg-slate-800 transition-all cursor-pointer shadow-lg shadow-black/10"
+                className="w-full flex items-center justify-center space-x-1 py-3 px-4 rounded-none text-xs font-bold uppercase tracking-widest text-white bg-blue-600 hover:bg-blue-500 transition-all cursor-pointer shadow-lg shadow-blue-600/10"
               >
                 <span>{t.navigation.cta}</span>
               </button>
