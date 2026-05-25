@@ -14,6 +14,29 @@ interface FeatureGridProps {
   language: Language;
 }
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 80,
+      damping: 15,
+    },
+  },
+};
+
 export default function FeatureGrid({ language }: FeatureGridProps) {
   const [activeDeepDiveId, setActiveDeepDiveId] = useState<string | null>(null);
   const t = translations[language].features;
@@ -47,10 +70,18 @@ export default function FeatureGrid({ language }: FeatureGridProps) {
         </div>
 
         {/* 3x2 Grid Structure */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto" id="features-3x2-grid">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-50px' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto"
+          id="features-3x2-grid"
+        >
           {t.items.map((item) => (
-            <div
+            <motion.div
               key={item.id}
+              variants={itemVariants}
               className="flex flex-col justify-between bg-slate-50 p-6 rounded-none border border-gray-200 hover:border-slate-400 hover:bg-white hover:shadow-md transition-all text-left group"
               id={`feature-card-${item.id}`}
             >
@@ -77,9 +108,9 @@ export default function FeatureGrid({ language }: FeatureGridProps) {
                 <span>{language === 'en' ? "Open Technical Review" : "Lire l'analyse technique"}</span>
                 <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Dynamic Expandable Side Panel Overlay (Slide Tray) */}
         <AnimatePresence>
