@@ -9,7 +9,11 @@ import { Check, Shield, Award, CreditCard, Lock, Sparkles, X, Heart, HelpCircle,
 import { Language, Tier } from '../types';
 import { translations } from '../data/translations';
 // @ts-ignore
-import astraSuiteImg from '../assets/images/astra_suite_products_1779732275719.png';
+import obsProductImg from '../assets/images/obs_product_visual_1779736732490.png';
+// @ts-ignore
+import guardProductImg from '../assets/images/guard_product_visual_1779736750699.png';
+// @ts-ignore
+import guardProProductImg from '../assets/images/guard_pro_product_visual_1779736768950.png';
 
 interface PricingProps {
   language: Language;
@@ -120,10 +124,10 @@ export default function Pricing({ language, onSetSelectedTier, onOpenCheckout }:
               {/* Product Representation Thumbnail */}
               <div className="h-28 w-full bg-slate-50 border border-gray-150 flex items-center justify-center relative overflow-hidden p-2 group">
                 <img 
-                  src={astraSuiteImg} 
+                  src={obsProductImg} 
                   alt="OBD-II Smart Dongle" 
                   referrerPolicy="no-referrer"
-                  className="max-h-full object-contain filter drop-shadow-md scale-75 group-hover:scale-80 transition-transform" 
+                  className="max-h-full object-contain filter drop-shadow-md group-hover:scale-95 transition-transform" 
                 />
                 <span className="absolute bottom-1 right-2 text-[7px] font-mono font-bold text-slate-400">
                   OBD ADAPTER INCLUDED
@@ -194,7 +198,7 @@ export default function Pricing({ language, onSetSelectedTier, onOpenCheckout }:
               {/* Product Picture */}
               <div className="h-28 w-full bg-slate-50 border border-gray-150 flex items-center justify-center relative overflow-hidden p-2 group">
                 <img 
-                  src={astraSuiteImg} 
+                  src={guardProductImg} 
                   alt="Astra Suite Connected Dashcam and OBD setup" 
                   referrerPolicy="no-referrer"
                   className="max-h-full object-contain filter drop-shadow-md group-hover:scale-102 transition-transform" 
@@ -267,7 +271,7 @@ export default function Pricing({ language, onSetSelectedTier, onOpenCheckout }:
               {/* Product Picture */}
               <div className="h-28 w-full bg-slate-50 border border-gray-150 flex items-center justify-center relative overflow-hidden p-2 group">
                 <img 
-                  src={astraSuiteImg} 
+                  src={guardProProductImg} 
                   alt="Astra Suite Connected Dashcam and Connected app" 
                   referrerPolicy="no-referrer"
                   className="max-h-full object-contain filter drop-shadow-md group-hover:scale-103 transition-transform" 

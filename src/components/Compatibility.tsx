@@ -201,14 +201,14 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
             </p>
 
             {/* HIGH-TECH INTERACTIVE VEHICLE HUD WITH PHOTOREALISTIC VEHICLE DETAIL */}
-            <div className="border border-[#1E2538] rounded-none p-5 relative overflow-hidden bg-[#0A0D16] shadow-2xl shadow-neutral-950">
-              <div className="absolute top-2 right-2 flex items-center space-x-1.5 text-[8px] font-extrabold font-mono text-slate-400 uppercase tracking-widest bg-[#131926] border border-neutral-800 px-2.5 py-1 z-20">
-                <span className={`w-1.5 h-1.5 rounded-full ${isScanning ? 'bg-amber-500 ' : 'bg-blue-500 '}animate-pulse`} />
+            <div className="border border-slate-200 rounded-none p-5 relative overflow-hidden bg-white shadow-xl">
+              <div className="absolute top-2 right-2 flex items-center space-x-1.5 text-[8px] font-extrabold font-mono text-slate-650 uppercase tracking-widest bg-slate-100 border border-slate-200 px-2.5 py-1 z-20">
+                <span className={`w-1.5 h-1.5 rounded-full ${isScanning ? 'bg-amber-500' : 'bg-blue-600'} animate-pulse`} />
                 <span>{isScanning ? 'READING DATA' : 'SYS STABLE'}</span>
               </div>
 
               {/* Realistic Car Canvas wrapper */}
-              <div className="relative py-4 aspect-[420/160] w-full rounded-none overflow-hidden my-1 bg-[#06080F]">
+              <div className="relative py-4 aspect-[420/160] w-full rounded-none overflow-hidden my-1 bg-[#0A0D17]">
                 {/* Photorealistic car image layer */}
                 <img 
                   src={carImage} 
@@ -218,7 +218,7 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
                 />
                 
                 {/* Techy high-contrast overlay to dim background slightly for HUD legibility */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#06080F]/80 via-transparent to-[#06080F]/45 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D17]/80 via-transparent to-[#0A0D17]/45 pointer-events-none" />
 
                 <svg viewBox="0 0 420 160" className="absolute inset-0 w-full h-full z-15" id="vector-car-outline">
                   {/* Grid background markers for precision engineering feeling */}
@@ -254,7 +254,7 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
                           cy={hs.coords.y} 
                           r={isActive ? 15 : 10} 
                           className={`fill-none stroke-[2] transition-all duration-300 ${
-                            isSuccessState ? 'stroke-emerald-400' : 'stroke-blue-400'
+                            isSuccessState ? 'stroke-emerald-400' : 'stroke-blue-405'
                           } ${isActive ? 'animate-ping' : 'animate-pulse'}`}
                         />
                         <circle 
@@ -273,25 +273,25 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
               </div>
 
               {/* Dynamic explanations box for vector hotspots styled for dark theme */}
-              <div className="bg-[#131926] border border-neutral-800 px-4 py-3 min-h-[75px] text-xs leading-relaxed relative flex flex-col justify-center rounded-none mt-2.5">
+              <div className="bg-slate-50 border border-slate-200 px-4 py-3 min-h-[75px] text-xs leading-relaxed relative flex flex-col justify-center rounded-none mt-2.5">
                 {activeHotspot ? (
                   <div>
                     <div className="flex items-center space-x-1.5 mb-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-                      <span className="font-extrabold text-white tracking-tight uppercase text-[10px] font-mono">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
+                      <span className="font-extrabold text-slate-800 tracking-tight uppercase text-[10px] font-mono">
                         {hotspots.find(h => h.id === activeHotspot)?.title}
                       </span>
                     </div>
-                    <p className="text-slate-300 font-medium leading-relaxed">
+                    <p className="text-slate-600 font-medium leading-relaxed">
                       {hotspots.find(h => h.id === activeHotspot)?.desc}
                     </p>
                   </div>
                 ) : (
-                  <div className="text-center text-slate-400 py-2">
-                    <p className="font-bold text-[9px] uppercase tracking-widest font-mono text-blue-400 animate-pulse mb-1">
+                  <div className="text-center text-slate-500 py-2">
+                    <p className="font-bold text-[9px] uppercase tracking-widest font-mono text-blue-600 animate-pulse mb-1">
                       💡 {language === 'en' ? "INTERACTIVE REALISTIC HUD" : "HUD RÉALISTE ET INTERACTIF"}
                     </p>
-                    <p className="text-[10px] text-slate-350 font-semibold">
+                    <p className="text-[10px] text-slate-600 font-semibold">
                       {language === 'en' 
                         ? 'Tap any glowing feedback node over the premium vehicle body to inspect hardware calibration points.'
                         : 'Touchez n’importe quel point de contrôle lumineux sur la silhouette du véhicule pour inspecter la calibration.'
@@ -317,23 +317,23 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
           </div>
 
           {/* RIGHT COLUMN: Interactive Selector & Scanners */}
-          <div className="lg:col-span-6 bg-[#0B0E17] p-8 rounded-none border border-neutral-800 shadow-2xl relative w-full overflow-hidden" id="compatibility-form">
+          <div className="lg:col-span-6 bg-white p-8 rounded-none border border-slate-200 shadow-xl relative w-full overflow-hidden" id="compatibility-form">
             {/* Blue cyber light source */}
-            <div className="absolute top-0 right-0 w-44 h-44 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-0 right-0 w-44 h-44 bg-blue-550/5 rounded-full blur-3xl pointer-events-none" />
             
             <div className="space-y-6 text-left relative z-10">
               
               {/* Form title */}
-              <div className="flex items-center space-x-2.5 pb-3 border-b border-neutral-800 col-span-12">
-                <Car className="w-5 h-5 text-blue-400" />
-                <h3 className="font-sans text-xs font-black uppercase tracking-widest text-white mt-0.5">
+              <div className="flex items-center space-x-2.5 pb-3 border-b border-slate-200 col-span-12">
+                <Car className="w-5 h-5 text-blue-600" />
+                <h3 className="font-sans text-xs font-black uppercase tracking-widest text-slate-800 mt-0.5">
                   {language === 'en' ? "Active Live Compatibility Check" : "Analyseur de Compatibilité en Direct"}
                 </h3>
               </div>
 
               {/* POPULAR CANADIAN VEHICLES QUICK PRESETS */}
               <div className="space-y-2">
-                <p className="text-[9px] font-black tracking-widest text-slate-400 uppercase">
+                <p className="text-[9px] font-black tracking-widest text-slate-500 uppercase">
                   ⚡ {language === 'en' ? "POPULAR CANADIAN PRESETS (TAP TO INSTANT SCAN)" : "RÉGLAGES RAPIDES CANADIENS (VÉRIFICATION EN 1 CLIC)"}
                 </p>
                 <div className="grid grid-cols-2 gap-2">
@@ -341,10 +341,10 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
                     <button
                       key={preset.name}
                       onClick={() => handlePresetClick(preset)}
-                      className="px-3 py-2 bg-[#131926] hover:bg-blue-600/25 text-[10px] font-bold text-slate-350 border border-neutral-800 hover:border-blue-500 transition-all text-left truncate flex items-center justify-between group rounded-none"
+                      className="px-3 py-2 bg-slate-50 hover:bg-blue-50/50 text-[10px] font-bold text-slate-705 border border-slate-200 hover:border-blue-400 transition-all text-left truncate flex items-center justify-between group rounded-none"
                     >
-                      <span className="group-hover:text-white">{preset.name}</span>
-                      <span className="text-[8px] font-mono font-normal opacity-50 bg-[#0B0E17] px-1 py-0.5 leading-none rounded-none">
+                      <span className="group-hover:text-blue-600">{preset.name}</span>
+                      <span className="text-[8px] font-mono font-normal opacity-70 bg-slate-200/60 px-1 py-0.5 leading-none rounded-none">
                         {preset.year}
                       </span>
                     </button>
@@ -357,23 +357,23 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
                 
                 {/* Model Years */}
                 <div className="flex flex-col space-y-1.5">
-                  <label htmlFor="comp-year" className="text-[10px] font-black text-slate-400 tracking-widest uppercase">
+                  <label htmlFor="comp-year" className="text-[10px] font-black text-slate-500 tracking-widest uppercase">
                     {language === 'en' ? "Model Year" : "Année du modèle"}
                   </label>
                   <select
                     id="comp-year"
                     value={selectedYear}
                     onChange={handleYearChange}
-                    className="w-full bg-[#131926] text-white border border-neutral-800 rounded-none px-4 py-3 text-xs font-bold uppercase tracking-wider focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all outline-none"
+                    className="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-none px-4 py-3 text-xs font-bold uppercase tracking-wider focus:border-blue-600 focus:bg-white focus:ring-1 focus:ring-blue-600 transition-all outline-none"
                   >
-                    <option value="" className="text-slate-900 bg-white">-- {t.placeholderYear} --</option>
+                    <option value="" className="text-slate-500 bg-white">-- {t.placeholderYear} --</option>
                     {YEARS.map(y => <option key={y} value={y} className="text-slate-900 bg-white">{y}</option>)}
                   </select>
                 </div>
 
                 {/* Make selector */}
                 <div className="flex flex-col space-y-1.5">
-                  <label htmlFor="comp-make" className="text-[10px] font-black text-slate-400 tracking-widest uppercase">
+                  <label htmlFor="comp-make" className="text-[10px] font-black text-slate-500 tracking-widest uppercase">
                     {language === 'en' ? "Vehicle Manufacturer" : "Constructeur / Marque"}
                   </label>
                   <select
@@ -381,16 +381,16 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
                     value={selectedMake}
                     onChange={handleMakeChange}
                     disabled={!selectedYear}
-                    className="w-full bg-[#131926] text-white border border-neutral-800 rounded-none px-4 py-3 text-xs font-bold uppercase tracking-wider focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all outline-none disabled:opacity-30 disabled:bg-[#0E121E]"
+                    className="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-none px-4 py-3 text-xs font-bold uppercase tracking-wider focus:border-blue-600 focus:bg-white focus:ring-1 focus:ring-blue-600 transition-all outline-none disabled:opacity-40 disabled:bg-slate-100"
                   >
-                    <option value="" className="text-slate-900 bg-white">-- {t.placeholderMake} --</option>
+                    <option value="" className="text-slate-505 bg-white">-- {t.placeholderMake} --</option>
                     {VEHICLE_MAKES.map(m => <option key={m.name} value={m.name} className="text-slate-900 bg-white">{m.name}</option>)}
                   </select>
                 </div>
 
                 {/* Model selector */}
                 <div className="flex flex-col space-y-1.5">
-                  <label htmlFor="comp-model" className="text-[10px] font-black text-slate-400 tracking-widest uppercase">
+                  <label htmlFor="comp-model" className="text-[10px] font-black text-slate-500 tracking-widest uppercase">
                     {language === 'en' ? "Vehicle Model" : "Modèle exact"}
                   </label>
                   <select
@@ -398,9 +398,9 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
                     value={selectedModel}
                     onChange={handleModelChange}
                     disabled={!selectedMake}
-                    className="w-full bg-[#131926] text-white border border-neutral-800 rounded-none px-4 py-3 text-xs font-bold uppercase tracking-wider focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all outline-none disabled:opacity-30 disabled:bg-[#0E121E]"
+                    className="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-none px-4 py-3 text-xs font-bold uppercase tracking-wider focus:border-blue-600 focus:bg-white focus:ring-1 focus:ring-blue-600 transition-all outline-none disabled:opacity-40 disabled:bg-slate-100"
                   >
-                    <option value="" className="text-slate-900 bg-white">-- {t.placeholderModel} --</option>
+                    <option value="" className="text-slate-510 bg-white">-- {t.placeholderModel} --</option>
                     {currentModels.map(mod => <option key={mod} value={mod} className="text-slate-900 bg-white">{mod}</option>)}
                   </select>
                 </div>
@@ -434,38 +434,38 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     id="scanning-terminal-hud"
-                    className="p-4 bg-slate-950/95 border border-blue-900 font-mono text-[10px] space-y-1 text-blue-400 select-none text-left rounded-none overflow-hidden"
+                    className="p-4 bg-slate-50 border border-blue-200 font-mono text-[10px] space-y-1 text-blue-700 select-none text-left rounded-none overflow-hidden"
                   >
-                    <p className="text-slate-500 flex items-center justify-between">
+                    <p className="text-slate-400 flex items-center justify-between">
                       <span>SESSION ADAPTER-ASTRATEQ#CAN-v4.1</span>
                       <span className="animate-pulse">● FEEDING SCAN</span>
                     </p>
                     <div className="space-y-1.5 pt-1.5">
                       <div className="flex items-center space-x-1.5">
-                        <span className="text-indigo-400">[0.00s]</span>
+                        <span className="text-indigo-650">[0.00s]</span>
                         <span>LINK: Handshaking with {selectedMake || "vehicle"} transponder...</span>
-                        {scanStep >= 0 && <span className="text-emerald-400 font-bold">OK</span>}
+                        {scanStep >= 0 && <span className="text-emerald-600 font-bold">OK</span>}
                       </div>
                       
                       {scanStep >= 1 && (
                         <div className="flex items-center space-x-1.5">
-                          <span className="text-indigo-400">[0.45s]</span>
+                          <span className="text-indigo-650">[0.45s]</span>
                           <span>OBD2: Probing PID tables & testing response limits...</span>
-                          {scanStep >= 1 && <span className="text-emerald-400 font-black">✓ REGISTERED</span>}
+                          {scanStep >= 1 && <span className="text-emerald-600 font-black">✓ REGISTERED</span>}
                         </div>
                       )}
                       
                       {scanStep >= 2 && (
                         <div className="flex items-center space-x-1.5">
-                          <span className="text-indigo-400">[1.00s]</span>
+                          <span className="text-indigo-650">[1.00s]</span>
                           <span>AI: Testing lens dual calibration offsets...</span>
-                          {scanStep >= 2 && <span className="text-[#00D4FF] font-black">1.13 TFLOPS</span>}
+                          {scanStep >= 2 && <span className="text-blue-600 font-black">1.13 TFLOPS</span>}
                         </div>
                       )}
 
                       {scanStep >= 3 && (
-                        <div className="flex items-center space-x-1.5 font-bold text-emerald-400">
-                          <span className="text-indigo-400">[1.45s]</span>
+                        <div className="flex items-center space-x-1.5 font-bold text-emerald-600">
+                          <span className="text-indigo-650">[1.45s]</span>
                           <span>SYS: Calibration locked! Vehicle is entirely compliant.</span>
                         </div>
                       )}
@@ -482,18 +482,18 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ type: 'spring', damping: 20 }}
-                    className="p-5 bg-gradient-to-b from-emerald-950/60 to-emerald-950/90 border border-emerald-500/30 text-left space-y-4 rounded-none h-auto"
+                    className="p-5 bg-gradient-to-b from-emerald-50/80 to-emerald-50/95 border border-emerald-500/30 text-left space-y-4 rounded-none h-auto"
                     id="compatibility-success-panel"
                   >
                     <div className="flex items-start space-x-3">
-                      <div className="w-8 h-8 rounded-none border border-emerald-500/20 bg-emerald-950 flex items-center justify-center text-emerald-400 shrink-0">
-                        <Check className="w-4 h-4 text-emerald-400 stroke-[3]" />
+                      <div className="w-8 h-8 rounded-none border border-emerald-500/25 bg-emerald-100 flex items-center justify-center text-emerald-600 shrink-0">
+                        <Check className="w-4 h-4 text-emerald-600 stroke-[3]" />
                       </div>
                       <div className="space-y-1 flex-1">
-                        <p className="text-xs font-black text-emerald-400 uppercase tracking-widest">
+                        <p className="text-xs font-black text-emerald-700 uppercase tracking-widest">
                           {t.successMessage}
                         </p>
-                        <p className="text-xs font-semibold text-emerald-200/90 leading-snug">
+                        <p className="text-xs font-semibold text-slate-700 leading-snug">
                           {selectedYear} {selectedMake} {selectedModel} 
                           {language === 'en'
                             ? " completely supports the ASTRA-AI integration paradigm. Full CAN-bus thermodynamic scanning and 40Hz computer vision tracking fully active."
@@ -503,22 +503,22 @@ export default function Compatibility({ language, onScrollToSection }: Compatibi
                     </div>
 
                     {/* Highly engaging simulated vehicle-specific stats readouts */}
-                    <div className="grid grid-cols-3 gap-2 py-2 border-t border-b border-emerald-800/40 font-mono text-[9px] text-emerald-300">
+                    <div className="grid grid-cols-3 gap-2 py-2 border-t border-b border-emerald-250/50 font-mono text-[9px] text-emerald-800">
                       <div className="space-y-0.5">
-                        <span className="text-emerald-500/70 uppercase text-[8px] tracking-wider block">PROTOCOL</span>
-                        <span className="font-extrabold text-white">{currentBrandSpec.protocol}</span>
+                        <span className="text-emerald-600/70 uppercase text-[8px] tracking-wider block">PROTOCOL</span>
+                        <span className="font-extrabold text-slate-900">{currentBrandSpec.protocol}</span>
                       </div>
                       <div className="space-y-0.5">
-                        <span className="text-emerald-500/70 uppercase text-[8px] tracking-wider block">CAMERA WIDTH</span>
-                        <span className="font-extrabold text-white">{currentBrandSpec.lensCal}</span>
+                        <span className="text-emerald-600/70 uppercase text-[8px] tracking-wider block">CAMERA WIDTH</span>
+                        <span className="font-extrabold text-slate-900">{currentBrandSpec.lensCal}</span>
                       </div>
                       <div className="space-y-0.5">
-                        <span className="text-emerald-500/70 uppercase text-[8px] tracking-wider block">POLLING ADAPTER</span>
-                        <span className="font-extrabold text-white">{currentBrandSpec.freq}</span>
+                        <span className="text-emerald-600/70 uppercase text-[8px] tracking-wider block">POLLING ADAPTER</span>
+                        <span className="font-extrabold text-slate-900">{currentBrandSpec.freq}</span>
                       </div>
                     </div>
 
-                    <p className="text-[10px] text-slate-400 italic font-semibold leading-normal pb-1">
+                    <p className="text-[10px] text-slate-500 italic font-semibold leading-normal pb-1">
                       ℹ/ {currentBrandSpec.desc}
                     </p>
 
