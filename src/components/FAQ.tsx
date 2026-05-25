@@ -98,18 +98,22 @@ export default function FAQ({ language, onScrollToSection }: FAQProps) {
     : allFaqs.filter(faq => faq.category === activeCategory);
 
   return (
-    <section id="faq" className="py-24 md:py-32 bg-white relative overflow-hidden flex flex-col justify-center items-center font-sans border-b border-gray-200">
+    <section id="faq" className="py-24 md:py-32 bg-gradient-to-b from-white via-slate-50 to-slate-100 relative overflow-hidden flex flex-col justify-center items-center font-sans border-b border-gray-200">
+      {/* Radiant dynamic spheres */}
+      <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-gradient-to-tr from-cyan-400/5 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-gradient-to-br from-indigo-500/5 to-transparent rounded-full blur-3xl pointer-events-none" />
+
       <div className="max-w-4xl mx-auto px-6 md:px-12 relative z-10 w-full text-center space-y-12">
         
         {/* Title headers */}
         <div className="space-y-4" id="faq-headers">
-          <span className="inline-flex items-center space-x-1 border border-blue-200 bg-blue-50 px-3.5 py-1.5 rounded-none text-blue-800 font-mono text-[10px] font-bold uppercase tracking-widest">
-            {language === 'en' ? "TECHNICAL ADVISORY" : "CENTRE D'ASSISTANCE"}
+          <span className="inline-flex items-center space-x-1.5 border border-blue-250 bg-gradient-to-r from-blue-50 to-indigo-50 px-3.5 py-1.5 rounded-none text-blue-800 font-mono text-[10px] font-bold uppercase tracking-widest border-blue-500/25">
+             💡 {language === 'en' ? "TECHNICAL ADVISORY" : "CENTRE D'ASSISTANCE"}
           </span>
           <h2 className="font-sans text-3xl md:text-5xl font-extrabold tracking-tighter text-slate-900">
             {t.title}
           </h2>
-          <p className="text-base text-slate-500 font-medium">
+          <p className="text-base text-slate-500 font-semibold font-sans">
             {t.subtitle}
           </p>
         </div>
@@ -138,17 +142,21 @@ export default function FAQ({ language, onScrollToSection }: FAQProps) {
         {/* Accordions List element */}
         <div className="space-y-4 max-w-3xl mx-auto text-left" id="faq-accordion-list">
           {filteredFaqs.map((faq) => {
-            const isOpen = openId === faq.id;
-            return (
-              <div
-                key={faq.id}
-                className={`bg-slate-50 p-6 rounded-none border transition-all duration-300 relative ${
-                  isOpen
-                    ? 'border-blue-600 bg-white shadow-md'
-                    : 'border-gray-200 hover:border-slate-400'
-                }`}
-                id={`faq-accordion-item-${faq.id}`}
-              >
+             const isOpen = openId === faq.id;
+             return (
+               <div
+                 key={faq.id}
+                 className={`bg-white p-6 rounded-none border transition-all duration-300 relative ${
+                   isOpen
+                     ? 'border-blue-500 bg-white/95 shadow-lg shadow-blue-500/5'
+                     : 'border-slate-200 hover:border-slate-400 bg-white/70'
+                 }`}
+                 id={`faq-accordion-item-${faq.id}`}
+               >
+                 {/* Colored thin strip indicator on expanded active drawer */}
+                 {isOpen && (
+                   <div className="absolute top-0 bottom-0 left-0 w-1 bg-gradient-to-b from-blue-500 to-indigo-600" />
+                 )}
                 {/* Accordion Trigger button header */}
                 <button
                   onClick={() => setOpenId(isOpen ? null : faq.id)}

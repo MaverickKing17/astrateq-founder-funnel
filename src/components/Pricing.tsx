@@ -272,26 +272,61 @@ export default function Pricing({ language, onSetSelectedTier, onOpenCheckout }:
 
         </motion.div>
 
-        {/* Centered Trust Row Beneath Pricing Cards */}
-        <div className="p-6 bg-slate-50 border border-gray-200 divide-y sm:divide-y-0 sm:divide-x divide-gray-200/80 max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-around text-center gap-4 py-8 rounded-none" id="pricing-trust-row">
+        {/* Centered Trust Grid Beneath Pricing Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-6xl mx-auto w-full pt-4" id="pricing-trust-row">
           {p.trustList.map((item, id) => {
             // Contextual, real-looking, premium icon allocations for each bullet
             const getTrustIcon = (index: number) => {
               switch (index) {
                 case 0:
-                  return <Lock className="w-4.5 h-4.5 text-blue-600 shrink-0" />;
+                  return <Lock className="w-4 h-4 text-blue-650 text-blue-600 group-hover:scale-110 transition-transform duration-300" />;
                 case 1:
-                  return <Shield className="w-4.5 h-4.5 text-blue-600 shrink-0" />;
+                  return <Shield className="w-4 h-4 text-blue-650 text-blue-600 group-hover:scale-110 transition-transform duration-300" />;
                 case 2:
-                  return <CreditCard className="w-4.5 h-4.5 text-blue-600 shrink-0" />;
+                  return <CreditCard className="w-4 h-4 text-blue-650 text-blue-600 group-hover:scale-110 transition-transform duration-300" />;
                 default:
-                  return <HelpCircle className="w-4.5 h-4.5 text-blue-600 shrink-0" />;
+                  return <HelpCircle className="w-4 h-4 text-blue-650 text-blue-600 group-hover:scale-110 transition-transform duration-300" />;
               }
             };
+
+            const getTrustSubtitle = (index: number) => {
+              if (language === 'en') {
+                switch (index) {
+                  case 0:
+                    return "256-bit SSL encrypted transit";
+                  case 1:
+                    return "Instant cancellation protocol";
+                  case 2:
+                    return "Pay on batch release in Q1 2026";
+                  default:
+                    return "Toronto & Calgary live agents";
+                }
+              } else {
+                switch (index) {
+                  case 0:
+                    return "Chiffrement SSL 256 bits sécurisé";
+                  case 1:
+                    return "Annulation instantanée sans frais";
+                  case 2:
+                    return "Payez sur lot d'expédition au T1 2026";
+                  default:
+                    return "Bureaux à Toronto et Calgary en direct";
+                }
+              }
+            };
+
             return (
-              <div key={id} className="flex items-center justify-start sm:justify-center space-x-3 px-6 w-full text-left py-2 sm:py-0">
-                {getTrustIcon(id)}
-                <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest leading-snug">{item}</span>
+              <div 
+                key={id} 
+                className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-3.5 p-4 bg-slate-50 border border-gray-200 hover:bg-white hover:border-blue-500/25 hover:shadow-sm transition-all duration-300 text-left group rounded-none"
+              >
+                <div className="flex items-center justify-center w-9 h-9 border border-blue-500/10 bg-blue-50/50 group-hover:bg-blue-100/60 transition-colors shrink-0 rounded-none">
+                  {getTrustIcon(id)}
+                </div>
+                <div className="flex flex-col text-left space-y-1">
+                  <span className="text-[9.5px] font-black text-slate-900 uppercase tracking-wider leading-snug">{item}</span>
+                  <span className="text-[8.5px] font-mono font-bold text-slate-400 uppercase tracking-widest">{getTrustSubtitle(id)}</span>
+                </div>
               </div>
             );
           })}

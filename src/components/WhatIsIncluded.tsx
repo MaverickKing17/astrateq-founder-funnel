@@ -74,32 +74,36 @@ export default function WhatIsIncluded({ language }: WhatIsIncludedProps) {
 
           {/* Right Column checklist metadata */}
           <div className="lg:col-span-6 space-y-6 text-left" id="included-right">
-            <span className="inline-flex items-center space-x-1 border border-blue-200 bg-blue-50 px-3.5 py-1.5 rounded-none text-blue-800 font-mono text-[10px] font-bold uppercase tracking-widest">
-              {language === 'en' ? "UNBOXING INVENTORY" : "DANS LE COFFRET"}
+            <span className="inline-flex items-center space-x-1.5 border border-blue-250 bg-gradient-to-r from-blue-50 to-indigo-50 px-3.5 py-1.5 rounded-none text-blue-804 text-blue-800 font-mono text-[10px] font-bold uppercase tracking-widest border-blue-500/25">
+               🍁 {language === 'en' ? "UNBOXING INVENTORY" : "DANS LE COFFRET"}
             </span>
             <h2 className="font-sans text-3xl md:text-5xl font-extrabold tracking-tighter text-slate-900 leading-tight">
               {t.title}
             </h2>
-            <p className="text-base text-slate-500 font-medium">
+            <p className="text-base text-slate-500 font-semibold">
               {t.subtitle}
             </p>
 
-            {/* Checklist of included hardware/software */}
-            <ul className="space-y-4 pt-2" id="included-checklist-ul">
+            {/* Checklist of included hardware/software with premium energetic borders */}
+            <ul className="space-y-3 pt-2" id="included-checklist-ul">
               {t.items.map((item, idx) => (
-                <li key={idx} className="flex items-start text-sm text-slate-650 text-slate-600 font-semibold" id={`included-item-${idx}`}>
-                  <div className="w-5 h-5 rounded-none bg-emerald-50 border border-emerald-250 border-emerald-200 flex items-center justify-center mr-3 mt-0.5 shrink-0 text-emerald-600">
-                    <Check className="w-3.5 h-3.5 stroke-[2.5]" />
+                <li 
+                  key={idx} 
+                  className="flex items-start text-xs sm:text-sm text-slate-700 font-semibold hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-transparent duration-300 p-2 -mx-2 transition-all rounded-none" 
+                  id={`included-item-${idx}`}
+                >
+                  <div className="w-5.5 h-5.5 rounded-none bg-emerald-50 border border-emerald-250 flex items-center justify-center mr-3 mt-0.5 shrink-0 text-emerald-600 shadow-xs">
+                    <Check className="w-3.5 h-3.5 stroke-[3]" />
                   </div>
-                  <span>{item}</span>
+                  <span className="leading-snug">{item}</span>
                 </li>
               ))}
             </ul>
 
             {/* Extra assurance stamp */}
-            <div className="pt-4 border-t border-gray-200 flex items-center space-x-2.5 text-[10px] font-mono font-black uppercase tracking-widest text-slate-500">
-              <span>🛡️</span>
-              <span>2-Year Full Hardware Replacement Warranty Included</span>
+            <div className="pt-4 border-t border-gray-200 flex items-center space-x-2.5 text-[10px] font-mono font-black uppercase tracking-widest text-[#00D4FF] bg-slate-950 p-3 px-4 border-l-2 border-l-blue-500 max-w-sm">
+              <span className="animate-bounce">🛡️</span>
+              <span className="text-white font-extrabold">2-Year Full Premium Hardware Replacement Warranty Included</span>
             </div>
           </div>
 

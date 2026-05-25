@@ -17,7 +17,7 @@ export default function Footer({ language }: FooterProps) {
   const t = translations[language].footer;
 
   return (
-    <footer id="footer" className="bg-[#0B0E1B] text-gray-400 py-16 font-sans relative z-10 border-t border-slate-900">
+    <footer id="footer" className="bg-[#0B0E1B] text-white py-16 font-sans relative z-10 border-t border-slate-900">
       
       <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-12 w-full text-center sm:text-left">
         
@@ -34,7 +34,7 @@ export default function Footer({ language }: FooterProps) {
                 {translations[language].navigation.logo}
               </span>
             </div>
-            <p className="text-xs text-slate-500 leading-relaxed max-w-sm font-medium">
+            <p className="text-sm text-white leading-relaxed max-w-sm font-semibold">
               {language === 'en'
                 ? "Engineering elite AI-powered diagnostic hardware for demanding sub-zero environments. Protecting families with predictive, non-surveillance edge technologies across North America."
                 : "Conception de boîtiers de sécurité IA pour environnements sous-zéro. Protection intégrale des familles canadiennes par technologies prédictives sans intrusion."}
@@ -44,14 +44,14 @@ export default function Footer({ language }: FooterProps) {
           {/* Links structure columns */}
           <div className="md:col-span-4 flex flex-col sm:flex-row gap-8 text-left">
             <div className="space-y-3">
-              <h4 className="text-white text-xs font-bold tracking-wider uppercase font-mono">
+              <h4 className="text-white text-sm font-bold tracking-wider uppercase font-mono">
                 {language === 'en' ? "Compliance Framework" : "Cadre Réglementaire"}
               </h4>
-              <ul className="space-y-2 text-xs">
+              <ul className="space-y-2 text-sm text-white">
                 <li>
                   <button
                     onClick={() => setActiveModal('privacy')}
-                    className="hover:text-white transition-colors cursor-pointer text-left focus:outline-none"
+                    className="hover:text-cyan-400 font-semibold transition-colors cursor-pointer text-left focus:outline-none"
                   >
                     🔐 {t.privacy}
                   </button>
@@ -59,7 +59,7 @@ export default function Footer({ language }: FooterProps) {
                 <li>
                   <button
                     onClick={() => setActiveModal('refund')}
-                    className="hover:text-white transition-colors cursor-pointer text-left focus:outline-none"
+                    className="hover:text-cyan-400 font-semibold transition-colors cursor-pointer text-left focus:outline-none"
                   >
                     🔄 {t.refund}
                   </button>
@@ -67,7 +67,7 @@ export default function Footer({ language }: FooterProps) {
                 <li>
                   <button
                     onClick={() => setActiveModal('casl')}
-                    className="hover:text-white transition-colors cursor-pointer text-left focus:outline-none"
+                    className="hover:text-cyan-400 font-semibold transition-colors cursor-pointer text-left focus:outline-none"
                   >
                     🍁 {t.casl}
                   </button>
@@ -76,15 +76,15 @@ export default function Footer({ language }: FooterProps) {
             </div>
 
             <div className="space-y-3">
-              <h4 className="text-white text-xs font-bold tracking-wider uppercase font-mono">
+              <h4 className="text-white text-sm font-bold tracking-wider uppercase font-mono">
                 {language === 'en' ? "Support Channels" : "Canaux de Support"}
               </h4>
-              <ul className="space-y-2 text-xs text-slate-500">
-                <li className="flex items-center space-x-1.5 hover:text-white transition-all cursor-pointer">
+              <ul className="space-y-2 text-sm text-white">
+                <li className="flex items-center space-x-1.5 hover:text-cyan-400 font-semibold transition-all cursor-pointer">
                   <Mail className="w-3.5 h-3.5 text-blue-500 shrink-0" />
                   <span>support@astrateq.ca</span>
                 </li>
-                <li className="flex items-center space-x-1.5 hover:text-white transition-all cursor-pointer">
+                <li className="flex items-center space-x-1.5 hover:text-cyan-400 font-semibold transition-all cursor-pointer">
                   <MapPin className="w-3.5 h-3.5 text-red-500 shrink-0" />
                   <span className="truncate max-w-[180px]">{t.address.split('|')[1]?.trim() || t.address}</span>
                 </li>
@@ -94,14 +94,14 @@ export default function Footer({ language }: FooterProps) {
 
           {/* Bilingual block */}
           <div className="md:col-span-3 text-left space-y-3">
-            <h4 className="text-white text-xs font-bold tracking-wider uppercase font-mono">
+            <h4 className="text-white text-sm font-bold tracking-wider uppercase font-mono">
               Language / Bilinguisme
             </h4>
             <div className="p-3 bg-slate-900 border border-slate-800 rounded-none flex items-center space-x-2">
               <span className="text-base">🇨🇦</span>
               <div>
-                <p className="text-[10px] text-white font-bold leading-none">en-CA / fr-CA</p>
-                <p className="text-[9px] text-slate-500 mt-0.5">{t.bilingualNote}</p>
+                <p className="text-xs text-white font-black leading-none">en-CA / fr-CA</p>
+                <p className="text-xs text-white/90 font-semibold mt-1 leading-normal">{t.bilingualNote}</p>
               </div>
             </div>
           </div>
@@ -109,14 +109,14 @@ export default function Footer({ language }: FooterProps) {
         </div>
 
         {/* Lower credit block */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-2 text-[10px] text-slate-500 font-mono" id="footer-bottom-board">
-          <p className="text-left leading-normal max-w-xl font-medium">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-2 text-xs text-white font-mono" id="footer-bottom-board">
+          <p className="text-left leading-relaxed max-w-xl font-semibold">
             {t.allRightsReserved}<br />
-            <span className="text-slate-600 block mt-1.5">{t.subLegalText}</span>
+            <span className="text-white font-medium block mt-2">{t.subLegalText}</span>
           </p>
           <div className="flex items-center space-x-3 shrink-0">
-            <span className="px-2 py-0.5 border border-slate-805 border-slate-800 rounded-none text-slate-500">PIPEDA ACTIVE</span>
-            <span className="px-2 py-0.5 border border-slate-805 border-slate-800 rounded-none text-slate-500">ISED CERTIFIED</span>
+            <span className="px-2 py-0.5 border border-neutral-700 rounded-none text-white font-black text-[10px]">PIPEDA ACTIVE</span>
+            <span className="px-2 py-0.5 border border-neutral-700 rounded-none text-white font-black text-[10px]">ISED CERTIFIED</span>
           </div>
         </div>
 
