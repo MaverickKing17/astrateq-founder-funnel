@@ -21,6 +21,7 @@ import FAQ from './components/FAQ';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
 import CheckoutModal from './components/CheckoutModal';
+import LiveChat from './components/LiveChat';
 
 export default function App() {
   const [language, setLanguage] = useState<Language>('en');
@@ -131,6 +132,9 @@ export default function App() {
         isOpen={isCheckoutOpen}
         onClose={() => setIsCheckoutOpen(false)}
       />
+
+      {/* 17. Intelligent AI-Powered Chat Assistant */}
+      <LiveChat language={language} />
 
     </div>
   );

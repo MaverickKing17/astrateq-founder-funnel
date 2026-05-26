@@ -37,18 +37,26 @@ export default function Hero({ language, onScrollToSection }: HeroProps) {
             {/* Enterprise Safety Label */}
             <div className="flex flex-wrap items-center gap-3">
               <span className="font-mono text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-slate-500">
-                FOUNDER BATCH 01
+                {t.hero.batch}
               </span>
             </div>
 
             {/* Primary Headline in DM Serif Display */}
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#1A1A2E] leading-[1.1]">
-              Quiet protection for the drivers you love most.
+              {language === 'en' ? "Quiet protection for the drivers you love most." : "Une protection silencieuse pour les conducteurs que vous aimez le plus."}
             </h1>
 
             {/* Supporting Copy with bold elements */}
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl font-sans font-normal">
-              Know something is wrong before the roadside emergency happens. ASTRA-AI combines <strong className="font-black text-[#1A1A2E]">predictive diagnostics</strong> and computer vision safety alerts to help prevent breakdowns, collisions, and winter emergencies before they occur.
+              {language === 'en' ? (
+                <>
+                  Know something is wrong before the roadside emergency happens. ASTRA-AI combines <strong className="font-black text-[#1A1A2E]">predictive diagnostics</strong> and computer vision safety alerts to help prevent breakdowns, collisions, and winter emergencies before they occur.
+                </>
+              ) : (
+                <>
+                  Sachez qu'un problème survient avant l'urgence routière. ASTRA-AI combine <strong className="font-black text-[#1A1A2E]">diagnostics prédictifs</strong> et alertes de sécurité par vision par ordinateur pour prévenir pannes, collisions et urgences hivernales.
+                </>
+              )}
             </p>
 
             {/* Three Operational Signals */}
@@ -57,19 +65,25 @@ export default function Hero({ language, onScrollToSection }: HeroProps) {
                 <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center border border-slate-200">
                   <MapPin className="w-4 h-4 text-slate-600" />
                 </div>
-                <span className="font-semibold text-slate-700">Tested across Canadian winter conditions</span>
+                <span className="font-semibold text-slate-700">
+                  {language === 'en' ? "Tested across Canadian winter conditions" : "Testé dans les conditions hivernales canadiennes"}
+                </span>
               </div>
               <div className="flex items-center space-x-3 text-sm text-[#4B5563]">
                 <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center border border-slate-200">
                   <Cpu className="w-4 h-4 text-slate-600" />
                 </div>
-                <span className="font-semibold text-slate-700">Built for 2008+ Canadian vehicles</span>
+                <span className="font-semibold text-slate-700">
+                  {language === 'en' ? "Built for 2008+ Canadian vehicles" : "Conçu pour les véhicules canadiens de 2008 et plus"}
+                </span>
               </div>
               <div className="flex items-center space-x-3 text-sm text-[#4B5563]">
                 <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center border border-slate-200">
                   <Clock className="w-4 h-4 text-[#00D4FF]" />
                 </div>
-                <span className="font-semibold text-slate-700">247 Founding Reservations Remaining</span>
+                <span className="font-semibold text-slate-700">
+                  {language === 'en' ? "247 Founding Reservations Remaining" : "247 réservations fondatrices restantes"}
+                </span>
               </div>
             </div>
 
@@ -79,7 +93,7 @@ export default function Hero({ language, onScrollToSection }: HeroProps) {
                 onClick={() => onScrollToSection('pricing')}
                 className="px-8 py-4 bg-[#00D4FF] hover:bg-[#00D4FF]/90 text-[#1A1A2E] text-xs font-black uppercase tracking-widest rounded-none transition-all flex items-center justify-center space-x-2 cursor-pointer shadow-sm border border-[#00D4FF]"
               >
-                <span>Lock In My Founding Price</span>
+                <span>{language === 'en' ? "Lock In My Founding Price" : "Bloquer mon prix de fondateur"}</span>
                 <span className="text-[11px] font-bold">→</span>
               </button>
               
@@ -88,13 +102,13 @@ export default function Hero({ language, onScrollToSection }: HeroProps) {
                 className="px-6 py-4 bg-transparent border border-slate-250 text-slate-700 hover:bg-slate-50 text-xs font-bold uppercase tracking-widest rounded-none flex items-center justify-center space-x-2 transition-colors cursor-pointer"
               >
                 <PlayCircle className="w-4 h-4 text-[#00D4FF]" />
-                <span>See How It Works</span>
+                <span>{language === 'en' ? "See How It Works" : "Voir le fonctionnement"}</span>
               </button>
             </div>
 
             {/* Trust Microcopy */}
             <p className="text-[11px] text-slate-400 font-bold" id="hero-trust-microcopy">
-              Fully refundable deposit. No charge until shipment. Cancel anytime.
+              {t.hero.trustMicrocopy}
             </p>
 
           </div>
@@ -125,10 +139,10 @@ export default function Hero({ language, onScrollToSection }: HeroProps) {
               ))}
             </div>
             <p className="text-[11px] font-black text-slate-900 tracking-tight leading-none uppercase">
-              4.8/5 Rating
+              {language === 'en' ? "4.8/5 Rating" : "Note de 4.8/5"}
             </p>
             <p className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">
-              From 127+ Early Members
+              {language === 'en' ? "From 127+ Early Members" : "Par plus de 127 membres"}
             </p>
           </div>
 
@@ -137,20 +151,20 @@ export default function Hero({ language, onScrollToSection }: HeroProps) {
               <ShieldCheck className="w-3.5 h-3.5" />
             </div>
             <p className="text-[11px] font-black text-slate-900 tracking-tight leading-none uppercase">
-              Canadian Drivers
+              {language === 'en' ? "Canadian Drivers" : "Conducteurs canadiens"}
             </p>
             <p className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">
-              Trusted by Canadian Families
+              {language === 'en' ? "Trusted by Canadian Families" : "Approuvé par les familles d'ici"}
             </p>
           </div>
 
           <div className="flex flex-col items-center space-y-1 md:border-r md:border-slate-100 last:border-0 px-2">
             <span className="text-xs">🍁</span>
             <p className="text-[11px] font-black text-slate-900 tracking-tight leading-none uppercase">
-              Transport Canada
+              {language === 'en' ? "Transport Canada" : "Transports Canada"}
             </p>
             <p className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">
-              Recognized Technology
+              {language === 'en' ? "Recognized Technology" : "Technologie reconnue"}
             </p>
           </div>
 
@@ -159,10 +173,10 @@ export default function Hero({ language, onScrollToSection }: HeroProps) {
               <Cpu className="w-3.5 h-3.5" />
             </div>
             <p className="text-[11px] font-black text-slate-900 tracking-tight leading-none uppercase">
-              ISED Certified
+              {language === 'en' ? "ISED Certified" : "Certifié ISDE"}
             </p>
             <p className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">
-              High-End Electronics
+              {language === 'en' ? "High-End Electronics" : "Équipement haut de gamme"}
             </p>
           </div>
 
@@ -171,10 +185,10 @@ export default function Hero({ language, onScrollToSection }: HeroProps) {
               <ShieldCheck className="w-3.5 h-3.5" />
             </div>
             <p className="text-[11px] font-black text-slate-900 tracking-tight leading-none uppercase">
-              Secure & Private
+              {language === 'en' ? "Secure & Private" : "Sécurisé & Privé"}
             </p>
             <p className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">
-              Always Canadian
+              {language === 'en' ? "Always Canadian" : "Hébergé au Canada"}
             </p>
           </div>
 

@@ -31,17 +31,19 @@ export default function Pricing({ language, onSetSelectedTier, onOpenCheckout }:
         <div className="flex flex-col md:flex-row md:items-start justify-between border-b border-slate-200 pb-8 mb-16 gap-6">
           <div className="space-y-3 max-w-2xl text-left">
             <span className="text-slate-500 font-mono text-xs font-black uppercase tracking-[0.2em] block">
-              THE GUARDIAN FOUNDER’S BUNDLE
+              {language === 'en' ? "THE GUARDIAN FOUNDER’S BUNDLE" : "LA SUITE DES FONDATEURS DU GUARDIAN"}
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#1A1A2E] leading-tight">
-              Three ways to lock in your founding price before Batch 01 closes to the public.
+              {language === 'en' 
+                ? "Three ways to lock in your founding price before Batch 01 closes to the public." 
+                : "Trois façons de bloquer votre prix de membre fondateur avant la fermeture du Lot 01."}
             </h2>
           </div>
           
           {/* Free shipping banner */}
           <div className="inline-flex items-center space-x-2 bg-slate-105 border border-slate-200 px-4 py-2.5 text-slate-800 text-xs font-bold uppercase tracking-wider rounded-none h-fit">
             <span>🍁</span>
-            <span>FREE Shipping Across Canada</span>
+            <span>{language === 'en' ? "FREE Shipping Across Canada" : "Livraison GRATUITE partout au Canada"}</span>
           </div>
         </div>
 
@@ -53,13 +55,15 @@ export default function Pricing({ language, onSetSelectedTier, onOpenCheckout }:
             <div className="space-y-6">
               <div>
                 <h3 className="font-sans text-xl font-bold text-[#1A1A2E] uppercase tracking-wider">
-                  Early Bird
+                  {language === 'en' ? "Early Bird" : "Observateur"}
                 </h3>
                 <span className="text-[10px] font-mono font-black text-slate-400 uppercase tracking-widest block mt-1">
-                  SECURE YOUR PLACE
+                  {language === 'en' ? "SECURE YOUR PLACE" : "SÉCURISEZ VOTRE PLACE"}
                 </span>
                 <p className="text-xs text-slate-500 mt-3 font-semibold leading-relaxed">
-                  Secure your place in the manufacturing queue and receive full mechanical diagnostic tracking.
+                  {language === 'en' 
+                    ? "Secure your place in the manufacturing queue and receive full mechanical diagnostic tracking."
+                    : "Sécurisez votre place dans la file d'attente de fabrication et recevez un suivi de diagnostic mécanique complet."}
                 </p>
               </div>
 
@@ -69,7 +73,7 @@ export default function Pricing({ language, onSetSelectedTier, onOpenCheckout }:
                 <span className="text-5xl font-mono font-black text-[#1A1A2E] tracking-tight">25</span>
                 <span className="text-xs font-mono font-bold text-slate-400 uppercase ml-1">CAD</span>
                 <span className="text-[9px] font-mono ml-auto uppercase tracking-wider font-extrabold bg-slate-50 text-slate-500 px-2.5 py-1 border border-slate-200">
-                  REFUNDABLE DEPOSIT
+                  {language === 'en' ? "REFUNDABLE DEPOSIT" : "DÉPÔT REMBOURSABLE"}
                 </span>
               </div>
 
@@ -87,15 +91,15 @@ export default function Pricing({ language, onSetSelectedTier, onOpenCheckout }:
               <ul className="space-y-3 pt-2 text-xs font-semibold text-slate-600">
                 <li className="flex items-start">
                   <span className="text-emerald-500 mr-2">✓</span>
-                  <span>Predictive OBD diagnostics</span>
+                  <span>{language === 'en' ? "Predictive OBD diagnostics" : "Diagnostics prédictifs OBD"}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-emerald-500 mr-2">✓</span>
-                  <span>Canadian safety data sovereignty</span>
+                  <span>{language === 'en' ? "Canadian safety data sovereignty" : "Souveraineté canadienne des données"}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-emerald-500 mr-2">✓</span>
-                  <span>Bilingual support center access</span>
+                  <span>{language === 'en' ? "Bilingual support center access" : "Accès au centre d'assistance bilingue"}</span>
                 </li>
               </ul>
             </div>
@@ -105,7 +109,7 @@ export default function Pricing({ language, onSetSelectedTier, onOpenCheckout }:
                 onClick={() => handleCardClick('earlybird')}
                 className="w-full py-4 bg-[#1E2538] hover:bg-slate-900 text-white text-xs font-black uppercase tracking-widest rounded-none transition-colors text-center cursor-pointer shadow"
               >
-                Reserve — Early Bird →
+                {language === 'en' ? "Reserve — Early Bird →" : "Réserver — Observateur →"}
               </button>
             </div>
           </div>
@@ -113,24 +117,26 @@ export default function Pricing({ language, onSetSelectedTier, onOpenCheckout }:
           {/* Card 2: Founding Member (Ultimate Cyan Prominence & Glow) */}
           <div className="lg:col-span-4 flex flex-col justify-between p-8 bg-white border-2 border-[#00D4FF] shadow-xl relative text-left rounded-none scale-100 lg:scale-[1.04]">
             <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#00D4FF] text-[#1A1A2E] text-[9px] font-mono font-black tracking-widest uppercase border border-[#00D4FF] shadow">
-              MOST POPULAR
+              {language === 'en' ? "MOST POPULAR" : "PLUS POPULAIRE"}
             </div>
 
             <div className="space-y-6">
               <div>
                 <div className="flex items-center justify-between">
                   <h3 className="font-sans text-xl font-bold text-[#1A1A2E] uppercase tracking-wider">
-                    Founding Member
+                    {language === 'en' ? "Founding Member" : "Membre Fondateur"}
                   </h3>
                   <span className="px-2 py-0.5 bg-cyan-50 border border-cyan-200 text-cyan-700 text-[9px] font-bold tracking-wider uppercase">
-                    SAVE $200
+                    {language === 'en' ? "SAVE $200" : "ÉPARGNEZ 200$"}
                   </span>
                 </div>
                 <span className="text-[10px] font-mono font-black text-cyan-600 uppercase tracking-widest block mt-1">
-                  INTELLIGENT DEFAULT
+                  {language === 'en' ? "INTELLIGENT DEFAULT" : "CHOIX EN TOUTE CONFIANCE"}
                 </span>
                 <p className="text-xs text-slate-500 mt-3 font-semibold leading-relaxed">
-                  Our core hardware bundle. Contains the dual-lens AI safety camera and complete predictive mechanics.
+                  {language === 'en' 
+                    ? "Our core hardware bundle. Contains the dual-lens AI safety camera and complete predictive mechanics."
+                    : "Notre pack matériel principal. Contient la caméra de sécurité IA double objectif et la mécanique prédictive complète."}
                 </p>
               </div>
 
@@ -139,8 +145,8 @@ export default function Pricing({ language, onSetSelectedTier, onOpenCheckout }:
                 <span className="text-xs font-bold text-slate-400">$</span>
                 <span className="text-5xl font-mono font-black text-[#1A1A2E] tracking-tight">85</span>
                 <span className="text-xs font-mono font-bold text-slate-400 uppercase ml-1">CAD</span>
-                <span className="text-[9px] font-mono ml-auto uppercase tracking-wider font-extrabold bg-[#00D4FF]/10 text-cyan-800 px-2.5 py-1 border border-[#00D4FF]/20">
-                  SHIPS FIRST BATCH
+                <span className="text-[9px] font-mono ml-auto uppercase tracking-wider font-extrabold bg-[#00D4FF]/10 text-cyan-800 px-2.5 py-1 border border-[#00D4FF]/25">
+                  {language === 'en' ? "SHIPS FIRST BATCH" : "PREMIER LOT EXPÉDIÉ"}
                 </span>
               </div>
 
@@ -158,19 +164,19 @@ export default function Pricing({ language, onSetSelectedTier, onOpenCheckout }:
               <ul className="space-y-3 pt-2 text-xs font-semibold text-slate-600">
                 <li className="flex items-start">
                   <span className="text-cyan-500 mr-2">✓</span>
-                  <span>Everything in Early Bird</span>
+                  <span>{language === 'en' ? "Everything in Early Bird" : "Tout ce qui est inclus dans l'Observateur"}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-cyan-500 mr-2">✓</span>
-                  <span>1080p Dual-Lens AI Camera</span>
+                  <span>{language === 'en' ? "1080p Dual-Lens AI Camera" : "Caméra IA 1080p double objectif"}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-cyan-500 mr-2">✓</span>
-                  <span>Lane & collision alerts</span>
+                  <span>{language === 'en' ? "Lane & collision alerts" : "Alertes de déviation & anti-collision"}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-cyan-500 mr-2">✓</span>
-                  <span>Saves $200 on Retail Release</span>
+                  <span>{language === 'en' ? "Saves $200 on Retail Release" : "Économisez 200 $ sur le tarif grand public"}</span>
                 </li>
               </ul>
             </div>
@@ -180,7 +186,7 @@ export default function Pricing({ language, onSetSelectedTier, onOpenCheckout }:
                 onClick={() => handleCardClick('founding')}
                 className="w-full py-4.5 bg-[#00D4FF] hover:bg-[#00D4FF]/90 text-[#1A1A2E] text-xs font-black uppercase tracking-widest rounded-none transition-colors text-center cursor-pointer shadow-lg"
               >
-                Reserve — Founding Member →
+                {language === 'en' ? "Reserve — Founding Member →" : "Réserver — Membre Fondateur →"}
               </button>
             </div>
           </div>
@@ -191,17 +197,19 @@ export default function Pricing({ language, onSetSelectedTier, onOpenCheckout }:
               <div>
                 <div className="flex items-center justify-between">
                   <h3 className="font-sans text-xl font-bold text-[#1A1A2E] uppercase tracking-wider">
-                    Guardian
+                    {language === 'en' ? "Guardian" : "Gardien"}
                   </h3>
                   <span className="px-2 py-0.5 bg-slate-100 border border-slate-200 text-slate-700 text-[9px] font-bold tracking-wider uppercase">
-                    SAVE $400
+                    {language === 'en' ? "SAVE $400" : "ÉPARGNEZ 400$"}
                   </span>
                 </div>
                 <span className="text-[10px] font-mono font-black text-slate-400 uppercase tracking-widest block mt-1">
-                  ELITE SAFETY PACKAGE
+                  {language === 'en' ? "ELITE SAFETY PACKAGE" : "FORFAIT SÉCURITÉ ÉLITE"}
                 </span>
                 <p className="text-xs text-slate-500 mt-3 font-semibold leading-relaxed">
-                  Ultimate protective setup featuring military-spec 4K optics and complete internal cabin tracking.
+                  {language === 'en' 
+                    ? "Ultimate protective setup featuring military-spec 4K optics and complete internal cabin tracking."
+                    : "Installation de protection ultime avec optique 4K de spécification militaire et surveillance d'habitacle complète."}
                 </p>
               </div>
 
@@ -211,7 +219,7 @@ export default function Pricing({ language, onSetSelectedTier, onOpenCheckout }:
                 <span className="text-5xl font-mono font-black text-[#1A1A2E] tracking-tight">150</span>
                 <span className="text-xs font-mono font-bold text-slate-400 uppercase ml-1">CAD</span>
                 <span className="text-[9px] font-mono ml-auto uppercase tracking-wider font-extrabold bg-slate-50 text-slate-500 px-2.5 py-1 border border-slate-200">
-                  LIFETIME ACCESS
+                  {language === 'en' ? "LIFETIME ACCESS" : "ACCÈS À VIE"}
                 </span>
               </div>
 
@@ -229,19 +237,19 @@ export default function Pricing({ language, onSetSelectedTier, onOpenCheckout }:
               <ul className="space-y-3 pt-2 text-xs font-semibold text-slate-600">
                 <li className="flex items-start">
                   <span className="text-slate-900 mr-2">✓</span>
-                  <span>Everything in Founding Member</span>
+                  <span>{language === 'en' ? "Everything in Founding Member" : "Tout ce qui est inclus dans le Membre Fondateur"}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-slate-900 mr-2">✓</span>
-                  <span>4K Ultra-HD camera optics</span>
+                  <span>{language === 'en' ? "4K Ultra-HD camera optics" : "Optique de caméra 4K Ultra-HD"}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-slate-900 mr-2">✓</span>
-                  <span>Drowsiness & driver cabin tracking</span>
+                  <span>{language === 'en' ? "Drowsiness & driver cabin tracking" : "Vigilance de l'habitacle et du conducteur"}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-slate-900 mr-2">✓</span>
-                  <span>Saves $400 on retail pricing</span>
+                  <span>{language === 'en' ? "Saves $400 on retail pricing" : "Économisez 400 $ sur le tarif public"}</span>
                 </li>
               </ul>
             </div>
@@ -251,7 +259,7 @@ export default function Pricing({ language, onSetSelectedTier, onOpenCheckout }:
                 onClick={() => handleCardClick('guardian')}
                 className="w-full py-4 bg-[#1E2538] hover:bg-slate-900 text-white text-xs font-black uppercase tracking-widest rounded-none transition-colors text-center cursor-pointer shadow"
               >
-                Reserve — Guardian →
+                {language === 'en' ? "Reserve — Guardian →" : "Réserver — Gardien →"}
               </button>
             </div>
           </div>
@@ -261,13 +269,13 @@ export default function Pricing({ language, onSetSelectedTier, onOpenCheckout }:
         {/* Secure Stripe payment footer */}
         <div className="flex items-center justify-center pt-8 border-t border-slate-200 mt-16" id="pricing-stripe-trust">
           <p className="text-xs sm:text-sm text-slate-500 font-bold uppercase tracking-wider flex flex-wrap items-center justify-center gap-2">
-            <span>Stripe Secured</span>
+            <span>{language === 'en' ? "Stripe Secured" : "Sécurisé par Stripe"}</span>
             <span className="text-slate-350">|</span>
-            <span>100% Fully Refundable</span>
+            <span>{language === 'en' ? "100% Fully Refundable" : "100% remboursable à tout moment"}</span>
             <span className="text-slate-350">|</span>
-            <span>Canadian Support Team</span>
+            <span>{language === 'en' ? "Canadian Support Team" : "Support basé au Canada"}</span>
             <span className="text-slate-350">|</span>
-            <span>No charge until production</span>
+            <span>{language === 'en' ? "No charge until production" : "Aucun frais avant l'expédition"}</span>
           </p>
         </div>
 

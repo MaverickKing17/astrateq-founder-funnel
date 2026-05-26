@@ -66,31 +66,31 @@ export default function Navigation({ language, setLanguage, onScrollToSection }:
             onClick={() => handleLinkClick('features')}
             className="text-xs font-bold text-[#4B5563] hover:text-[#00D4FF] uppercase tracking-wider transition-colors cursor-pointer"
           >
-            Features
+            {language === 'en' ? "Features" : "Fonctionnalités"}
           </button>
           <button
             onClick={() => handleLinkClick('compatibility')}
             className="text-xs font-bold text-[#4B5563] hover:text-[#00D4FF] uppercase tracking-wider transition-colors cursor-pointer"
           >
-            Compatibility
+            {language === 'en' ? "Compatibility" : "Compatibilité"}
           </button>
           <button
             onClick={() => handleLinkClick('testimonials')}
             className="text-xs font-bold text-[#4B5563] hover:text-[#00D4FF] uppercase tracking-wider transition-colors cursor-pointer"
           >
-            Alpha Insights
+            {language === 'en' ? "Alpha Insights" : "Aperçus Alpha"}
           </button>
           <button
             onClick={() => handleLinkClick('faq')}
             className="text-xs font-bold text-[#4B5563] hover:text-[#00D4FF] uppercase tracking-wider transition-colors cursor-pointer"
           >
-            FAQ
+            {language === 'en' ? "FAQ" : "FAQ"}
           </button>
           <button
             onClick={() => handleLinkClick('what-is-included')}
             className="text-xs font-bold text-[#4B5563] hover:text-[#00D4FF] uppercase tracking-wider transition-colors cursor-pointer"
           >
-            About
+            {language === 'en' ? "About" : "À propos"}
           </button>
         </div>
 
@@ -141,7 +141,7 @@ export default function Navigation({ language, setLanguage, onScrollToSection }:
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.96 }}
           >
-            <span>Reserve My Spot</span>
+            <span>{language === 'en' ? "Reserve My Spot" : "Réserver mon Spot"}</span>
             <span className="text-[10px] font-sans font-black">→</span>
           </motion.button>
 
@@ -173,25 +173,25 @@ export default function Navigation({ language, setLanguage, onScrollToSection }:
                 onClick={() => handleLinkClick('features')}
                 className="w-full text-left py-2.5 text-xs font-extrabold uppercase tracking-wider text-slate-700 hover:text-[#00D4FF] border-b border-slate-100 pb-2 cursor-pointer"
               >
-                Features
+                {language === 'en' ? "Features" : "Fonctionnalités"}
               </button>
               <button
                 onClick={() => handleLinkClick('compatibility')}
                 className="w-full text-left py-2.5 text-xs font-extrabold uppercase tracking-wider text-slate-700 hover:text-[#00D4FF] border-b border-slate-100 pb-2 cursor-pointer"
               >
-                Compatibility
+                {language === 'en' ? "Compatibility" : "Compatibilité"}
               </button>
               <button
                 onClick={() => handleLinkClick('testimonials')}
                 className="w-full text-left py-2.5 text-xs font-extrabold uppercase tracking-wider text-slate-700 hover:text-[#00D4FF] border-b border-slate-100 pb-2 cursor-pointer"
               >
-                Alpha Insights
+                {language === 'en' ? "Alpha Insights" : "Aperçus Alpha"}
               </button>
               <button
                 onClick={() => handleLinkClick('faq')}
                 className="w-full text-left py-2.5 text-xs font-extrabold uppercase tracking-wider text-slate-700 hover:text-[#00D4FF] border-b border-slate-100 pb-2 cursor-pointer"
               >
-                FAQ
+                {language === 'en' ? "FAQ" : "FAQ"}
               </button>
               <motion.button
                 onClick={() => handleLinkClick('pricing')}
@@ -206,7 +206,7 @@ export default function Navigation({ language, setLanguage, onScrollToSection }:
                 }}
                 whileTap={{ scale: 0.97 }}
               >
-                <span>Reserve My Spot</span>
+                <span>{language === 'en' ? "Reserve My Spot" : "Réserver mon Spot"}</span>
               </motion.button>
             </div>
           </motion.div>
