@@ -55,12 +55,9 @@ export default function Navigation({ language, setLanguage, onScrollToSection }:
           <img 
             src="https://i.ibb.co/k2YQcpYM/Gemini-Generated-Image-pta8i9pta8i9pta8.png" 
             alt="Astrateq Logo" 
-            className="h-8 w-auto object-contain"
+            className="h-9 w-auto object-contain"
             referrerPolicy="no-referrer"
           />
-          <span className="font-serif text-xl font-bold tracking-tight text-[#1A1A2E]">
-            Astrateq <span className="font-sans font-light text-slate-500">Gadgets</span>
-          </span>
         </div>
 
         {/* Center Links (Desktop Only) - matched to Section 01 of PDF */}
