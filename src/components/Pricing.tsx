@@ -5,11 +5,11 @@
 
 import { Language, Tier } from '../types';
 // @ts-ignore
-import obsProductImg from '../assets/images/obs_product_visual_1779736732490.png';
+import obsProductImg from '../assets/images/obd_adapter_1779820505460.png';
 // @ts-ignore
-import guardProductImg from '../assets/images/guard_product_visual_1779736750699.png';
+import guardProductImg from '../assets/images/standard_kit_1779820522208.png';
 // @ts-ignore
-import guardProProductImg from '../assets/images/guard_pro_product_visual_1779736768950.png';
+import guardProProductImg from '../assets/images/pro_kit_1779820540004.png';
 
 interface PricingProps {
   language: Language;

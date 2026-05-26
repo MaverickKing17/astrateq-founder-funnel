@@ -8,7 +8,7 @@ import { MapPin, Cpu, Clock, PlayCircle, ShieldCheck, Star } from 'lucide-react'
 import { Language } from '../types';
 import { translations } from '../data/translations';
 // @ts-ignore
-import astraHeroVisual from '../assets/images/guard_product_visual_1779736750699.png';
+import astraHeroVisual from '../assets/images/standard_kit_1779820522208.png';
 
 interface HeroProps {
   language: Language;
