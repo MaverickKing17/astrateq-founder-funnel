@@ -53,15 +53,14 @@ export default function Navigation({ language, setLanguage, onScrollToSection }:
           onClick={() => handleLinkClick('hero')}
           id="nav-brand"
         >
-          {/* Custom Astrateq premium typography-backed layout if image fails or for styling */}
-          <div className="flex items-center space-x-2">
-            <div className="flex items-center">
-              <span className="text-blue-500 text-2xl font-black mr-2">▲</span>
-              <div className="flex flex-col">
-                <span className="text-sm font-black font-sans uppercase tracking-[0.2em] text-white">ASTRATEQ</span>
-                <span className="text-[8px] font-bold font-mono uppercase tracking-[0.3em] text-[#00D4FF]">G A D G E T S</span>
-              </div>
-            </div>
+          {/* Premium Astrateq branding logo */}
+          <div className="flex items-center">
+            <img 
+              src="https://i.ibb.co/k2YQcpYM/Gemini-Generated-Image-pta8i9pta8i9pta8.png" 
+              alt="Astrateq Logo" 
+              className="h-8 md:h-9 w-auto object-contain filter brightness-110 drop-shadow-md"
+              referrerPolicy="no-referrer"
+            />
           </div>
         </div>
 

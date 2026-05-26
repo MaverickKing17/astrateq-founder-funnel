@@ -10,14 +10,46 @@ import { ShieldCheck, Cpu, Smartphone, Snowflake, Eye, Settings, HelpCircle, X, 
 import { Language } from '../types';
 import { translations } from '../data/translations';
 
+// @ts-ignore
+import featuresEngineImg from '../assets/images/features_engine_1779737109085.png';
+// @ts-ignore
+import featuresCollisionImg from '../assets/images/features_collision_1779737128415.png';
+// @ts-ignore
+import featuresDriverImg from '../assets/images/features_driver_1779737148030.png';
+// @ts-ignore
+import featuresWinterImg from '../assets/images/features_winter_1779737164881.png';
+// @ts-ignore
+import featuresAlertsImg from '../assets/images/features_alerts_1779737182441.png';
+
 interface FeatureGridProps {
   language: Language;
 }
 
 export default function FeatureGrid({ language }: FeatureGridProps) {
   const [activeDeepDiveId, setActiveDeepDiveId] = useState<string | null>(null);
-  const [swipedCardId, setSwipedCardId] = useState<string | null>(null);
   const t = translations[language].features;
+
+  const scrollRef = React.useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      if (scrollWidth > clientWidth) {
+        setScrollProgress(scrollLeft / (scrollWidth - clientWidth));
+      }
+    }
+  };
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = 345; // Match card width + space gaps
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   // Aligning exactly with the mockup's 5 cards
   const mockupCards = [
@@ -27,8 +59,14 @@ export default function FeatureGrid({ language }: FeatureGridProps) {
       desc: language === 'en' 
         ? "AI analyzes 100+ vehicle sensors to predict issues days or weeks before failure."
         : "L'IA analyse plus de 100 capteurs pour prédire les pannes des jours avant l'incident.",
-      icon: <Cpu className="w-5 h-5" />,
+      icon: <Cpu className="w-5 h-5 text-blue-600 group-hover:text-white transition-colors" />,
       tag: "OBD-II TELEMETRY",
+      image: featuresEngineImg,
+      glowColor: "group-hover:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.22)]",
+      glowBg: "bg-blue-50/40 group-hover:bg-blue-100/60",
+      hoverBorder: "hover:border-blue-500/70",
+      accentText: "group-hover:text-blue-600",
+      iconBgHover: "group-hover:bg-blue-600 group-hover:border-blue-600 group-hover:text-white",
       details: t.items.find(item => item.id === "failure-detection")?.textBlock || ""
     },
     {
@@ -37,8 +75,14 @@ export default function FeatureGrid({ language }: FeatureGridProps) {
       desc: language === 'en'
         ? "Advanced computer vision detects risks and helps you avoid accidents."
         : "La vision par ordinateur modélise les trajectoires et prévient les collisions.",
-      icon: <Compass className="w-5 h-5" />,
+      icon: <Compass className="w-5 h-5 text-cyan-600 group-hover:text-white transition-colors" />,
       tag: "NPU VISION",
+      image: featuresCollisionImg,
+      glowColor: "group-hover:shadow-[0_20px_40px_-15px_rgba(6,182,212,0.22)]",
+      glowBg: "bg-cyan-50/40 group-hover:bg-cyan-100/60",
+      hoverBorder: "hover:border-cyan-500/70",
+      accentText: "group-hover:text-cyan-600",
+      iconBgHover: "group-hover:bg-cyan-600 group-hover:border-cyan-600 group-hover:text-white",
       details: t.items.find(item => item.id === "driver-coaching")?.textBlock || ""
     },
     {
@@ -47,8 +91,14 @@ export default function FeatureGrid({ language }: FeatureGridProps) {
       desc: language === 'en'
         ? "AI monitors attention & fatigue to keep you alert and your family safe."
         : "L'IA analyse le regard et les signaux de somnolence pour préserver la sécurité.",
-      icon: <Eye className="w-5 h-5" />,
+      icon: <Eye className="w-5 h-5 text-emerald-600 group-hover:text-white transition-colors" />,
       tag: "CABIN AI",
+      image: featuresDriverImg,
+      glowColor: "group-hover:shadow-[0_20px_40px_-15px_rgba(16,185,129,0.22)]",
+      glowBg: "bg-emerald-50/40 group-hover:bg-emerald-100/60",
+      hoverBorder: "hover:border-emerald-500/70",
+      accentText: "group-hover:text-emerald-600",
+      iconBgHover: "group-hover:bg-emerald-600 group-hover:border-emerald-600 group-hover:text-white",
       details: translations[language].features.items[1]?.textBlock || ""
     },
     {
@@ -57,8 +107,14 @@ export default function FeatureGrid({ language }: FeatureGridProps) {
       desc: language === 'en'
         ? "Built and tested for extreme Canadian winters down to -40°C."
         : "Équipé de lentilles chauffantes infrarouges, optimisé pour la neige et le sel.",
-      icon: <Snowflake className="w-5 h-5" />,
+      icon: <Snowflake className="w-5 h-5 text-indigo-600 group-hover:text-white transition-colors" />,
       tag: "SUB-ZERO BUILD",
+      image: featuresWinterImg,
+      glowColor: "group-hover:shadow-[0_20px_40px_-15px_rgba(99,102,241,0.22)]",
+      glowBg: "bg-indigo-50/40 group-hover:bg-indigo-100/60",
+      hoverBorder: "hover:border-indigo-500/70",
+      accentText: "group-hover:text-indigo-600",
+      iconBgHover: "group-hover:bg-indigo-600 group-hover:border-indigo-600 group-hover:text-white",
       details: t.items.find(item => item.id === "winter-optimized")?.textBlock || ""
     },
     {
@@ -67,8 +123,14 @@ export default function FeatureGrid({ language }: FeatureGridProps) {
       desc: language === 'en'
         ? "Instant notifications for hazards, maintenance, and road conditions."
         : "Des alertes visuelles et haptiques immédiates en cas de danger critique.",
-      icon: <Smartphone className="w-5 h-5" />,
+      icon: <Smartphone className="w-5 h-5 text-amber-600 group-hover:text-white transition-colors" />,
       tag: "SECURE TELEMETRY",
+      image: featuresAlertsImg,
+      glowColor: "group-hover:shadow-[0_20px_40px_-15px_rgba(245,158,11,0.22)]",
+      glowBg: "bg-amber-50/40 group-hover:bg-amber-100/60",
+      hoverBorder: "hover:border-amber-500/70",
+      accentText: "group-hover:text-amber-600",
+      iconBgHover: "group-hover:bg-amber-600 group-hover:border-amber-600 group-hover:text-white",
       details: t.items.find(item => item.id === "family-dashboard")?.textBlock || ""
     }
   ];
@@ -84,7 +146,7 @@ export default function FeatureGrid({ language }: FeatureGridProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
           {/* Left Sticky/Standard Frame - Matching Mockup layout */}
-          <div className="lg:col-span-4 flex flex-col space-y-6 text-left" id="features-left-column">
+          <div className="lg:col-span-4 flex flex-col space-y-6 text-left animate-fade-in" id="features-left-column">
             <span className="text-blue-600 font-mono text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] w-fit">
               COMPLETE AI SAFETY ECOSYSTEM
             </span>
@@ -110,50 +172,99 @@ export default function FeatureGrid({ language }: FeatureGridProps) {
             </div>
           </div>
 
-          {/* Right Horizontal Sliding Container - Beautiful Modern Card lists */}
-          <div className="lg:col-span-8 w-full" id="features-right-column">
-            <div className="flex space-x-5 overflow-x-auto pb-8 pt-1 scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-transparent snap-x snap-mandatory">
-              
+          {/* Right Horizontal Sliding Container - Beautiful Modern Card lists with fixed width restriction bounds */}
+          <div className="lg:col-span-8 w-full min-w-0" id="features-right-column">
+            <div 
+              ref={scrollRef}
+              onScroll={handleScroll}
+              className="flex space-x-5 overflow-x-auto pb-8 pt-1 scrollbar-none snap-x snap-mandatory relative scroll-smooth"
+            >
               {mockupCards.map((card) => {
                 return (
                   <div 
                     key={card.id} 
-                    className="snap-start shrink-0 w-[280px] sm:w-[310px] h-[360px] relative overflow-hidden rounded-none border border-slate-200 bg-white hover:border-blue-500/60 hover:shadow-2xl transition-all duration-300 shadow-md flex flex-col justify-between p-6 cursor-pointer group"
+                    className={`snap-start shrink-0 w-[290px] sm:w-[325px] h-[460px] relative overflow-hidden rounded-none border border-slate-200 bg-white ${card.hoverBorder} ${card.glowColor} transition-all duration-300 shadow-md flex flex-col justify-between p-6 cursor-pointer group`}
                     onClick={() => setActiveDeepDiveId(card.id)}
                   >
-                    {/* Glowing effect inside */}
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50/40 rounded-full blur-2xl group-hover:bg-blue-50/80 transition-all" />
+                    {/* Dynamic glowing theme effect inside */}
+                    <div className={`absolute top-0 right-0 w-28 h-28 rounded-full blur-2xl transition-all ${card.glowBg}`} />
 
-                    {/* Top Content */}
-                    <div className="space-y-4">
-                      {/* Icon */}
-                      <div className="w-10 h-10 rounded-none bg-slate-50 border border-slate-200 flex items-center justify-center text-blue-650 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-sm">
-                        {card.icon}
-                      </div>
-
-                      <div className="space-y-2">
+                    {/* Content structure */}
+                    <div className="space-y-3.5 relative z-10">
+                      {/* Top row with icon & tag */}
+                      <div className="flex items-center justify-between">
                         <span className="text-[8px] font-mono font-bold tracking-widest uppercase text-slate-500 block">
                           // {card.tag}
                         </span>
+                        <div className={`w-9 h-9 rounded-none bg-slate-50 border border-slate-250 flex items-center justify-center transition-all shadow-sm ${card.iconBgHover}`}>
+                          {card.icon}
+                        </div>
+                      </div>
+
+                      <div className="space-y-1.5">
                         <h3 className="text-base font-extrabold text-slate-900 leading-snug uppercase tracking-tight">
                           {card.title}
                         </h3>
-                        <p className="text-xs text-slate-600 leading-relaxed font-sans line-clamp-4">
-                          {card.desc}
-                        </p>
                       </div>
+
+                      {/* Dynamic colorful feature visual illustration */}
+                      <div className="w-full h-32 relative overflow-hidden bg-slate-50 border border-slate-200 rounded-none shadow-inner z-10">
+                        <img 
+                          src={card.image} 
+                          alt={card.title} 
+                          referrerPolicy="no-referrer"
+                          className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-500"
+                        />
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-xs text-slate-600 leading-relaxed font-sans line-clamp-3">
+                        {card.desc}
+                      </p>
                     </div>
 
                     {/* Footer cue */}
-                    <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold uppercase tracking-widest text-slate-500 group-hover:text-blue-600 transition-colors">
+                    <div className={`pt-4 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold uppercase tracking-widest text-slate-500 ${card.accentText} transition-colors relative z-10`}>
                       <span>Full Specifications</span>
                       <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>
                 );
               })}
-
             </div>
+
+            {/* Custom Interactive Scroll Progress HUD */}
+            <div className="mt-4 flex items-center justify-between px-1">
+              {/* Left Arrow */}
+              <button 
+                onClick={() => scroll('left')}
+                className="p-2 text-slate-400 hover:text-blue-600 hover:bg-slate-100 rounded-none border border-slate-200 transition-all cursor-pointer bg-white"
+                aria-label="Scroll left"
+              >
+                <ChevronRight className="w-4 h-4 rotate-180" />
+              </button>
+
+              {/* Slider Track with Dynamic visual scroll alignment */}
+              <div className="flex-1 mx-4 h-1 bg-slate-250 relative rounded-none overflow-hidden block">
+                <div 
+                  className="absolute top-0 bottom-0 bg-blue-600 transition-all duration-150 rounded-none"
+                  style={{ 
+                    width: '30%', 
+                    left: `${scrollProgress * 70}%` 
+                  }}
+                />
+              </div>
+
+              {/* Right Arrow */}
+              <button 
+                onClick={() => scroll('right')}
+                className="p-2 text-slate-400 hover:text-blue-600 hover:bg-slate-100 rounded-none border border-slate-200 transition-all cursor-pointer bg-white"
+                aria-label="Scroll right"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+
           </div>
 
         </div>
