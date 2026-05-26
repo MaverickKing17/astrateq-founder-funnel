@@ -255,7 +255,9 @@ export default function TechnicalIntelligence({ language }: TechnicalIntelligenc
                         margin={{ top: 15, right: 15, left: -20, bottom: 5 }}
                         onMouseMove={(state) => {
                           if (state && state.activeTooltipIndex !== undefined && state.activeTooltipIndex !== null) {
-                            setSelectedTempIndex(state.activeTooltipIndex);
+                            if (selectedTempIndex !== state.activeTooltipIndex) {
+                              setSelectedTempIndex(state.activeTooltipIndex);
+                            }
                           }
                         }}
                       >
