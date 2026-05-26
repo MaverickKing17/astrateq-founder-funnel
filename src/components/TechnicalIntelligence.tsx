@@ -6,8 +6,46 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { FileText, Snowflake, Settings, ShieldAlert, BarChart3, ArrowRight, ShieldCheck, HelpCircle } from 'lucide-react';
+import {
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend
+} from 'recharts';
 import { Language } from '../types';
 import { translations } from '../data/translations';
+
+const batteryPerformanceData = [
+  { temp: '20°C', tempFr: '20°C', astrateq: 100, standard: 100 },
+  { temp: '10°C', tempFr: '10°C', astrateq: 100, standard: 98 },
+  { temp: '0°C', tempFr: '0°C', astrateq: 99, standard: 92 },
+  { temp: '-10°C', tempFr: '-10°C', astrateq: 97, standard: 82 },
+  { temp: '-20°C', tempFr: '-20°C', astrateq: 95, standard: 70 },
+  { temp: '-30°C', tempFr: '-30°C', astrateq: 92, standard: 55 },
+  { temp: '-40°C', tempFr: '-40°C', astrateq: 86, standard: 38 }
+];
+
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-white border border-gray-200 p-3 shadow-md rounded-none text-xs font-sans">
+        <p className="font-mono font-bold text-slate-800 border-b border-gray-100 pb-1 mb-1.5">{label}</p>
+        {payload.map((entry: any, index: number) => (
+          <div key={index} className="flex items-center space-x-2 my-1">
+            <span className="w-2 h-2 rounded-full" style={{ backgroundColor: entry.color || entry.stroke }} />
+            <span className="text-slate-500 font-medium">{entry.name}:</span>
+            <span className="font-mono font-bold text-slate-900">{entry.value}%</span>
+          </div>
+        ))}
+      </div>
+    );
+  }
+  return null;
+};
 
 interface TechnicalIntelligenceProps {
   language: Language;
@@ -124,6 +162,90 @@ export default function TechnicalIntelligence({ language }: TechnicalIntelligenc
                   <div className="text-left">
                     <p className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-widest">ROAD COEFFICIENT</p>
                     <p className="text-xs font-extrabold text-slate-950 uppercase mt-0.5">ABS syncing</p>
+                  </div>
+                </div>
+
+                {/* Winter Performance Metric Section with Recharts Line Chart */}
+                <div className="mt-8 border-t border-gray-200/80 pt-6 space-y-4" id="winter-performance-metrics">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div>
+                      <h4 className="text-sm font-bold text-slate-900 uppercase tracking-tight">
+                        {language === 'en' ? "Winter Performance: Cold-Weather Battery Degradation" : "Performances hivernales : Dégradation de batterie par grand froid"}
+                      </h4>
+                      <p className="text-[11px] text-slate-500 font-medium">
+                        {language === 'en'
+                          ? "Comparative testing of ASTRA-AI extreme-tolerance standby supercapacitor cell versus standard dashboard cells at arctic operating limits."
+                          : "Essais comparatifs de notre supercondensateur de secours à tolérance extrême contre les cellules ordinaires par grand froid hiberne."}
+                      </p>
+                    </div>
+                    <span className="self-start sm:self-center px-2 py-0.5 border border-blue-200 bg-blue-50 text-blue-800 font-mono text-[9px] font-bold uppercase tracking-wider">
+                      {language === 'en' ? "Lab certified -40°C" : "Certifié en labo -40°C"}
+                    </span>
+                  </div>
+
+                  <div className="bg-white p-4 rounded-none border border-gray-200 relative h-72">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <LineChart
+                        data={batteryPerformanceData}
+                        margin={{ top: 15, right: 15, left: -20, bottom: 5 }}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                        <XAxis
+                          dataKey={language === 'en' ? 'temp' : 'tempFr'}
+                          stroke="#94a3b8"
+                          fontSize={10}
+                          fontFamily="monospace"
+                          tickLine={false}
+                        />
+                        <YAxis
+                          stroke="#94a3b8"
+                          fontSize={10}
+                          fontFamily="monospace"
+                          domain={[0, 100]}
+                          tickLine={false}
+                          tickFormatter={(val) => `${val}%`}
+                        />
+                        <Tooltip content={<CustomTooltip />} />
+                        <Legend
+                          verticalAlign="top"
+                          height={36}
+                          iconType="circle"
+                          iconSize={8}
+                          wrapperStyle={{
+                            fontSize: '9px',
+                            fontFamily: 'monospace',
+                            textTransform: 'uppercase',
+                            fontWeight: '600',
+                            paddingBottom: '10px'
+                          }}
+                        />
+                        <Line
+                          type="monotone"
+                          dataKey="astrateq"
+                          name={language === 'en' ? "ASTRA Solid-State Supercapacitor" : "Supercondensateur ASTRA"}
+                          stroke="#2563eb"
+                          strokeWidth={2.5}
+                          dot={{ r: 4, strokeWidth: 1, fill: '#fff' }}
+                          activeDot={{ r: 6 }}
+                        />
+                        <Line
+                          type="monotone"
+                          dataKey="standard"
+                          name={language === 'en' ? "Standard Li-Ion Battery" : "Batterie Li-Ion Standard"}
+                          stroke="#94a3b8"
+                          strokeWidth={2}
+                          strokeDasharray="4 4"
+                          dot={{ r: 3 }}
+                        />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </div>
+
+                  <div className="text-[10px] text-slate-500 leading-relaxed bg-slate-100/50 p-3 border border-gray-200 font-mono">
+                    <strong className="text-slate-800">{language === 'en' ? "ENGINEERING OBSERVED RESULT:" : "RESULTAT D'OBSERVATION D'INGÉNIERIE :"}</strong>{' '}
+                    {language === 'en'
+                      ? "Standard consumer electrochemical cells collapse below -15°C, resulting in system reboot loops and telemetry dropouts. The ASTRA system implements dedicated thermal isolation and hyper-stable supercapacitors to safely sustain continuous safety processing down to cold-cranking limits."
+                      : "Les batteries grand public s'effondrent sous -15°C, causant des redémarrages intempestifs et des pertes de télémétrie. Le système ASTRA intègre une isolation thermique active de pointe et des supercondensateurs de haute stabilité."}
                   </div>
                 </div>
               </article>

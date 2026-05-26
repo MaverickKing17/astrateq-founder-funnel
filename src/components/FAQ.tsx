@@ -29,7 +29,7 @@ export default function FAQ({ language, onScrollToSection }: FAQProps) {
     },
     {
       question: "When will my Astra-AI shipment arrive?",
-      answer: "Batch 01 is scheduled to begin shipping across Canada starting late fall. Priority tracking and customized shipping notifications will be issued to founding members first as production batches are completed."
+      answer: "Batch 01 estimated shipping dates are currently being finalized. Priority tracking and customized shipping notifications will be issued to founding members first as production batches are completed."
     },
     {
       question: "How does the local AI processing protect my data?",

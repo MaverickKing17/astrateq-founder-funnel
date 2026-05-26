@@ -121,14 +121,29 @@ export default function Navigation({ language, setLanguage, onScrollToSection }:
           </div>
 
           {/* Reserve My Spot CTA Button */}
-          <button
+          <motion.button
             id="nav-cta-btn"
             onClick={() => handleLinkClick('pricing')}
             className="hidden sm:flex items-center space-x-1.5 px-5 py-2 bg-[#00D4FF] text-[#1A1A2E] hover:bg-[#00D4FF]/90 text-xs font-extrabold uppercase tracking-wider rounded-none hover:shadow-md transition-all cursor-pointer border border-[#00D4FF]"
+            animate={{
+              scale: [1, 1.03, 1],
+              boxShadow: [
+                "0 0 0 0 rgba(0, 212, 255, 0)",
+                "0 0 0 6px rgba(0, 212, 255, 0.3)",
+                "0 0 0 0 rgba(0, 212, 255, 0)"
+              ]
+            }}
+            transition={{
+              duration: 2.5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.96 }}
           >
             <span>Reserve My Spot</span>
             <span className="text-[10px] font-sans font-black">→</span>
-          </button>
+          </motion.button>
 
           {/* Hamburger Menu (Mobile Only) */}
           <button
@@ -178,12 +193,21 @@ export default function Navigation({ language, setLanguage, onScrollToSection }:
               >
                 FAQ
               </button>
-              <button
+              <motion.button
                 onClick={() => handleLinkClick('pricing')}
                 className="w-full flex items-center justify-center space-x-1 py-2.5 px-4 rounded-none text-xs font-black uppercase tracking-widest text-[#1A1A2E] bg-[#00D4FF] hover:bg-[#00D4FF]/90 transition-all cursor-pointer shadow-sm"
+                animate={{
+                  scale: [1, 1.02, 1],
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                whileTap={{ scale: 0.97 }}
               >
                 <span>Reserve My Spot</span>
-              </button>
+              </motion.button>
             </div>
           </motion.div>
         )}
