@@ -53,7 +53,37 @@ interface TechnicalIntelligenceProps {
 
 export default function TechnicalIntelligence({ language }: TechnicalIntelligenceProps) {
   const [activeTab, setActiveTab] = useState<'winter' | 'ai' | 'compliance' | 'studies'>('winter');
+  const [selectedTempIndex, setSelectedTempIndex] = useState<number>(6); // Default to '-40°C' (index 6, show critical state to emphasize ASTRA resilience)
   const t = translations[language].aeoAuthSections;
+
+  const selectedBatteryPoint = batteryPerformanceData[selectedTempIndex] || batteryPerformanceData[6];
+  const standardValue = selectedBatteryPoint.standard;
+
+  let readinessStatus: 'Optimal' | 'Degraded' | 'Critical' = 'Optimal';
+  let readinessLabelEn = 'Optimal';
+  let readinessLabelFr = 'Optimal';
+  let badgeColor = 'bg-emerald-500/10 text-emerald-700 border-emerald-500/20';
+  let dotColor = 'bg-emerald-500';
+
+  if (standardValue >= 90) {
+    readinessStatus = 'Optimal';
+    readinessLabelEn = 'Optimal';
+    readinessLabelFr = 'Optimale';
+    badgeColor = 'bg-emerald-500/10 text-emerald-700 border-emerald-500/20';
+    dotColor = 'bg-emerald-500';
+  } else if (standardValue >= 60) {
+    readinessStatus = 'Degraded';
+    readinessLabelEn = 'Degraded';
+    readinessLabelFr = 'Dégradée';
+    badgeColor = 'bg-amber-500/10 text-amber-700 border-amber-500/20';
+    dotColor = 'bg-amber-500';
+  } else {
+    readinessStatus = 'Critical';
+    readinessLabelEn = 'Critical';
+    readinessLabelFr = 'Critique';
+    badgeColor = 'bg-rose-500/10 text-rose-700 border-rose-500/20';
+    dotColor = 'bg-rose-500';
+  }
 
   const tabs = [
     {
@@ -166,21 +196,56 @@ export default function TechnicalIntelligence({ language }: TechnicalIntelligenc
                 </div>
 
                 {/* Winter Performance Metric Section with Recharts Line Chart */}
-                <div className="mt-8 border-t border-gray-200/80 pt-6 space-y-4" id="winter-performance-metrics">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div className="mt-8 border-t border-gray-200/80 pt-6 space-y-4 relative" id="winter-performance-metrics">
+                  
+                  {/* Dynamic 'Winter Readiness' status badge in top-right of the metrics container */}
+                  <div className="md:absolute md:top-6 md:right-0 flex items-center space-x-1.5 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-none shadow-xs z-10" id="winter-readiness-badge">
+                    <span className="text-[10px] font-mono font-black text-slate-500 uppercase tracking-widest">
+                      {language === 'en' ? "Winter Readiness:" : "Préparation Hivernale:"}
+                    </span>
+                    <span className={`inline-flex items-center space-x-1.5 px-2 py-0.5 border text-[10px] font-mono font-black tracking-wider uppercase ${badgeColor}`}>
+                      <span className={`w-1.5 h-1.5 rounded-full ${dotColor}`} />
+                      <span>{language === 'en' ? readinessLabelEn : readinessLabelFr}</span>
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 md:pr-64 border-b border-gray-100 pb-3">
                     <div>
                       <h4 className="text-sm font-bold text-slate-900 uppercase tracking-tight">
                         {language === 'en' ? "Winter Performance: Cold-Weather Battery Degradation" : "Performances hivernales : Dégradation de batterie par grand froid"}
                       </h4>
-                      <p className="text-[11px] text-slate-500 font-medium">
+                      <p className="text-[11px] text-slate-500 font-medium mt-1">
                         {language === 'en'
                           ? "Comparative testing of ASTRA-AI extreme-tolerance standby supercapacitor cell versus standard dashboard cells at arctic operating limits."
                           : "Essais comparatifs de notre supercondensateur de secours à tolérance extrême contre les cellules ordinaires par grand froid hiberne."}
                       </p>
                     </div>
-                    <span className="self-start sm:self-center px-2 py-0.5 border border-blue-200 bg-blue-50 text-blue-800 font-mono text-[9px] font-bold uppercase tracking-wider">
+                    <span className="self-start sm:self-center px-2 py-0.5 border border-blue-200 bg-blue-50 text-blue-800 font-mono text-[9px] font-bold uppercase tracking-wider shrink-0 h-fit">
                       {language === 'en' ? "Lab certified -40°C" : "Certifié en labo -40°C"}
                     </span>
+                  </div>
+
+                  {/* Simulated temperature selector to allow explicit triggers of different values */}
+                  <div className="flex flex-wrap items-center gap-2 bg-slate-50 p-2.5 border border-slate-200" id="winter-temp-simulator">
+                    <span className="text-[9px] font-mono font-bold text-slate-500 uppercase tracking-widest mr-1">
+                      {language === 'en' ? "Simulate Temp (or hover graph):" : "Simuler temp (ou survoler le graphe) :"}
+                    </span>
+                    <div className="flex flex-wrap gap-1">
+                      {batteryPerformanceData.map((item, idx) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => setSelectedTempIndex(idx)}
+                          className={`px-2.5 py-1 text-[9px] font-mono font-bold transition-all cursor-pointer border ${
+                            selectedTempIndex === idx
+                              ? "bg-blue-600 text-white border-blue-600 shadow-xs"
+                              : "bg-white hover:bg-slate-100 text-slate-600 border-slate-200"
+                          }`}
+                        >
+                          {language === 'en' ? item.temp : item.tempFr}
+                        </button>
+                      ))}
+                    </div>
                   </div>
 
                   <div className="bg-white p-4 rounded-none border border-gray-200 relative h-72">
@@ -188,6 +253,11 @@ export default function TechnicalIntelligence({ language }: TechnicalIntelligenc
                       <LineChart
                         data={batteryPerformanceData}
                         margin={{ top: 15, right: 15, left: -20, bottom: 5 }}
+                        onMouseMove={(state) => {
+                          if (state && state.activeTooltipIndex !== undefined && state.activeTooltipIndex !== null) {
+                            setSelectedTempIndex(state.activeTooltipIndex);
+                          }
+                        }}
                       >
                         <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                         <XAxis

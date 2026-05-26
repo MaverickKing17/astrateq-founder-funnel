@@ -22,6 +22,7 @@ import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
 import CheckoutModal from './components/CheckoutModal';
 import LiveChat from './components/LiveChat';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   const [language, setLanguage] = useState<Language>('en');
@@ -135,6 +136,9 @@ export default function App() {
 
       {/* 17. Intelligent AI-Powered Chat Assistant */}
       <LiveChat language={language} />
+
+      {/* 18. Floating Scroll to Top button */}
+      <ScrollToTop language={language} />
 
     </div>
   );

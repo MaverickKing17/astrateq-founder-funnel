@@ -27,8 +27,14 @@ export default function CheckoutModal({ language, selectedTier, isOpen, onClose 
   const [isComplete, setIsComplete] = useState(false);
   const [address, setAddress] = useState('');
   const [province, setProvince] = useState('ON');
+  const [isConfirming, setIsConfirming] = useState(false);
 
   const t = translations[language];
+
+  const handleClose = () => {
+    setIsConfirming(false);
+    onClose();
+  };
   const p = t.pricing;
 
   // Retrieve current active tier configuration
@@ -85,12 +91,17 @@ export default function CheckoutModal({ language, selectedTier, isOpen, onClose 
   const handleCheckoutSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (email && fullName && cardNumber.length >= 19 && expiry.length >= 5 && cvc.length >= 3) {
-      setIsProcessing(true);
-      setTimeout(() => {
-        setIsProcessing(false);
-        setIsComplete(true);
-      }, 1600);
+      setIsConfirming(true);
     }
+  };
+
+  const handleFinalConfirm = () => {
+    setIsProcessing(true);
+    setTimeout(() => {
+      setIsProcessing(false);
+      setIsConfirming(false);
+      setIsComplete(true);
+    }, 1600);
   };
 
   if (!isOpen) return null;
@@ -102,7 +113,7 @@ export default function CheckoutModal({ language, selectedTier, isOpen, onClose 
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.6 }}
         exit={{ opacity: 0 }}
-        onClick={onClose}
+        onClick={handleClose}
         className="absolute inset-0 bg-[#0B0E1B]"
       />
 
@@ -116,7 +127,7 @@ export default function CheckoutModal({ language, selectedTier, isOpen, onClose 
       >
         {/* Close Button element */}
         <button
-          onClick={onClose}
+          onClick={handleClose}
           className="absolute top-4 right-4 p-1.5 hover:bg-gray-100 text-gray-400 hover:text-[#1A1A2E] rounded-xl transition-all cursor-pointer z-20"
           aria-label="Close modal"
         >
@@ -125,7 +136,113 @@ export default function CheckoutModal({ language, selectedTier, isOpen, onClose 
 
         {/* Transaction Content States */}
         {!isComplete ? (
-          <form onSubmit={handleCheckoutSubmit} className="space-y-6 text-left" id="checkout-form-panel">
+          isConfirming ? (
+            /* User Confirmation Dialog section */
+            <div className="space-y-6 text-left" id="checkout-confirm-panel">
+              <div className="space-y-1.5 border-b border-slate-100 pb-3">
+                <span className="text-[10px] font-black font-mono tracking-[0.15em] text-[#00D4FF] uppercase flex items-center gap-1.5">
+                  <ShieldCheck className="w-4 h-4 text-cyan-600 inline" />
+                  {language === 'en' ? "DOUBLE-VERIFICATION PROTOCOL" : "PROTOCOLE DE DOUBLE VÉRIFICATION"}
+                </span>
+                <h3 className="font-serif text-2xl font-bold leading-tight">
+                  {language === 'en' ? "Confirm Your Pre-Order" : "Confirmez votre réservation"}
+                </h3>
+                <p className="text-xs text-slate-500 leading-relaxed font-semibold">
+                  {language === 'en'
+                    ? "Please review your booking particulars below to prevent any accidental charges."
+                    : "S'il vous plaît vérifiez les détails ci-dessous afin d'éviter toute imputation involontaire."}
+                </p>
+              </div>
+
+              {/* Summary metadata card elements */}
+              <div className="bg-slate-50 border border-slate-200 p-4 rounded-2xl space-y-4">
+                <div className="flex items-center justify-between border-b border-slate-200 pb-2.5">
+                  <div>
+                    <span className="text-[9px] font-mono tracking-widest font-extrabold text-slate-400 block uppercase">
+                      {language === 'en' ? "RESERVED TIER" : "NIVEAU DE RÉSERVATION"}
+                    </span>
+                    <span className="text-xs font-black text-[#1A1A2E] uppercase">
+                      ASTRA-AI {activeTierObj.name}
+                    </span>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-[9px] font-mono tracking-widest font-extrabold text-slate-400 block uppercase">
+                      {language === 'en' ? "REFUNDABLE FEE" : "DÉPÔT REMBOURSABLE"}
+                    </span>
+                    <span className="text-sm font-black text-green-600 font-mono">
+                      ${activeTierObj.price}.00 CAD
+                    </span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 text-xs font-semibold text-slate-700">
+                  <div>
+                    <span className="text-[9px] font-mono tracking-widest font-extrabold text-slate-400 block uppercase">
+                      {language === 'en' ? "CARDHOLDER NAME" : "NOM SUR LA CARTE"}
+                    </span>
+                    <span className="text-slate-800 break-words block mt-0.5">{fullName}</span>
+                  </div>
+                  <div>
+                    <span className="text-[9px] font-mono tracking-widest font-extrabold text-slate-400 block uppercase">
+                      {language === 'en' ? "EMAIL ADDRESS" : "ADRESSE COURRIEL"}
+                    </span>
+                    <span className="text-slate-800 break-all block mt-0.5">{email}</span>
+                  </div>
+                </div>
+
+                <div className="text-xs font-semibold text-slate-700">
+                  <span className="text-[9px] font-mono tracking-widest font-extrabold text-slate-400 block uppercase">
+                    {language === 'en' ? "DESTINATION SHIPPING ADDRESS" : "ADRESSE CANADIENNE DE LIVRAISON"}
+                  </span>
+                  <span className="text-slate-800 block mt-0.5">{address}, {province}, Canada</span>
+                </div>
+
+                <div className="text-xs font-semibold text-slate-700">
+                  <span className="text-[9px] font-mono tracking-widest font-extrabold text-slate-400 block uppercase">
+                    {language === 'en' ? "SECURED CARD SOURCE" : "SOURCING DE CARTE SÉCURISÉ"}
+                  </span>
+                  <span className="text-slate-800 block mt-0.5 font-mono text-[11px] tracking-wide">
+                    •••• •••• •••• {cardNumber ? cardNumber.replace(/\s+/g, '').slice(-4) : "xxxx"}
+                  </span>
+                </div>
+              </div>
+
+              {/* Escrow note with refund reassurance */}
+              <div className="bg-emerald-50/70 border border-emerald-200 p-3.5 rounded-xl flex items-start space-x-2.5">
+                <ShieldCheck className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
+                <p className="text-[10px] text-green-800 leading-relaxed font-semibold">
+                  {language === 'en'
+                    ? "Fully safe-guarded. Pre-order funds are held locally. No payment will be finalized unless you approve. You can cancel and claim a 100% full refund at any time."
+                    : "Transaction hautement sécurisée. Dépôts sous séquestre local. Aucun débit ne sera définitif sans votre accord. Remboursement garanti à 100% sur simple demande."}
+                </p>
+              </div>
+
+              {/* Submit triggers action bar */}
+              <div className="space-y-3 pt-2">
+                <button
+                  type="button"
+                  onClick={handleFinalConfirm}
+                  className="w-full py-4 bg-green-600 hover:bg-green-500 text-white font-extrabold rounded-none text-xs tracking-wider uppercase transition-colors flex items-center justify-center space-x-2 cursor-pointer shadow-lg shadow-green-600/10"
+                >
+                  <Lock className="w-3.5 h-3.5" />
+                  <span>
+                    {language === 'en'
+                      ? `Authorize & Charge $${activeTierObj.price}.00 CAD`
+                      : `Autoriser et charger ${activeTierObj.price},00 $ CAD`}
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setIsConfirming(false)}
+                  className="w-full py-3 bg-white hover:bg-slate-50 text-slate-500 border border-slate-200 font-bold text-xs rounded-none transition-colors text-center cursor-pointer"
+                >
+                  {language === 'en' ? "← Revise Shipping or Billing details" : "← Corriger mes coordonnées"}
+                </button>
+              </div>
+            </div>
+          ) : (
+            <form onSubmit={handleCheckoutSubmit} className="space-y-6 text-left" id="checkout-form-panel">
             
             {/* Header branding info */}
             <div className="space-y-1 pr-8">
@@ -324,7 +441,7 @@ export default function CheckoutModal({ language, selectedTier, isOpen, onClose 
             </div>
 
           </form>
-        ) : (
+        )) : (
           /* Pre-order Complete State Receipts Check */
           <div className="space-y-6 text-center py-6" id="checkout-receipt-panel">
             
@@ -381,7 +498,7 @@ export default function CheckoutModal({ language, selectedTier, isOpen, onClose 
               </button>
 
               <button
-                onClick={onClose}
+                onClick={handleClose}
                 className="w-full py-3 bg-white hover:bg-gray-50 text-gray-500 border border-gray-200 font-bold text-xs rounded-full transition-all flex items-center justify-center space-x-1 cursor-pointer"
               >
                 <span>{language === 'en' ? "Back to Experience" : "Retour à la page"}</span>
