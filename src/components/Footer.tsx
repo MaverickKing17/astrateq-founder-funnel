@@ -301,7 +301,7 @@ export default function Footer({ language }: FooterProps) {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-2 text-xs text-white font-mono" id="footer-bottom-board">
           <p className="text-left leading-relaxed max-w-2xl font-semibold">
             {t.allRightsReserved}<br />
-            <span className="text-slate-400 font-medium block mt-3 leading-relaxed text-[11px]">{t.subLegalText}</span>
+            <span className="text-white font-medium block mt-3 leading-relaxed text-[11px]">{t.subLegalText}</span>
           </p>
           <div className="flex items-center space-x-3 shrink-0">
             <span className="px-2.5 py-1 border border-neutral-800 bg-slate-950 rounded-none text-white font-black text-[10px] tracking-wider">PIPEDA ACTIVE</span>
