@@ -5,7 +5,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Shield, Languages, ArrowRight, Menu, X } from 'lucide-react';
+import { Languages, Menu, X, ArrowRight } from 'lucide-react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
 
@@ -18,11 +18,10 @@ interface NavigationProps {
 export default function Navigation({ language, setLanguage, onScrollToSection }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const t = translations[language];
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 40) {
+      if (window.scrollY > 10) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -40,105 +39,105 @@ export default function Navigation({ language, setLanguage, onScrollToSection }:
   return (
     <nav
       id="main-nav"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-20 flex items-center ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-20 flex items-center border-b ${
         isScrolled
-          ? 'bg-[#06080F]/90 backdrop-blur-md shadow-sm border-b border-white/5'
-          : 'bg-transparent border-b border-white/5'
+          ? 'bg-white/80 backdrop-blur-md shadow-sm border-slate-200/50'
+          : 'bg-white/50 backdrop-blur-sm border-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between w-full">
-        {/* Left Area - Brand */}
+        {/* Left Area - Brand logo */}
         <div 
-          className="flex items-center cursor-pointer" 
+          className="flex items-center space-x-2 cursor-pointer group" 
           onClick={() => handleLinkClick('hero')}
           id="nav-brand"
         >
-          {/* Premium Astrateq branding logo */}
-          <div className="flex items-center">
-            <img 
-              src="https://i.ibb.co/k2YQcpYM/Gemini-Generated-Image-pta8i9pta8i9pta8.png" 
-              alt="Astrateq Logo" 
-              className="h-8 md:h-9 w-auto object-contain filter brightness-110 drop-shadow-md"
-              referrerPolicy="no-referrer"
-            />
-          </div>
+          <img 
+            src="https://i.ibb.co/k2YQcpYM/Gemini-Generated-Image-pta8i9pta8i9pta8.png" 
+            alt="Astrateq Logo" 
+            className="h-8 w-auto object-contain"
+            referrerPolicy="no-referrer"
+          />
+          <span className="font-serif text-xl font-bold tracking-tight text-[#1A1A2E]">
+            Astrateq <span className="font-sans font-light text-slate-500">Gadgets</span>
+          </span>
         </div>
 
-        {/* Center Links (Desktop Only) - matched to mockup */}
-        <div className="hidden md:flex items-center space-x-10" id="nav-links-desktop">
+        {/* Center Links (Desktop Only) - matched to Section 01 of PDF */}
+        <div className="hidden md:flex items-center space-x-8" id="nav-links-desktop">
           <button
             onClick={() => handleLinkClick('features')}
-            className="text-xs font-bold text-slate-300 hover:text-[#00D4FF] uppercase tracking-widest transition-colors cursor-pointer"
+            className="text-xs font-bold text-[#4B5563] hover:text-[#00D4FF] uppercase tracking-wider transition-colors cursor-pointer"
           >
             Features
           </button>
           <button
-            onClick={() => handleLinkClick('how-it-works')}
-            className="text-xs font-bold text-slate-300 hover:text-[#00D4FF] uppercase tracking-widest transition-colors cursor-pointer"
-          >
-            How It Works
-          </button>
-          <button
             onClick={() => handleLinkClick('compatibility')}
-            className="text-xs font-bold text-slate-300 hover:text-[#00D4FF] uppercase tracking-widest transition-colors cursor-pointer"
+            className="text-xs font-bold text-[#4B5563] hover:text-[#00D4FF] uppercase tracking-wider transition-colors cursor-pointer"
           >
             Compatibility
           </button>
           <button
-            onClick={() => handleLinkClick('pricing')}
-            className="text-xs font-bold text-slate-300 hover:text-[#00D4FF] uppercase tracking-widest transition-colors cursor-pointer"
+            onClick={() => handleLinkClick('testimonials')}
+            className="text-xs font-bold text-[#4B5563] hover:text-[#00D4FF] uppercase tracking-wider transition-colors cursor-pointer"
           >
-            Pricing
+            Alpha Insights
           </button>
           <button
             onClick={() => handleLinkClick('faq')}
-            className="text-xs font-bold text-slate-300 hover:text-[#00D4FF] uppercase tracking-widest transition-colors cursor-pointer"
+            className="text-xs font-bold text-[#4B5563] hover:text-[#00D4FF] uppercase tracking-wider transition-colors cursor-pointer"
           >
-            {t.navigation.links.faq}
+            FAQ
+          </button>
+          <button
+            onClick={() => handleLinkClick('what-is-included')}
+            className="text-xs font-bold text-[#4B5563] hover:text-[#00D4FF] uppercase tracking-wider transition-colors cursor-pointer"
+          >
+            About
           </button>
         </div>
 
         {/* Right CTA Suite */}
         <div className="flex items-center space-x-4" id="nav-actions">
-          {/* Language Switcher with premium dark styling */}
-          <div className="flex items-center bg-white/5 rounded-none p-0.5 border border-white/10" id="lang-switcher">
+          {/* Language Switcher */}
+          <div className="flex items-center bg-slate-100 rounded-none p-0.5 border border-slate-200" id="lang-switcher">
             <button
               onClick={() => setLanguage('en')}
-              className={`px-3 py-1 text-[10px] font-bold rounded-none transition-all cursor-pointer ${
+              className={`px-2 py-1 text-[10px] font-bold rounded-none transition-all cursor-pointer ${
                 language === 'en'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-[#1A1A2E] text-white'
+                  : 'text-slate-500 hover:text-slate-900'
               }`}
             >
               EN
             </button>
             <button
               onClick={() => setLanguage('fr')}
-              className={`px-3 py-1 text-[10px] font-bold rounded-none transition-all cursor-pointer ${
+              className={`px-2 py-1 text-[10px] font-bold rounded-none transition-all cursor-pointer ${
                 language === 'fr'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-[#1A1A2E] text-white font-bold'
+                  : 'text-slate-500 hover:text-slate-900'
               }`}
             >
               FR
             </button>
           </div>
 
-          {/* Reserve button (Desktop) */}
+          {/* Reserve My Spot CTA Button */}
           <button
             id="nav-cta-btn"
             onClick={() => handleLinkClick('pricing')}
-            className="hidden sm:flex items-center space-x-1.5 px-6 py-2.5 bg-blue-600 text-white text-xs font-bold uppercase tracking-widest rounded-none hover:bg-blue-500 transition-colors shadow-lg shadow-blue-650/10 cursor-pointer"
+            className="hidden sm:flex items-center space-x-1.5 px-5 py-2 bg-[#00D4FF] text-[#1A1A2E] hover:bg-[#00D4FF]/90 text-xs font-extrabold uppercase tracking-wider rounded-none hover:shadow-md transition-all cursor-pointer border border-[#00D4FF]"
           >
-            <span>Pre-Order Now</span>
-            <span className="text-[10px] font-sans font-black ml-1">→</span>
+            <span>Reserve My Spot</span>
+            <span className="text-[10px] font-sans font-black">→</span>
           </button>
 
           {/* Hamburger Menu (Mobile Only) */}
           <button
             id="mobile-menu-toggle"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-none text-white hover:bg-white/10 transition-colors border border-transparent"
+            className="md:hidden p-2 rounded-none text-[#1A1A2E] hover:bg-slate-100 transition-colors border border-transparent"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -155,44 +154,38 @@ export default function Navigation({ language, setLanguage, onScrollToSection }:
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-[#0A0D16] border-b border-white/10 absolute top-20 left-0 right-0 z-40"
+            className="md:hidden bg-white border-b border-slate-200 absolute top-20 left-0 right-0 z-40"
           >
             <div className="px-6 py-6 flex flex-col space-y-4">
               <button
                 onClick={() => handleLinkClick('features')}
-                className="w-full text-left py-2.5 text-xs font-extrabold uppercase tracking-wider text-slate-300 hover:text-blue-500 border-b border-white/5 pb-2 cursor-pointer"
+                className="w-full text-left py-2.5 text-xs font-extrabold uppercase tracking-wider text-slate-700 hover:text-[#00D4FF] border-b border-slate-100 pb-2 cursor-pointer"
               >
                 Features
               </button>
               <button
-                onClick={() => handleLinkClick('how-it-works')}
-                className="w-full text-left py-2.5 text-xs font-extrabold uppercase tracking-wider text-slate-300 hover:text-blue-500 border-b border-white/5 pb-2 cursor-pointer"
-              >
-                {t.navigation.links.howItWorks}
-              </button>
-              <button
                 onClick={() => handleLinkClick('compatibility')}
-                className="w-full text-left py-2.5 text-xs font-extrabold uppercase tracking-wider text-slate-300 hover:text-blue-500 border-b border-white/5 pb-2 cursor-pointer"
+                className="w-full text-left py-2.5 text-xs font-extrabold uppercase tracking-wider text-slate-700 hover:text-[#00D4FF] border-b border-slate-100 pb-2 cursor-pointer"
               >
-                {t.navigation.links.compatibility}
+                Compatibility
               </button>
               <button
-                onClick={() => handleLinkClick('pricing')}
-                className="w-full text-left py-2.5 text-xs font-extrabold uppercase tracking-wider text-slate-300 hover:text-blue-500 border-b border-white/5 pb-2 cursor-pointer"
+                onClick={() => handleLinkClick('testimonials')}
+                className="w-full text-left py-2.5 text-xs font-extrabold uppercase tracking-wider text-slate-700 hover:text-[#00D4FF] border-b border-slate-100 pb-2 cursor-pointer"
               >
-                {t.navigation.links.pricing}
+                Alpha Insights
               </button>
               <button
                 onClick={() => handleLinkClick('faq')}
-                className="w-full text-left py-2.5 text-xs font-extrabold uppercase tracking-wider text-slate-300 hover:text-blue-500 border-b border-white/5 pb-2 cursor-pointer"
+                className="w-full text-left py-2.5 text-xs font-extrabold uppercase tracking-wider text-slate-700 hover:text-[#00D4FF] border-b border-slate-100 pb-2 cursor-pointer"
               >
-                {t.navigation.links.faq}
+                FAQ
               </button>
               <button
                 onClick={() => handleLinkClick('pricing')}
-                className="w-full flex items-center justify-center space-x-1 py-3 px-4 rounded-none text-xs font-bold uppercase tracking-widest text-white bg-blue-600 hover:bg-blue-500 transition-all cursor-pointer shadow-lg shadow-blue-600/10"
+                className="w-full flex items-center justify-center space-x-1 py-2.5 px-4 rounded-none text-xs font-black uppercase tracking-widest text-[#1A1A2E] bg-[#00D4FF] hover:bg-[#00D4FF]/90 transition-all cursor-pointer shadow-sm"
               >
-                <span>{t.navigation.cta}</span>
+                <span>Reserve My Spot</span>
               </button>
             </div>
           </motion.div>

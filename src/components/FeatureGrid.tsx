@@ -172,18 +172,18 @@ export default function FeatureGrid({ language }: FeatureGridProps) {
             </div>
           </div>
 
-          {/* Right Horizontal Sliding Container - Beautiful Modern Card lists with fixed width restriction bounds */}
+          {/* Right Column - Polished grid on desktop (lg:) and touch-scroll on mobile */}
           <div className="lg:col-span-8 w-full min-w-0" id="features-right-column">
             <div 
               ref={scrollRef}
               onScroll={handleScroll}
-              className="flex space-x-5 overflow-x-auto pb-8 pt-1 scrollbar-none snap-x snap-mandatory relative scroll-smooth"
+              className="flex lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-6 space-x-5 lg:space-x-0 overflow-x-auto lg:overflow-x-visible pb-8 pt-1 scrollbar-none snap-x snap-mandatory relative scroll-smooth"
             >
               {mockupCards.map((card) => {
                 return (
                   <div 
                     key={card.id} 
-                    className={`snap-start shrink-0 w-[290px] sm:w-[325px] h-[460px] relative overflow-hidden rounded-none border border-slate-200 bg-white ${card.hoverBorder} ${card.glowColor} transition-all duration-300 shadow-md flex flex-col justify-between p-6 cursor-pointer group`}
+                    className="snap-start shrink-0 w-[290px] sm:w-[325px] lg:w-full h-[460px] relative overflow-hidden rounded-none border border-slate-200 bg-white hover:border-blue-500/70 transition-all duration-300 shadow-md flex flex-col justify-between p-6 cursor-pointer group"
                     onClick={() => setActiveDeepDiveId(card.id)}
                   >
                     {/* Dynamic glowing theme effect inside */}
@@ -201,8 +201,8 @@ export default function FeatureGrid({ language }: FeatureGridProps) {
                         </div>
                       </div>
 
-                      <div className="space-y-1.5">
-                        <h3 className="text-base font-extrabold text-slate-900 leading-snug uppercase tracking-tight">
+                      <div className="space-y-1.5 leading-snug">
+                        <h3 className="text-sm font-extrabold text-slate-900 leading-snug uppercase tracking-wider">
                           {card.title}
                         </h3>
                       </div>
@@ -224,7 +224,7 @@ export default function FeatureGrid({ language }: FeatureGridProps) {
                     </div>
 
                     {/* Footer cue */}
-                    <div className={`pt-4 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold uppercase tracking-widest text-slate-500 ${card.accentText} transition-colors relative z-10`}>
+                    <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold uppercase tracking-widest text-[#4B5563] group-hover:text-blue-600 transition-colors relative z-10">
                       <span>Full Specifications</span>
                       <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                     </div>
@@ -233,19 +233,19 @@ export default function FeatureGrid({ language }: FeatureGridProps) {
               })}
             </div>
 
-            {/* Custom Interactive Scroll Progress HUD */}
-            <div className="mt-4 flex items-center justify-between px-1">
+            {/* Custom Interactive Scroll Progress HUD - Visible only where sliding happens */}
+            <div className="mt-4 flex lg:hidden items-center justify-between px-1">
               {/* Left Arrow */}
               <button 
                 onClick={() => scroll('left')}
-                className="p-2 text-slate-400 hover:text-blue-600 hover:bg-slate-100 rounded-none border border-slate-200 transition-all cursor-pointer bg-white"
+                className="p-2 text-slate-405 hover:text-blue-650 hover:bg-slate-100 rounded-none border border-slate-200 transition-all cursor-pointer bg-white"
                 aria-label="Scroll left"
               >
                 <ChevronRight className="w-4 h-4 rotate-180" />
               </button>
 
               {/* Slider Track with Dynamic visual scroll alignment */}
-              <div className="flex-1 mx-4 h-1 bg-slate-250 relative rounded-none overflow-hidden block">
+              <div className="flex-1 mx-4 h-1 bg-slate-200 relative rounded-none overflow-hidden block">
                 <div 
                   className="absolute top-0 bottom-0 bg-blue-600 transition-all duration-150 rounded-none"
                   style={{ 
@@ -258,7 +258,7 @@ export default function FeatureGrid({ language }: FeatureGridProps) {
               {/* Right Arrow */}
               <button 
                 onClick={() => scroll('right')}
-                className="p-2 text-slate-400 hover:text-blue-600 hover:bg-slate-100 rounded-none border border-slate-200 transition-all cursor-pointer bg-white"
+                className="p-2 text-slate-405 hover:text-blue-650 hover:bg-slate-100 rounded-none border border-slate-200 transition-all cursor-pointer bg-white"
                 aria-label="Scroll right"
               >
                 <ChevronRight className="w-4 h-4" />

@@ -3,97 +3,139 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Star, MapPin, Quote } from 'lucide-react';
 import { Language } from '../types';
-import { translations } from '../data/translations';
 
 interface TestimonialsProps {
   language: Language;
 }
 
 export default function Testimonials({ language }: TestimonialsProps) {
-  const t = translations[language].testimonials;
-
   return (
-    <section id="testimonials" className="py-24 md:py-32 bg-gradient-to-b from-[#F3F6F8] via-slate-50 to-[#EBF0F3] relative overflow-hidden flex flex-col justify-center items-center">
-      {/* Dynamic ambient graphic ring */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-cyan-400/5 to-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/5 to-purple-500/5 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full text-center space-y-16">
+    <section id="alpha-insights" className="py-20 bg-white border-b border-slate-200 relative">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
         
-        {/* Header Block */}
-        <div className="max-w-2xl mx-auto space-y-4" id="testimonials-headers">
-          <span className="px-3.5 py-1.5 text-xs font-bold font-mono text-blue-800 bg-[#E0E8F6] border border-blue-200 rounded-none uppercase tracking-widest inline-block">
-             💬 {language === 'en' ? "BETA TEST RECORDS" : "ESSAIS CONCLUANTS"}
+        {/* Header Layout */}
+        <div className="space-y-3 max-w-3xl text-left mb-16">
+          <span className="text-slate-500 font-mono text-xs font-black uppercase tracking-[0.2em] block">
+            EARLY ALPHA RESEARCH INSIGHTS
           </span>
-          <h2 className="font-sans text-3xl md:text-5xl font-extrabold tracking-tighter text-[#1A1A2E]">
-            {t.title}
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#1A1A2E] leading-tight">
+            Analyzing over 12,000 kilometres of cold-weather driving diagnostics across Canada.
           </h2>
-          <p className="text-base text-slate-500 font-medium font-sans">
-            {t.subtitle}
-          </p>
         </div>
 
-        {/* 3 cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch max-w-5xl mx-auto" id="testimonials-grid">
-          {t.list.map((item, id) => {
-            const borderColors = [
-              "from-blue-500 to-indigo-600",
-              "from-indigo-600 to-purple-600",
-              "from-purple-500 to-cyan-500"
-            ];
-            const currentGradient = borderColors[id % borderColors.length];
-
-            return (
-              <div
-                key={id}
-                className="flex flex-col justify-between bg-white p-8 rounded-none border border-gray-200 relative z-10 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-left overflow-hidden"
-                id={`testimonial-card-${id}`}
-              >
-                {/* Lateral colorful side ribbon */}
-                <div className={`absolute top-0 bottom-0 left-0 w-1 bg-gradient-to-b ${currentGradient}`} />
-
-                <div className="space-y-6">
-                  
-                  {/* Testimonial header with Stars & Quote icon */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-0.5" id={`stars-container-${id}`}>
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-amber-500 fill-current" />
-                      ))}
-                    </div>
-                    <Quote className="w-6 h-6 text-slate-100 shrink-0" />
-                  </div>
-
-                  {/* Quote body */}
-                  <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed italic relative font-sans font-medium">
-                    "{item.quote}"
-                  </p>
-
-                </div>
-
-                {/* Author Footer */}
-                <div className="pt-6 mt-6 border-t border-gray-100 flex items-center justify-between">
-                  <div>
-                    <h4 className="text-sm font-extrabold text-[#1A1A2E]">
-                      {item.name}
-                    </h4>
-                    <span className="text-[9px] font-black font-mono uppercase tracking-widest text-blue-600 block mt-1">
-                      {item.metrics}
-                    </span>
-                  </div>
-                  {/* Location indicator */}
-                  <div className="flex items-center space-x-1.5 text-slate-500 font-bold">
-                    <MapPin className="w-3.5 h-3.5 text-rose-500 shrink-0" />
-                    <span className="text-[10px] uppercase font-mono tracking-wider">{item.location}</span>
-                  </div>
-                </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start" id="alpha-insights-grid">
+          
+          {/* Left Column: 3 Vertical Logs */}
+          <div className="lg:col-span-6 space-y-6" id="alpha-logs-column">
+            
+            {/* Log 1 */}
+            <div className="p-6 bg-slate-50 border border-slate-200 relative text-left" id="alpha-log-1">
+              <div className="absolute top-0 bottom-0 left-0 w-1 bg-[#00D4FF]" />
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-mono font-black tracking-widest text-[#1E2538] uppercase">
+                  LOG.001 - CALGARY, AB (SUB-ZERO CALIBRATION)
+                </span>
+                <span className="text-[10px] font-mono font-bold text-slate-400">
+                  FEB 2025
+                </span>
               </div>
-            );
-          })}
-        </div>
+              <p className="text-xs text-slate-650 font-medium leading-relaxed">
+                Successfully verified 100% laser detection accuracy on icy roads during a -32°C blizzard, detecting lane markers through blowing snow.
+              </p>
+            </div>
 
+            {/* Log 2 */}
+            <div className="p-6 bg-slate-50 border border-slate-200 relative text-left" id="alpha-log-2">
+              <div className="absolute top-0 bottom-0 left-0 w-1 bg-[#00D4FF]" />
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-mono font-black tracking-widest text-[#1E2538] uppercase">
+                  LOG.002 - HUDSON BAY, NU (THERMODYNAMIC SCANNING)
+                </span>
+                <span className="text-[10px] font-mono font-bold text-slate-400">
+                  MAR 2025
+                </span>
+              </div>
+              <p className="text-xs text-slate-650 font-medium leading-relaxed">
+                Tested vehicle temperature registers on OBD-II ports; successfully predicted high starter battery resistance 14 hours before physical failure.
+              </p>
+            </div>
+
+            {/* Log 3 */}
+            <div className="p-6 bg-slate-50 border border-slate-200 relative text-left" id="alpha-log-3">
+              <div className="absolute top-0 bottom-0 left-0 w-1 bg-[#00D4FF]" />
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-mono font-black tracking-widest text-[#1E2538] uppercase">
+                  LOG.003 - MONT-TREMBLANT, QC (COLLISION PREDICTION)
+                </span>
+                <span className="text-[10px] font-mono font-bold text-slate-400">
+                  DEC 2024
+                </span>
+              </div>
+              <p className="text-xs text-slate-650 font-medium leading-relaxed">
+                Pre-collision optics calibrated successfully over severe, unlit snowy curves, reducing localized lane warning latency by 35%.
+              </p>
+            </div>
+
+          </div>
+
+          {/* Right Column: Visual Stats Panel */}
+          <div className="lg:col-span-6 bg-[#111827] text-white p-8 border border-slate-800 shadow-xl text-left" id="alpha-stats-panel">
+            <div className="space-y-6">
+              
+              <div className="border-b border-slate-800 pb-4">
+                <span className="text-[9px] font-mono font-black tracking-widest text-[#00D4FF] uppercase">
+                  LIVE COMPILATION DATA READOUTS
+                </span>
+              </div>
+
+              {/* Stats entries */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                
+                {/* Stat 1 */}
+                <div className="space-y-1">
+                  <span className="text-3xl sm:text-4xl font-mono font-black tracking-tight text-[#00D4FF] block">
+                    12,450 km
+                  </span>
+                  <span className="text-[9px] font-sans font-bold uppercase tracking-wider text-slate-450 block leading-tight">
+                    Total Real-World Distance Tracked
+                  </span>
+                </div>
+
+                {/* Stat 2 */}
+                <div className="space-y-1">
+                  <span className="text-3xl sm:text-4xl font-mono font-black tracking-tight text-[#00D4FF] block">
+                    100%
+                  </span>
+                  <span className="text-[9px] font-sans font-bold uppercase tracking-wider text-slate-455 block leading-tight">
+                    Passive CAN-bus Compatibility Rate
+                  </span>
+                </div>
+
+                {/* Stat 3 */}
+                <div className="space-y-1">
+                  <span className="text-3xl sm:text-4xl font-mono font-black tracking-tight text-[#00D4FF] block">
+                    110 ms
+                  </span>
+                  <span className="text-[9px] font-sans font-bold uppercase tracking-wider text-slate-460 block leading-tight">
+                    Stereo Collision Avoidance Reaction Time
+                  </span>
+                </div>
+
+              </div>
+
+              {/* Data sovereignty footer note */}
+              <div className="pt-6 border-t border-slate-800 text-[11px] text-slate-400 font-medium leading-relaxed flex items-start space-x-2.5">
+                <span className="text-[#00D4FF]">🍁</span>
+                <p>
+                  All live telemetry is compiled, stored, and processed securely inside Canada to protect your privacy and ensure compliance with provincial privacy guidelines.
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );
