@@ -7,7 +7,7 @@ import { Check, Cpu, Hammer, Package, Shield, Settings, HelpCircle } from 'lucid
 import { Language } from '../types';
 import { translations } from '../data/translations';
 // @ts-ignore
-import astraProductsImg from '../assets/images/astra_suite_products_1779732275719.png';
+import astraProductsImg from '../assets/images/suite_kit_v2_1779820734677.png';
 
 interface WhatIsIncludedProps {
   language: Language;
